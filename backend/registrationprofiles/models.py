@@ -11,7 +11,7 @@ def code_generator(length=5):
 
 class RegistrationProfile(models.Model):
     user = models.OneToOneField(
-        to=settings.settings.AUTH_USER_MODEL,
+        to=settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name='registration_profile',
         blank=True,
