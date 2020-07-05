@@ -20,29 +20,29 @@ class Restaurant(models.Model):
     ]
 
     name = models.CharField(
-        max_length=200
+        max_length=200,
     )
 
     category = models.IntegerField(
         choices=RESTAURANT_CATEGORY_CHOICES,
         validators=[MinValueValidator(1), MaxValueValidator(12)],
-        default=12
+        default=12,
     )
 
     country = models.CharField(
-        max_length=200
+        max_length=200,
     )
 
     street = models.CharField(
-        max_length=200
+        max_length=200,
     )
 
     city = models.CharField(
-        max_lenth=200
+        max_length=200,
     )
 
     zip = models.CharField(
-        max_length=5
+        max_length=5,
     )
 
     website = models.CharField(

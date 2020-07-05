@@ -38,7 +38,6 @@ class Review(models.Model):
         to=settings.AUTH_USER_MODEL,
         related_name='liked_reviews',
         blank=True,
-        null=True,
     )
 
     def __str__(self):
