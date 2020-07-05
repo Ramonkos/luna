@@ -46,6 +46,10 @@ INSTALLED_APPS = [
     'django_filters',
     'corsheaders',
     'users',
+    'comments',
+    'registrationprofiles',
+    'restaurants',
+    'reviews',
 ]
 
 MIDDLEWARE = [
