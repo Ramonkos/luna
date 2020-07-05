@@ -8,7 +8,7 @@ COPY ./backend/requirements.yml /backend/requirements.yml
 
 RUN conda env create -f /backend/requirements.yml
 
-ENV PATH /opt/conda/envs/backendProject/bin:$PATH
+ENV PATH /opt/conda/envs/lunaProject/bin:$PATH
 
 RUN echo "source activate lunaProject" >~/.bashrc
 
