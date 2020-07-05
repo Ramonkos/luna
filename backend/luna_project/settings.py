@@ -29,7 +29,7 @@ SECRET_KEY = 'k3(-4f4s0tfg@ran#r3(h1!3#&4%3^btj@itm(*fdmu4n-ii#l'
 # DEBUG = ast.literal_eval(os.environ.get('DJANGO_DEBUG'))
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
