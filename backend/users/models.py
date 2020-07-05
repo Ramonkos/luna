@@ -7,11 +7,13 @@ class User(AbstractUser):
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['username']
 
-    email = models.EmailField(unique=True)
+    email = models.EmailField(
+        unique=True
+    )
 
     location = models.CharField(
         blank=True,
-        max_length=500,
+        max_length=200
     )
 
     description = models.TextField(
@@ -40,5 +42,13 @@ class User(AbstractUser):
         blank=True,
     )
 
+    created = models.DateTimeField(
+        auto_now_add=True
+    )
+
+    updated = models.DateTimeField(
+        auto_now=True
+    )
+
     def __str__(self):
-        return f'User #{self.id} {self.email}'
+        return f'User #{self.id}: Email - {self.email}'
