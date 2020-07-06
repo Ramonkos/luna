@@ -13,6 +13,7 @@ import {
     GreyButtonPairWrapper
 } from "./style/GlobalButton";
 import {Input, RestaurantCreationInput, SearchBarInput} from "./style/GlobalInput";
+import {UserAccessTitle} from "./style/GlobalTitles";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Input placeholder="E-Mail" />
           <RestaurantCreationInput placeholder="Restaurant" />
           <SearchBarInput placeholder="Search..." />
+          <UserAccessTitle>Registration</UserAccessTitle>
         {/*<img src={logo} className="App-logo" alt="logo" />*/}
         {/*<p>*/}
         {/*  Edit <code>src/App.js</code> and save to reload.*/}
