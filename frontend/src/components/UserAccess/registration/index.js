@@ -5,25 +5,23 @@ import {UserAccessTitleWrapper, UserAccessContentContainer} from "../../../style
 import {Button} from "../../../style/GlobalButton";
 import {Input} from "../../../style/GlobalInput";
 
-const LoginContent = styled.div`
-    height: ${rem('120px')};
+const RegistrationContent = styled.div`
     display: flex;
     flex-flow: column;
     justify-content: space-between;
     margin-bottom: ${rem('50px')};
-    margin-top: ${rem('88px')};    
+    margin-top: ${rem('77px')};    
 `
 
 
-export const Login = () => {
+export const Registration = () => {
     return (
     <UserAccessContentContainer>
-        <UserAccessTitleWrapper titletext="Login" />
-        <LoginContent>
-            <Input placeholder="Username" />
-            <Input type='password' placeholder="Password" />
-        </LoginContent>
-        <Button>Login</Button>
+        <UserAccessTitleWrapper titletext="Registration" />
+        <RegistrationContent>
+            <Input type='email' placeholder="E-Mail address" />
+        </RegistrationContent>
+        <Button>Register</Button>
     </UserAccessContentContainer>
 )
 }
