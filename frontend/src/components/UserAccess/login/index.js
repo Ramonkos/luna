@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { rem } from "polished";
+import {rem} from "polished";
 import React from "react";
 import {UserAccessTitleWrapper, UserAccessContentContainer} from "../../../style/GlobalWrappers";
 import {Button} from "../../../style/GlobalButton";
@@ -14,16 +14,17 @@ const LoginContent = styled.div`
     margin-top: ${rem('88px')};    
 `
 
-
-export const Login = () => {
+const Login = () => {
     return (
-    <UserAccessContentContainer>
-        <UserAccessTitleWrapper titletext="Login" />
-        <LoginContent>
-            <Input placeholder="Username" />
-            <Input type='password' placeholder="Password" />
-        </LoginContent>
-        <Button>Login</Button>
-    </UserAccessContentContainer>
-)
-}
+        <UserAccessContentContainer>
+            <UserAccessTitleWrapper titletext="Login"/>
+            <LoginContent>
+                <Input placeholder="Username"/>
+                <Input type='password' placeholder="Password"/>
+            </LoginContent>
+            <Button>Login</Button>
+        </UserAccessContentContainer>
+    )
+};
+
+export default Login
