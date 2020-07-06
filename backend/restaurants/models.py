@@ -5,18 +5,18 @@ from django.conf import settings
 
 class Restaurant(models.Model):
     RESTAURANT_CATEGORY_CHOICES = [
-        ('1', 'Burgers'),
-        ('2', 'Chinese'),
-        ('3', 'Italian'),
-        ('4', 'Japanese'),
-        ('5', 'Mexican'),
-        ('6', 'Thai'),
-        ('7', 'Indian'),
-        ('8', 'Greek'),
-        ('9', 'Swiss'),
-        ('10', 'Pizza'),
-        ('11', 'Vegetarian'),
-        ('12', 'Other')
+        (1, 'Burgers'),
+        (2, 'Chinese'),
+        (3, 'Italian'),
+        (4, 'Japanese'),
+        (5, 'Mexican'),
+        (6, 'Thai'),
+        (7, 'Indian'),
+        (8, 'Greek'),
+        (9, 'Swiss'),
+        (10, 'Pizza'),
+        (11, 'Vegetarian'),
+        (12, 'Other')
     ]
 
     name = models.CharField(
@@ -25,7 +25,6 @@ class Restaurant(models.Model):
 
     category = models.IntegerField(
         choices=RESTAURANT_CATEGORY_CHOICES,
-        validators=[MinValueValidator(1), MaxValueValidator(12)],
         default=12,
     )
 
