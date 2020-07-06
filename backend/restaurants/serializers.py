@@ -23,4 +23,5 @@ class RestaurantSerializer(serializers.ModelSerializer):
         model = Restaurant
         fields = ['id', 'name', 'category', 'country', 'street', 'city', 'zip', 'website', 'phone', 'email',
                   'opening_hours', 'price_level', 'restaurant_image', 'take_reservations', 'delivery', 'take_away',
-                  'wifi', 'owner', 'restaurant_reviews', 'logged_in_user_is_restaurant_owner', 'created']
+                  'wifi', 'owner', 'restaurant_reviews', 'logged_in_user_is_restaurant_owner', 'created',
+                  'amount_of_reviews']
