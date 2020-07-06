@@ -1,4 +1,6 @@
+from django.contrib.auth import get_user_model
 from rest_framework.generics import RetrieveUpdateAPIView, ListAPIView
+from users.serializers import UserSerializer
 
 
 class RetrieveUpdateUserProfileView(RetrieveUpdateAPIView):
@@ -6,7 +8,13 @@ class RetrieveUpdateUserProfileView(RetrieveUpdateAPIView):
 
 
 class ListAllUsersView(ListAPIView):
-    pass
+    """
+    get:
+    Returns all users
+    """
+    User = get_user_model()
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 
 class ListSearchUserView(ListAPIView):
