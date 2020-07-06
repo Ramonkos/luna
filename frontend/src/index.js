@@ -1,21 +1,30 @@
+import './index.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-import { ThemeProvider } from 'styled-components';
-import { GlobalStyle, theme } from "./style";
+//Redux Setup
+import {store} from './store';
+import {Provider} from 'react-redux';
+
+//Styled-Components Setup
+import {ThemeProvider} from 'styled-components';
+import {GlobalStyle, theme} from "./style";
+
+//Routes Setup
+import Routes from './routes'
+
+// TODO Setup login Action to check if token in storage
 
 
 ReactDOM.render(
-  <React.StrictMode>
-      <ThemeProvider theme={theme}>
-            <GlobalStyle />
-            <App />
-      </ThemeProvider>
-  </React.StrictMode>,
-  document.getElementById('root')
+    <Provider store={store}>
+        <ThemeProvider theme={theme}>
+            <GlobalStyle/>
+            <Routes/>
+        </ThemeProvider>
+    </Provider>,
+    document.getElementById('root')
 );
 
 // If you want your app to work offline and load faster, you can change
