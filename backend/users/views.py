@@ -1,3 +1,13 @@
-from django.shortcuts import render
+from rest_framework.generics import RetrieveUpdateAPIView, ListAPIView
 
-# Create your views here.
+
+class RetrieveUpdateUserProfileView(RetrieveUpdateAPIView):
+    pass
+
+
+class ListAllUsersView(ListAPIView):
+    pass
+
+
+class ListSearchUserView(ListAPIView):
+    pass
