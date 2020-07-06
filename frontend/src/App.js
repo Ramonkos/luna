@@ -12,24 +12,14 @@ import {
     LikeIcon,
     GreyButtonPairWrapper
 } from "./style/GlobalButton";
-import {Input, RestaurantCreationInput, SearchBarInput} from "./style/GlobalInput";
+import { Input, RestaurantCreationInput, SearchBarInput } from "./style/GlobalInput";
+import Footer from "../../frontend/src/components/Footer"
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-          <div><Button>Button text</Button></div>
-          <div>
-              <SmallOrangeLeftButton>Sign up</SmallOrangeLeftButton><SmallOrangeRightButton>Login</SmallOrangeRightButton>
-          </div>
-          <div><SmallOrangeButton>Filter</SmallOrangeButton></div>
-          <div><SmallestOrangeButton>Post</SmallestOrangeButton></div>
-          <GreyButtonPairWrapper>
-              <GreyLeftButton><LikeIcon src={likeIcon}></LikeIcon>Like  63</GreyLeftButton><GreyRightButton>Comment  23</GreyRightButton>
-          </GreyButtonPairWrapper>
-          <Input placeholder="E-Mail" />
-          <RestaurantCreationInput placeholder="Restaurant" />
-          <SearchBarInput placeholder="Search..." />
+      <header className="App-header">          
+          <Footer/>
         {/*<img src={logo} className="App-logo" alt="logo" />*/}
         {/*<p>*/}
         {/*  Edit <code>src/App.js</code> and save to reload.*/}
