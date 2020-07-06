@@ -6,6 +6,7 @@ import { LinkButtonWrapper } from "./style.js";
 import { SmallOrangeLeftButton } from "../../../src/style/GlobalButton"
 import { SmallOrangeRightButton } from "../../../src/style/GlobalButton"
 
+//TODO: change a to link
 const Header = () => {
   return (
     <HeaderContainer>

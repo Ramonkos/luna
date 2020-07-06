@@ -2,7 +2,7 @@ import styled from "styled-components";
 // TODO: import rem stuff
 import { rem } from "polished";
 
-//TODO: choose H1 font
+//TODO: choose H1 font and add .active link
 export const HeaderContainer = styled.div`
   border: solid 1px white;
   width: 100%;
