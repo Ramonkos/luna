@@ -8,7 +8,7 @@ export const Button = styled.button`
     border: none;
     background-color: #E47D31;
     cursor: pointer;
-    font-family: Helvetica, Arial,serif;
+    font-family: Helvetica, Arial, serif;
     font-size: ${rem('20px')};
     line-height: ${rem('23px')};
     color: #FFFFFF;
