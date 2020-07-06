@@ -34,7 +34,7 @@ const Header = () => {
           </li>
         </ul>
         <SmallOrangeLeftButton>SignUp</SmallOrangeLeftButton>
-          <SmallOrangeRightButton>Login</SmallOrangeRightButton>
+        <SmallOrangeRightButton>Login</SmallOrangeRightButton>
       </LinkButtonWrapper>          
     </HeaderContainer>
   )
