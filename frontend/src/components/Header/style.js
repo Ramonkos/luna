@@ -10,10 +10,12 @@ export const HeaderContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: #fff;
   h1 {
     padding-left: 30px;
     font-family: 'Merienda One', cursive, Arial, serif;;
-    font-size: 36px;
+    font-size: ${rem('36px')};
+    color: #000;
   }
 `;
 
@@ -27,9 +29,9 @@ export const LinkButtonWrapper = styled.div`
   padding-right: 30px;
   a {
     padding-right: 70px;
-    font-family: Helvetica, Arial, serif;
     font-size: ${rem('20px')};
-    line-height: 23px;
+    line-height: ${rem('23px')};
+    color: #4A4A4A;
   }
 `;
 
