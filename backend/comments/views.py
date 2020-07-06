@@ -1,3 +1,13 @@
-from django.shortcuts import render
+from rest_framework.generics import ListAPIView, CreateAPIView, DestroyAPIView
 
-# Create your views here.
+
+class ListUsersCommentsView(ListAPIView):
+    pass
+
+
+class CreateCommentView(CreateAPIView):
+    pass
+
+
+class DestroyCommentView(DestroyAPIView):
+    pass

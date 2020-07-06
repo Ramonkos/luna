@@ -1,3 +1,17 @@
-from django.shortcuts import render
+from rest_framework.generics import CreateAPIView, UpdateAPIView
 
-# Create your views here.
+
+class CreateNewUnvalidatedUserView(CreateAPIView):
+    pass
+
+
+class ValidateNewUserView(UpdateAPIView):
+    pass
+
+
+class CreatePasswordResetRequestView(CreateAPIView):
+    pass
+
+
+class ValidatePasswordResetRequestView(UpdateAPIView):
+    pass

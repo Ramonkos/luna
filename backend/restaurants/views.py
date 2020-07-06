@@ -1,3 +1,21 @@
-from django.shortcuts import render
+from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveUpdateDestroyAPIView
 
-# Create your views here.
+
+class ListAllRestaurantsView(ListAPIView):
+    pass
+
+
+class CreateNewRestaurantView(CreateAPIView):
+    pass
+
+
+class ListAllRestaurantsInCategoryView(ListAPIView):
+    pass
+
+
+class ListAllRestaurantsByUserView(ListAPIView):
+    pass
+
+
+class RetrieveUpdateDestroyRestaurantView(RetrieveUpdateDestroyAPIView):
+    pass
