@@ -6,7 +6,7 @@ export const UserDetailContainer = styled.div`
   width: 100%;
   display: flex;
   flex-direction: row;
-  border-bottom: 1px solid #EBEBEB;
+  /* border-bottom: 1px solid #EBEBEB; */
   margin-bottom: 0;
   
   img {
