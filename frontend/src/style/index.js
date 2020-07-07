@@ -11,8 +11,8 @@ export const GlobalStyle = createGlobalStyle`
     }
     body {
         background-color: #F8F8F8;
-    }
-    
+    } 
+        
     ul, li {
     list-style: none;
     display: inline-block;
