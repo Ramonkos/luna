@@ -11,11 +11,20 @@ from users.serializers import UserSerializer
 
 
 class ListRestaurantCategoriesView(ListAPIView):
+    """
+    get:
+    Returns all active and distinct Restaurant categories
+    """
     serializer_class = CategorySerializer
     queryset = Restaurant.objects.distinct('category').all()
 
 
 class SearchRestaurantsReviewsUsersView(ListAPIView):
+    """
+    get:
+    Searches either restaurants, users, or reviews (case sensitive) by supplying one as " search_location " in the
+    params. Supply " search " as your target search and " search_fields " as your target field to search.
+    """
     filter_backends = (DynamicSearchFilter,)
 
     def get_queryset(self):
@@ -37,6 +46,10 @@ class SearchRestaurantsReviewsUsersView(ListAPIView):
 
 
 class ListTopFourRestaurantsView(ListAPIView):
+    """
+    get:
+    Returns the Top 4 Restaurants sorted by review_average
+    """
     serializer_class = RestaurantSerializer
     queryset = Restaurant.objects.all()
 
