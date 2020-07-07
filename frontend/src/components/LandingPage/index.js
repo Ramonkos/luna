@@ -44,7 +44,6 @@ const InputWrapper = styled.div`
 
 const BestRatedWrapper = styled.div`
   width: 100%;
-  height: 640px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -60,10 +59,10 @@ const CardWrapper = styled.div`
 
 const LandingPage = () => {
   return (
-    <LandingPageContainer>
+    <>
       <HomeHeroWrapper>
         <InputWrapper>
-          <input type="text" placeholder="Search..." ></input>
+          <input type="text" placeholder="Search..." />
         </InputWrapper>
         <Button>Search</Button>
       </HomeHeroWrapper>
@@ -76,7 +75,7 @@ const LandingPage = () => {
           <GenericRestaurantCard />
         </CardWrapper>
       </BestRatedWrapper>
-    </LandingPageContainer>
+    </>
   );
 };
 
