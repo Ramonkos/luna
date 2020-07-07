@@ -25,7 +25,6 @@ export const logout = () => {
 };
 
 export const loginAction = ({email, password}) => async (dispatch) => {
-    console.log('loginAction stage 1')
     try {
         const response = await Axios.post('token/', {email, password});
         const token = response.data.token;

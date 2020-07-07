@@ -28,12 +28,10 @@ const Login = ({error, loginAction, history}) => {
     };
 
     const loginHandler = async e => {
-        console.log('loginHandler triggered')
         e.preventDefault();
         const loginData = {email, password};
         const response = await loginAction(loginData);
         if (response.status === 200) {
-            console.log('if check triggered');
             history.push('/');
         }
     };
