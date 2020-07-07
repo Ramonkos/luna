@@ -11,12 +11,12 @@ import {
   StarWrapper
 } from "../../style/GlobalUserReviewRestaurant";
 
-const UserProfileReview = () => {
+const UserProfileRestaurant = () => {
 
   return (
     <CommentContainer>
       <TitleWrapper>
-        <UserProfileTitle>Reviews</UserProfileTitle>
+        <UserProfileTitle>Restaurants</UserProfileTitle>
       </TitleWrapper>
       <CommentWrapper>
         <ReviewCommentWrapper>
@@ -50,4 +50,4 @@ const UserProfileReview = () => {
   );
 };
 
-export default UserProfileReview;
+export default UserProfileRestaurant;
