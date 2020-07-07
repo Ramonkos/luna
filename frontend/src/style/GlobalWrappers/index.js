@@ -8,6 +8,8 @@ export const UserAccessContentContainer = styled.div`
     flex-flow: column;
     align-items: center;
     justify-content: flex-start;
+    height: 100%;
+    margin-top: 5%;
 `
 
 const UserAccessTitleInnerWrapper = styled.div`

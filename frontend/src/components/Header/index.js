@@ -42,7 +42,7 @@ export const LinkButtonWrapper = styled.div`
 `;
 
 //TODO: change a to link
-const Header = ({children}) => {
+const Header = () => {
     return <>
         <HeaderContainer>
             <h1>Luna</h1>
@@ -72,8 +72,7 @@ const Header = ({children}) => {
                 <SmallOrangeRightButton>Login</SmallOrangeRightButton>
             </LinkButtonWrapper>
         </HeaderContainer>
-            {children}
-            </>
-}
+    </>
+};
 
 export default Header;
