@@ -10,15 +10,14 @@ import {Verification} from "../components/UserAccess/verification";
 const Routes = () => {
     return <>
         <Router>
+            <Header/>
             <Switch>
-                <Header>
-                    <Route exact path='/' component={Login}/>
-                    <Route exact path='/auth/signup/' component={Registration}/>
-                    <Route exact path='/auth/confirmation/' component={Confirmation}/>
-                    <Route exact path='/auth/verification/' component={Verification}/>
-                    <Footer/>
-                </Header>
+                <Route exact path='/' component={Login}/>
+                <Route exact path='/auth/signup/' component={Registration}/>
+                <Route exact path='/auth/confirmation/' component={Confirmation}/>
+                <Route exact path='/auth/verification/' component={Verification}/>
             </Switch>
+            <Footer/>
         </Router>
     </>
 };
