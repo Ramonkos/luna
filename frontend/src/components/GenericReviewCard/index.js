@@ -1,5 +1,5 @@
 import React from 'react';
-import {defaultRestaurantCardPicture} from '../../constants';
+import {defaultUserProfileAvatar} from '../../constants';
 import {
     ReviewMainContainer,
     TopBar,
@@ -11,13 +11,14 @@ import {
 } from "./style";
 import {GreyButtonPairWrapper, GreyLeftButton, GreyRightButton, LikeIcon} from "../../style/GlobalButton";
 import {UserDetailContainer} from "../../style/GlobalShortUserProfile";
+import LikeIconImg from "../../assets/like.png"
 
 
 export const GenericReviewCard = () => (
     <ReviewMainContainer>
         <TopBar />
         <UserDetailContainer>
-            <img src={defaultRestaurantCardPicture} alt="profile picture" />
+            <img src={defaultUserProfileAvatar} alt="profile picture" />
             <namereviewsContainer>
                 <name>
                     Laurent H.
@@ -32,13 +33,14 @@ export const GenericReviewCard = () => (
         </RestaurantNameContainer>
         <RestaurantReviewContainer>
             Ugh. Don't waste your time. Pizza dough good, thin crust but ingredients so so.
-            Side of mixed vegetables very oily and mainly bell.... read more
+            Side of mixed vegetables very oily and mainly bell...
+            <a href="">read more</a>
         </RestaurantReviewContainer>
 
         <ButtonContainer>
             <GreyButtonPairWrapper>
                 <GreyLeftButton>
-                    {/*<img src={LikeIcon} alt="LikeIcon"/>*/}
+                    <LikeIcon src={LikeIconImg} alt="LikeIcon"/>
                     Like 45
                 </GreyLeftButton>
                 <GreyRightButton>
