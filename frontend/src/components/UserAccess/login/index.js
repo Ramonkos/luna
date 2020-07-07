@@ -1,9 +1,13 @@
 import styled from "styled-components";
 import {rem} from "polished";
-import React from "react";
+import React, {useState} from "react";
 import {UserAccessTitleWrapper, UserAccessContentContainer} from "../../../style/GlobalWrappers";
 import {Button} from "../../../style/GlobalButton";
 import {Input} from "../../../style/GlobalInput";
+import {withRouter, Link} from 'react-router-dom'
+import {connect} from "react-redux";
+import {loginAction} from "../../../store/actions/loginAction";
+import Error from "../../Error";
 
 const LoginContent = styled.div`
     height: ${rem('120px')};
@@ -11,20 +15,58 @@ const LoginContent = styled.div`
     flex-flow: column;
     justify-content: space-between;
     margin-bottom: ${rem('50px')};
-    margin-top: ${rem('88px')};    
+    margin-top: ${rem('88px')};
+    align-items: center;    
 `
 
-const Login = () => {
+const Login = ({error, loginAction, history}) => {
+    const [email, setEmail] = useState('joseph@test.com');
+    const [password, setPassword] = useState('josephloveszoey');
+
+    const inputHandler = (e, func) => {
+        func(e.currentTarget.value)
+    };
+
+    const loginHandler = async e => {
+        console.log('loginHandler triggered')
+        e.preventDefault();
+        const loginData = {email, password};
+        const response = await loginAction(loginData);
+        if (response.status === 200) {
+            console.log('if check triggered');
+            history.push('/');
+        }
+    };
+
     return (
         <UserAccessContentContainer>
             <UserAccessTitleWrapper titletext="Login"/>
             <LoginContent>
-                <Input placeholder="Username"/>
-                <Input type='password' placeholder="Password"/>
+                <Input
+                    placeholder='Email'
+                    type='text'
+                    value={email}
+                    name='email'
+                    onChange={e => inputHandler(e, setEmail)}
+                />
+                <Input
+                    placeholder="Password"
+                    type='password'
+                    value={password}
+                    name='password'
+                    onChange={e => inputHandler(e, setPassword)}
+                />
+            {<Error errorMessage={error}/>}
             </LoginContent>
-            <Button>Login</Button>
+            <Button onClick={loginHandler}>Login</Button>
         </UserAccessContentContainer>
     )
 };
 
-export default Login
+const mapStateToProps = state => {
+    return {
+        error: state.loginReducer.error
+    }
+};
+
+export default withRouter(connect(mapStateToProps, {loginAction})(Login))
