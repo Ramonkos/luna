@@ -4,115 +4,79 @@ import {
   RatingContainer,
   RestaurantContainer,
   SelectRatingContainer,
-  Stars,
   StarsReviewContainer,
   ButtonContainer,
 } from "./style";
 import { Button } from "../../style/GlobalButton";
 import StarRatingComponent from "react-star-rating-component";
 
-export const WriteReviewPage = () => (
-  <div>
-    <RestaurantContainer>
-      <restaurantname>Läderach Chocolatier Suisse</restaurantname>
-      <restaurantdescription>Chocolatiers & Shops</restaurantdescription>
-      <StarsReviewContainer>
-        <Stars />
-        <p>24 reviews</p>
-      </StarsReviewContainer>
-    </RestaurantContainer>
+export class WriteReviewPage extends React.Component {
+  constructor() {
+    super();
 
-    <RatingContainer>
-      <SelectRatingContainer>
-        <largestars>Placeholder Stars</largestars>
-        <p>Select your rating</p>
-      </SelectRatingContainer>
+    this.state = {
+      rating: 0,
+    };
+  }
 
-      <textarea
-        id="review"
-        name="review"
-        placeholder=" Your review helps others learn about great businesses.
-               .
-               Please do not review this business if you received a freebie for writing this review,
-               or if you are connected in any way to the owner or employees."
-      />
+  onStarClick(nextValue, prevValue, name) {
+    this.setState({ rating: nextValue });
+  }
 
-      <ErrorButtonContainer>
-        <errormessage>Placeholder ErrorMessage</errormessage>
-        <ButtonContainer>
-          <Button>Submit</Button>
-        </ButtonContainer>
-      </ErrorButtonContainer>
-    </RatingContainer>
-  </div>
-);
+  render() {
+    const { rating } = this.state;
 
-// class WriteReviewPage extends React.Component {
-//   constructor() {
-//     super();
+    return (
+      <div>
+        <RestaurantContainer>
+          <restaurantname>Läderach Chocolatier Suisse</restaurantname>
+          <restaurantdescription>Chocolatiers & Shops</restaurantdescription>
+          <StarsReviewContainer>
+            <StarRatingComponent
+              name="Restaurant_Rating"
+              starColor={"#F8E71C"}
+              emptyStarColor={"rgba(235, 235, 235, 0.5)"}
+              starCount={5}
+              value={4}
+              //   value={Math.round(item.review_average)}
+            />
+            <p>24 reviews</p>
+          </StarsReviewContainer>
+        </RestaurantContainer>
 
-//     this.state = {
-//       rating: 1,
-//     };
-//   }
+        <RatingContainer>
+          <SelectRatingContainer>
+            <StarRatingComponent
+              name="Restaurant_Rating"
+              starColor={"#F8E71C"}
+              emptyStarColor={"#F0F0F0"}
+              starCount={5}
+              value={rating}
+              onStarClick={this.onStarClick.bind(this)}
+            />
+            <p>Select your rating</p>
+          </SelectRatingContainer>
 
-//   onStarClick(nextValue, prevValue, name) {
-//     this.setState({ rating: nextValue });
-//   }
+          <textarea
+            id="review"
+            name="review"
+            placeholder=" Your review helps others learn about great businesses.
+                       .
+                       Please do not review this business if you received a freebie for writing this review,
+                       or if you are connected in any way to the owner or employees."
+          />
 
-//   render() {
-//     const { rating } = this.state;
-
-//     return (
-//         <div>
-
-//         <RestaurantContainer>
-//           <restaurantname>Läderach Chocolatier Suisse</restaurantname>
-//           <restaurantdescription>Chocolatiers & Shops</restaurantdescription>
-//           <StarsReviewContainer>
-//             <StarRatingComponent
-//               name="Restaurant_Rating"
-//               starColor={"#F8E71C"}
-//               emptyStarColor={"rgba(235, 235, 235, 0.5)"}
-//               starCount={5}
-//               value={4}
-//               //   value={Math.round(item.review_average)}
-//             />
-//             <p>24 reviews</p>
-//           </StarsReviewContainer>
-//         </RestaurantContainer>
-
-//         <RatingContainer>
-//           <SelectRatingContainer>
-//             <StarRatingComponent
-//               name="rate1"
-//               starCount={10}
-//               value={rating}
-//               //   onStarClick={this.onStarClick.bind(this)}
-//             />
-//             <p>Select your rating</p>
-//           </SelectRatingContainer>
-
-//           <textarea
-//             id="review"
-//             name="review"
-//             placeholder=" Your review helps others learn about great businesses.
-//                        .
-//                        Please do not review this business if you received a freebie for writing this review,
-//                        or if you are connected in any way to the owner or employees."
-//           />
-
-//           <ErrorButtonContainer>
-//             <errormessage>Placeholder ErrorMessage</errormessage>
-//             <ButtonContainer>
-//               <Button>Submit</Button>
-//             </ButtonContainer>
-//           </ErrorButtonContainer>
-//         </RatingContainer>
-//       </div>
-//     );
-//   }
-// }
+          <ErrorButtonContainer>
+            <errormessage>Placeholder ErrorMessage</errormessage>
+            <ButtonContainer>
+              <Button>Submit</Button>
+            </ButtonContainer>
+          </ErrorButtonContainer>
+        </RatingContainer>
+      </div>
+    );
+  }
+}
 
 // export default WriteReviewPage;
 
