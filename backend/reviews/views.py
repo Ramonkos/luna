@@ -115,6 +115,6 @@ class ListUserCommentsView(ListAPIView):
         reviews = []
         comments = request.user.user_comments.all()
         for comment in comments:
-            reviews.extend(comment.restaurant_review)
+            reviews.append(comment.restaurant_review)
         serializer = self.get_serializer(reviews, many=True)
         return Response(serializer.data)
