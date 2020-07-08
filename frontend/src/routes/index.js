@@ -13,6 +13,7 @@ import NewRestaurant from "../components/RestaurantCreationPage";
 import {WriteReviewPage} from "../components/WriteReviewPage";
 import RestaurantPage from "../components/RestaurantPage";
 import NotFoundPage from "../components/NotFoundPage";
+import {RestaurantDetailPage} from "../components/RestaurantListPage";
 
 const MainContainer = styled.div`
   width: 100%;
@@ -31,7 +32,7 @@ const Routes = () => {
                     <Route exact path='/auth/signup/' component={Registration}/>
                     <Route exact path='/auth/confirmation/' component={Confirmation}/>
                     <Route exact path='/auth/verification/' component={Verification}/>
-                    {/*<Route exact path='/search/' component={Search}/>*/}
+                    <Route exact path='/search/' component={RestaurantDetailPage}/>
                     <Route path='/restaurants/:restaurantId/' component={RestaurantPage}/>
                     <Route path='/reviews/:reviewId/' component={WriteReviewPage}/>
                     <Route exact path='/restaurant/create/' component={NewRestaurant}/>

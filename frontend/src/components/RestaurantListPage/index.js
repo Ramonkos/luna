@@ -6,7 +6,7 @@ import {NavLink} from "react-router-dom";
 import {GenericRestaurantCard} from "../GenericRestaurantCard";
 
 export const RestaurantDetailPage = (props) =>
-    <div>
+    <>
         <SearchContainer>
             <input type="text" id="search" name="search" placeholder="Search"/>
 
@@ -34,20 +34,20 @@ export const RestaurantDetailPage = (props) =>
             </TitleContainer>
         </TitleMasterContainer>
 
-        <BestRatedWrapper>
-            <CardWrapper>
-              <GenericRestaurantCard />
-              <GenericRestaurantCard />
-              <GenericRestaurantCard />
-              <GenericRestaurantCard />
-            </CardWrapper>
-        </BestRatedWrapper>
-        <BestRatedWrapper>
-            <CardWrapper>
-              <GenericRestaurantCard />
-              <GenericRestaurantCard />
-              <GenericRestaurantCard />
-              <GenericRestaurantCard />
-            </CardWrapper>
-        </BestRatedWrapper>
-    </div>
+        {/*<BestRatedWrapper>*/}
+        {/*    <CardWrapper>*/}
+        {/*      <GenericRestaurantCard />*/}
+        {/*      <GenericRestaurantCard />*/}
+        {/*      <GenericRestaurantCard />*/}
+        {/*      <GenericRestaurantCard />*/}
+        {/*    </CardWrapper>*/}
+        {/*</BestRatedWrapper>*/}
+        {/*<BestRatedWrapper>*/}
+        {/*    <CardWrapper>*/}
+        {/*      <GenericRestaurantCard />*/}
+        {/*      <GenericRestaurantCard />*/}
+        {/*      <GenericRestaurantCard />*/}
+        {/*      <GenericRestaurantCard />*/}
+        {/*    </CardWrapper>*/}
+        {/*</BestRatedWrapper>*/}
+    </>
