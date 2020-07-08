@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import StarRatingComponent from "react-star-rating-component";
 
-// import { HeaderContainer } from "./style.js";
-// import { LinkButtonWrapper } from "./style.js";
 import {
   SmallestOrangeButton,
   GreyLeftButton,
@@ -16,12 +15,12 @@ import IconLike from "../../assets/like.png";
 import styled from "styled-components";
 import { rem } from "polished";
 
-export const ReviewContainer = styled.div`
+const ReviewContainer = styled.div`
   width: 650px;
   color: #000000;
 `;
 
-export const UserRatingWrapper = styled.div`
+const UserRatingWrapper = styled.div`
   height: 68px;
   border-bottom: 1px solid #ebebeb;
   display: flex;
@@ -34,12 +33,13 @@ export const UserRatingWrapper = styled.div`
   }
 `;
 
-export const LeftUserRatingWrapper = styled.div`
+const LeftUserRatingWrapper = styled.div`
   display: flex;
   align-items: center;
+  width: 380px;
 `;
 
-export const ReviewCommentInputWrapper = styled.div`
+const ReviewCommentInputWrapper = styled.div`
   border-bottom: 1px solid #ebebeb;
   padding: 10px;
   align-items: center;
@@ -51,7 +51,7 @@ export const ReviewCommentInputWrapper = styled.div`
   }
 `;
 
-export const CommentsDisplayedWrapper = styled.div`
+const CommentsDisplayedWrapper = styled.div`
   margin-top: 10px;
   display: flex;
   justify-content: space-between;
@@ -62,7 +62,7 @@ export const CommentsDisplayedWrapper = styled.div`
   }
 `;
 
-export const InputButtonWrapper = styled.div`
+const InputButtonWrapper = styled.div`
   display: flex;
   input {
     width: 414px;
@@ -76,7 +76,7 @@ export const InputButtonWrapper = styled.div`
   }
 `;
 
-export const CommentsHiddenWrapper = styled.div`
+const CommentsHiddenWrapper = styled.div`
   margin-top: 10px;
   display: flex;
   justify-content: space-between;
@@ -87,7 +87,7 @@ export const CommentsHiddenWrapper = styled.div`
   }
 `;
 
-export const ButtonWrapper = styled.div`
+const ButtonWrapper = styled.div`
   display: flex;
   img {
     width: 17px;
@@ -96,7 +96,7 @@ export const ButtonWrapper = styled.div`
   }
 `;
 
-export const CommentWrapper = styled.div`
+const CommentWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   font-size: ${rem("12px")};
@@ -107,7 +107,7 @@ export const CommentWrapper = styled.div`
   border-bottom: 1px solid #ebebeb;
 `;
 
-export const NameCommentWrapper = styled.div`
+const NameCommentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -119,8 +119,13 @@ export const NameCommentWrapper = styled.div`
   }
 `;
 
-export const StarWrapper = styled.div`
-  margin-left: 20px;
+const StarWrapper = styled.div`
+  width: 214px;
+  display: flex;
+  i {
+    font-size: 27px;
+  }
+  /* margin-left: 20px; */
 `;
 
 const ReviewWithComment = (props) => {
@@ -141,7 +146,18 @@ const ReviewWithComment = (props) => {
               <reviews>6 Reviews in total</reviews>
             </namereviewsContainer>
           </UserDetailContainer>
-          <StarWrapper>★★★★★</StarWrapper>
+          <StarWrapper>
+            <StarRatingComponent
+              name="Restaurant_Rating"
+              starColor={"#F8E71C"}
+              emptyStarColor={"rgba(235, 235, 235, 0.5)"}
+              starDimension={"30px"}
+              editing={false}
+              starCount={5}
+              value={4}
+              // value={Math.round(restaurant.review_average)}
+            />
+          </StarWrapper>
         </LeftUserRatingWrapper>
         <p>01.01.2020 15:10</p>
       </UserRatingWrapper>
@@ -155,7 +171,10 @@ const ReviewWithComment = (props) => {
         {value.toggle ? (
           <CommentsHiddenWrapper>
             <ButtonWrapper>
-              <GreyLeftButton><img src={IconLike} alt="like icon" />Like 64</GreyLeftButton>
+              <GreyLeftButton>
+                <img src={IconLike} alt="like icon" />
+                Like 64
+              </GreyLeftButton>
               <GreyRightButton>Comment 23</GreyRightButton>
             </ButtonWrapper>
             <p onClick={() => setValue({ toggle: !value.toggle })}>
