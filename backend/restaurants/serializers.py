@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from restaurants.models import Restaurant
+from reviews.serializers import ReviewSerializer
 from users.serializers import UserSerializer
 
 
@@ -35,3 +36,10 @@ class RestaurantSerializer(serializers.ModelSerializer):
                   'opening_hours', 'price_level', 'restaurant_image', 'take_reservations', 'delivery', 'take_away',
                   'wifi', 'owner', 'restaurant_reviews', 'logged_in_user_is_restaurant_owner', 'created',
                   'amount_of_reviews', 'review_average']
+
+
+class CreateRestaurantSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Restaurant
+        fields = ['id', 'name', 'category', 'country', 'street', 'city', 'zip', 'website', 'phone', 'email',
+                  'opening_hours', 'price_level', 'restaurant_image', 'owner']
