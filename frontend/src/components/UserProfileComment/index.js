@@ -10,6 +10,7 @@ const CommentContainer = styled.div`
   width: 620px;
   padding: 15px 15px 0 15px;
   background-color: #fff;
+  border-right: 1px solid #ebebeb;
 `;
 
 const CommentWrapper = styled.div`
@@ -21,7 +22,6 @@ const CommentWrapper = styled.div`
   line-height: ${rem("14px")};
   font-weight: 300;
   color: #000000;
-  /* padding: 10px; */
   border-bottom: 1px solid #ebebeb;
   p {
     font-weight: 300;
@@ -58,11 +58,6 @@ const TitleWrapper = styled.div`
 `;
 
 const UserProfileComment = (props) => {
-  // const initialState = {
-  //   toggle: true,
-  // };
-
-  // const [value, setValue] = useState(initialState);
 
   return (
     <CommentContainer>
