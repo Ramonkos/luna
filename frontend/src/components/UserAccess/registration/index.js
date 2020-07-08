@@ -3,7 +3,7 @@ import { rem } from "polished";
 import React from "react";
 import {UserAccessTitleWrapper, UserAccessContentContainer} from "../../../style/GlobalWrappers";
 import {Button} from "../../../style/GlobalButton";
-import {Input} from "../../../style/GlobalInput";
+import {GeneralInput, Input} from "../../../style/GlobalInput";
 
 const RegistrationContent = styled.div`
     display: flex;
@@ -14,14 +14,16 @@ const RegistrationContent = styled.div`
 `
 
 
-export const Registration = () => {
+const Registration = () => {
     return (
     <UserAccessContentContainer>
         <UserAccessTitleWrapper titletext="Registration" />
         <RegistrationContent>
-            <Input type='email' placeholder="E-Mail address" />
+            <GeneralInput type='email' placeholder="E-Mail address" errorMessage="error" />
         </RegistrationContent>
         <Button>Register</Button>
     </UserAccessContentContainer>
 )
 }
+
+export default Registration

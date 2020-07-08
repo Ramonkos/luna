@@ -8,6 +8,7 @@ export const UserAccessContentContainer = styled.div`
     flex-flow: column;
     align-items: center;
     justify-content: flex-start;
+    margin-top: ${rem('50px')};
 `
 
 const UserAccessTitleInnerWrapper = styled.div`
@@ -23,6 +24,7 @@ const OrangeUnderline = styled.div`
     width: ${rem('100px')};
     //border: 1px solid LunaOrange;  //TODO import global style color
     border: 1px solid #E47D31;
+    background-color: #E47D31;
 `
 
 

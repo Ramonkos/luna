@@ -3,7 +3,7 @@ import { rem } from "polished";
 import React from "react";
 import {UserAccessTitleWrapper, UserAccessContentContainer} from "../../../style/GlobalWrappers";
 import {Button} from "../../../style/GlobalButton";
-import {Input} from "../../../style/GlobalInput";
+import {GeneralInput, Input} from "../../../style/GlobalInput";
 
 const VerificationContent = styled.div`
     height: ${rem('180px')};
@@ -32,23 +32,25 @@ const LongButton = styled(Button)`
 `
 
 
-export const Verification = () => {
+const Verification = () => {
     return (
     <UserAccessContentContainer>
         <UserAccessTitleWrapper titletext="Verification" />
         <VerificationContent>
             <LeftHolder>
-                <Input type='email' placeholder="E-Mail address" />
-                <Input placeholder="Username" />
-                <Input type='password' placeholder="Password" />
+                <GeneralInput type='email' placeholder="E-Mail address" errorMessage="error" />
+                <GeneralInput placeholder="Username" errorMessage="error" />
+                <GeneralInput type='password' placeholder="Password" errorMessage="error" />
             </LeftHolder>
             <RightHolder>
-                <Input placeholder="Validation code" />
-                <Input placeholder="Location" />
-                <Input type='password' placeholder="Password repeat" />
+                <GeneralInput placeholder="Validation code" errorMessage="error" />
+                <GeneralInput placeholder="Location" errorMessage="error" />
+                <GeneralInput type='password' placeholder="Password repeat" errorMessage="error" />
             </RightHolder>
         </VerificationContent>
         <LongButton>Finish registration</LongButton>
     </UserAccessContentContainer>
 )
 }
+
+export default Verification

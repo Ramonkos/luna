@@ -3,7 +3,7 @@ import {rem} from "polished";
 import React from "react";
 import {UserAccessTitleWrapper, UserAccessContentContainer} from "../../../style/GlobalWrappers";
 import {Button} from "../../../style/GlobalButton";
-import {Input} from "../../../style/GlobalInput";
+import {GeneralInput, Input} from "../../../style/GlobalInput";
 
 const LoginContent = styled.div`
     height: ${rem('120px')};
@@ -19,8 +19,8 @@ const Login = () => {
         <UserAccessContentContainer>
             <UserAccessTitleWrapper titletext="Login"/>
             <LoginContent>
-                <Input placeholder="Username"/>
-                <Input type='password' placeholder="Password"/>
+                <GeneralInput placeholder="Username" errorMessage="error" />
+                <GeneralInput type='password' placeholder="Password" errorMessage="error" />
             </LoginContent>
             <Button>Login</Button>
         </UserAccessContentContainer>

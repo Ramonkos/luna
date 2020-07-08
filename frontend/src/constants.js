@@ -9,6 +9,7 @@ export const defaultUserProfileBanner = 'https://via.placeholder.com/1440x155'; 
 export const defaultRestaurantPageBanner = 'https://via.placeholder.com/1440x496'; // 1440 x 496
 export const defaultRestaurantCardPicture = 'https://via.placeholder.com/271x284'; // 271 x 284
 export const defaultUserProfileAvatar = 'https://via.placeholder.com/232x234'; // 232 x 234
+export const defaultUserProfileButtonIcon = 'https://via.placeholder.com/30x30'; // 30 x 30
 
 
 

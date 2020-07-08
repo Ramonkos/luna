@@ -14,7 +14,15 @@ export const Button = styled.button`
     color: #FFFFFF;
     &:focus {
       outline: none;
-    } 
+    }
+    
+    a {
+      font-family: Helvetica, Arial, serif;
+      font-size: ${rem('20px')};
+      line-height: ${rem('23px')};
+      color: #FFFFFF;
+    }
+    
 `
 
 export const SmallOrangeLeftButton = styled(Button)`
@@ -75,4 +83,43 @@ export const LikeIcon = styled.img`
 export const GreyButtonPairWrapper = styled.div`
     display: flex;
     justify-content: center;
+`
+
+export const UserProfileButton = styled.button`  //TODO It shouldn't be here, but I found it too long to put in directly
+    height: ${rem('46px')};
+    width: ${rem('233px')};
+    background-color: white;
+    border: none;
+    border-top: 1px solid #979797;
+    border-bottom: 1px solid #979797;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    font-size: ${rem('18px')};
+    font-weight: lighter;
+    cursor: pointer;
+    color: #303030;
+    
+    img {
+      height: ${rem('30px')};
+      width: ${rem('30px')};
+      margin-left: ${rem('12px')};
+      margin-right: ${rem('24px')};
+      
+    }    
+    
+    &:hover {
+      outline: none;
+      background-color: #EAEAEA;
+    }
+    
+    &:focus {
+      outline: none;
+      border-left: ${rem('5px')} solid #E47D31;
+      background-color: #EAEAEA;
+            
+      img {
+        margin-left: ${rem('7px')};
+        }
+    }
 `

@@ -1,5 +1,6 @@
 import { rem } from "polished";
 import styled from 'styled-components'
+import React from "react";
 
 // TODO check font color opacity. Figma can't be good
 
@@ -38,3 +39,38 @@ export const SearchBarInput = styled(Input)`
     border-right: 1px solid #D8D8D8;
     color: #D8D8D8;
 `
+
+export const InputErrorWrapper = styled.div`
+    height: ${rem('70px')};  // was 52 px, unified it to 50
+    width: ${rem('340px')};
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+`
+
+export const ErrorMessage = styled.div`
+    height: ${rem('20px')};
+    width: ${rem('340px')};
+    text-align: left;
+    color: red;
+    justify-content: center;
+`
+
+
+export const GeneralInput = (props) => {
+    return (
+        <InputErrorWrapper>
+            <Input placeholder={props.placeholder} type={props.type}/>
+            <ErrorMessage>{props.errorMessage ? props.errorMessage : ''}</ErrorMessage>
+        </InputErrorWrapper>
+    )
+}
+
+export const RestaurantGeneralInput = (props) => {
+    return (
+        <InputErrorWrapper>
+            <RestaurantCreationInput placeholder={props.placeholder} type={props.type}/>
+            <ErrorMessage>{props.errorMessage ? props.errorMessage : ''}</ErrorMessage>
+        </InputErrorWrapper>
+    )
+}
