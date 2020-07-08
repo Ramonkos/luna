@@ -57,6 +57,7 @@ class Restaurant(models.Model):
     email = models.CharField(
         blank=True,
         max_length=200,
+        unique=True
     )
 
     opening_hours = models.CharField(

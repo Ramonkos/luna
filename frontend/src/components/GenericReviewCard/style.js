@@ -8,13 +8,7 @@ export const ReviewMainContainer = styled.div`
   background: white;
   border-radius: 3px;
   border: 1px solid #EBEBEB;
-  img {
-      height: 283px;
-      width: 100%;
-      margin: 0;
-      border-bottom-right-radius: 3px;
-      border-bottom-left-radius: 3px;
-  }
+
 `;
 
 export const TopBar = styled.div`
@@ -52,6 +46,15 @@ export const RestaurantReviewContainer = styled.div`
   font-size: 14px;
   line-height: 16px;
   color: #4C4C4C;
+  
+  a {
+    font-family: Helvetica,serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 16px;
+    color: #E47D31;
+  }
 `;
 
 export const ButtonContainer = styled.div`

@@ -26,11 +26,13 @@ class Comment(models.Model):
         to=Review,
         on_delete=models.CASCADE,
         related_name='comments',
+        blank=True,
     )
 
     users_who_likes = models.ManyToManyField(
         to=settings.AUTH_USER_MODEL,
         related_name='liked_comments',
+        blank=True,
     )
 
     def __str__(self):

@@ -9,12 +9,9 @@ import {
   GreyRightButton,
 } from "../../../src/style/GlobalButton";
 
-import {
-  UserDetailContainer,
-  namereviewsContainer,
-  name,
-  reviews,
-} from "../../../src/style/GlobalShortUserProfile";
+import { UserDetailContainer } from "../../../src/style/GlobalShortUserProfile";
+import Avatar from "../../assets/laurent.jpg";
+import IconLike from "../../assets/like.png";
 
 import styled from "styled-components";
 import { rem } from "polished";
@@ -25,7 +22,7 @@ export const ReviewContainer = styled.div`
 `;
 
 export const UserRatingWrapper = styled.div`
-  height: 50px;
+  height: 68px;
   border-bottom: 1px solid #ebebeb;
   display: flex;
   justify-content: space-between;
@@ -92,6 +89,11 @@ export const CommentsHiddenWrapper = styled.div`
 
 export const ButtonWrapper = styled.div`
   display: flex;
+  img {
+    width: 17px;
+    height: 21px;
+    margin-right: 10px;
+  }
 `;
 
 export const CommentWrapper = styled.div`
@@ -117,6 +119,10 @@ export const NameCommentWrapper = styled.div`
   }
 `;
 
+export const StarWrapper = styled.div`
+  margin-left: 20px;
+`;
+
 const ReviewWithComment = (props) => {
   const initialState = {
     toggle: true,
@@ -128,15 +134,14 @@ const ReviewWithComment = (props) => {
     <ReviewContainer>
       <UserRatingWrapper>
         <LeftUserRatingWrapper>
-          <div>Placeholder for Userdetails</div>
-          {/* <UserDetailContainer>
-            <img src={defaultRestaurantCardPicture} alt="profile picture" />
+          <UserDetailContainer>
+            <img src={Avatar} alt="profile picture" />
             <namereviewsContainer>
               <name>Laurent H.</name>
               <reviews>6 Reviews in total</reviews>
             </namereviewsContainer>
-          </UserDetailContainer> */}
-          <div>★★★★★</div>
+          </UserDetailContainer>
+          <StarWrapper>★★★★★</StarWrapper>
         </LeftUserRatingWrapper>
         <p>01.01.2020 15:10</p>
       </UserRatingWrapper>
@@ -150,7 +155,7 @@ const ReviewWithComment = (props) => {
         {value.toggle ? (
           <CommentsHiddenWrapper>
             <ButtonWrapper>
-              <GreyLeftButton>Like 64</GreyLeftButton>
+              <GreyLeftButton><img src={IconLike} alt="like icon" />Like 64</GreyLeftButton>
               <GreyRightButton>Comment 23</GreyRightButton>
             </ButtonWrapper>
             <p onClick={() => setValue({ toggle: !value.toggle })}>
@@ -178,7 +183,7 @@ const ReviewWithComment = (props) => {
           </CommentWrapper>
           <CommentWrapper>
             <NameCommentWrapper>
-              <a>James Bon</a>
+              <a>James Bond</a>
               <p>I like it...</p>
             </NameCommentWrapper>
             <p>02.03.2020 22:29</p>

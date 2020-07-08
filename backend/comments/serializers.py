@@ -12,7 +12,7 @@ class CommentSerializer(serializers.ModelSerializer):
     amount_of_likes = serializers.SerializerMethodField()
 
     def get_amount_of_likes(self, obj):
-        return len(obj.users_who_liked.all())
+        return len(obj.users_who_likes.all())
 
     logged_in_user_is_comment_author = serializers.SerializerMethodField()
 
@@ -21,4 +21,5 @@ class CommentSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Comment
-        fields = ['id', 'text_content', 'author', 'created', 'amount_of_likes']
+        fields = ['id', 'text_content', 'restaurant_review', 'author', 'created', 'amount_of_likes',
+                  'logged_in_user_is_comment_author']

@@ -9,7 +9,6 @@ export const RestaurantMainContainer = styled.div`
   border-radius: 3px;
   border: 1px solid #EBEBEB;
   img {
-      background-image: url("https://via.placeholder.com/271x284");
       height: 283px;
       width: 100%;
       margin: 0px;
