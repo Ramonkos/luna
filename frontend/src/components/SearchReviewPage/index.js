@@ -39,20 +39,20 @@ export const SearchReviewPage = (props) =>
             </TitleContainer>
         </TitleMasterContainer>
 
-        <BestRatedWrapper>
-            <CardWrapper>
-              <GenericReviewCard />
-              <GenericReviewCard />
-              <GenericReviewCard />
-              <GenericReviewCard />
-            </CardWrapper>
-        </BestRatedWrapper>
-        <BestRatedWrapper>
-            <CardWrapper>
-              <GenericReviewCard />
-              <GenericReviewCard />
-              <GenericReviewCard />
-              <GenericReviewCard />
-            </CardWrapper>
-        </BestRatedWrapper>
+        {/*<BestRatedWrapper>*/}
+        {/*    <CardWrapper>*/}
+        {/*      <GenericReviewCard />*/}
+        {/*      <GenericReviewCard />*/}
+        {/*      <GenericReviewCard />*/}
+        {/*      <GenericReviewCard />*/}
+        {/*    </CardWrapper>*/}
+        {/*</BestRatedWrapper>*/}
+        {/*<BestRatedWrapper>*/}
+        {/*    <CardWrapper>*/}
+        {/*      <GenericReviewCard />*/}
+        {/*      <GenericReviewCard />*/}
+        {/*      <GenericReviewCard />*/}
+        {/*      <GenericReviewCard />*/}
+        {/*    </CardWrapper>*/}
+        {/*</BestRatedWrapper>*/}
     </div>

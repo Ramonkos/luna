@@ -23,30 +23,30 @@ export const SearchUserPage = (props) => {
                 </TitleContainer>
             </TitleMasterContainer>
 
-            <BestRatedWrapper>
-                <CardWrapper>
-                    <GenericUserCard/>
-                    <GenericUserCard/>
-                    <GenericUserCard/>
-                    <GenericUserCard/>
-                </CardWrapper>
-            </BestRatedWrapper>
-            <BestRatedWrapper>
-                <CardWrapper>
-                    <GenericUserCard/>
-                    <GenericUserCard/>
-                    <GenericUserCard/>
-                    <GenericUserCard/>
-                </CardWrapper>
-            </BestRatedWrapper>
-            <BestRatedWrapper>
-                <CardWrapper>
-                    <GenericUserCard/>
-                    <GenericUserCard/>
-                    <GenericUserCard/>
-                    <GenericUserCard/>
-                </CardWrapper>
-            </BestRatedWrapper>
+            {/*<BestRatedWrapper>*/}
+            {/*    <CardWrapper>*/}
+            {/*        <GenericUserCard/>*/}
+            {/*        <GenericUserCard/>*/}
+            {/*        <GenericUserCard/>*/}
+            {/*        <GenericUserCard/>*/}
+            {/*    </CardWrapper>*/}
+            {/*</BestRatedWrapper>*/}
+            {/*<BestRatedWrapper>*/}
+            {/*    <CardWrapper>*/}
+            {/*        <GenericUserCard/>*/}
+            {/*        <GenericUserCard/>*/}
+            {/*        <GenericUserCard/>*/}
+            {/*        <GenericUserCard/>*/}
+            {/*    </CardWrapper>*/}
+            {/*</BestRatedWrapper>*/}
+            {/*<BestRatedWrapper>*/}
+            {/*    <CardWrapper>*/}
+            {/*        <GenericUserCard/>*/}
+            {/*        <GenericUserCard/>*/}
+            {/*        <GenericUserCard/>*/}
+            {/*        <GenericUserCard/>*/}
+            {/*    </CardWrapper>*/}
+            {/*</BestRatedWrapper>*/}
         </div>
     );
 };
