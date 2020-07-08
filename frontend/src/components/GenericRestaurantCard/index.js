@@ -24,7 +24,7 @@ export const GenericRestaurantCard = ({restaurant}) => {
         <RestaurantMainContainer onClick={onClickHandler}>
             <TopBar/>
             <RestaurantDetailsContainer>
-                <RestaurantName>{restaurant.name}</RestaurantName>
+                <RestaurantName>{restaurant.name.length > 20 ? `${restaurant.name.slice(0, 20)}...` : restaurant.name}</RestaurantName>
                 <RestaurantAddress>{`${restaurant.city}, ${restaurant.country}`}</RestaurantAddress>
                 <StarsReviewContainer>
                     <StarRatingComponent
