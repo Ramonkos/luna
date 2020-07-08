@@ -1,10 +1,12 @@
 from django.contrib.auth import get_user_model
 from rest_framework import status
 from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveUpdateDestroyAPIView, GenericAPIView
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from restaurants.models import Restaurant
 from reviews.models import Review
 from reviews.serializers import ReviewSerializer
+from users.permission import IsOwnerOrReadOnlyCommentsReviews
 
 
 class CreateReviewView(CreateAPIView):
@@ -15,6 +17,7 @@ class CreateReviewView(CreateAPIView):
     serializer_class = ReviewSerializer
     lookup_url_kwarg = 'restaurant_id'
     queryset = Restaurant
+    permission_classes = [IsAuthenticated]
 
     def create(self, request, *args, **kwargs):
         restaurant = self.get_object()
@@ -70,6 +73,7 @@ class RetrieveUpdateDestroyReviewView(RetrieveUpdateDestroyAPIView):
     serializer_class = ReviewSerializer
     lookup_url_kwarg = 'review_id'
     http_method_names = ['get', 'patch', 'delete']
+    permission_classes = [IsOwnerOrReadOnlyCommentsReviews]
 
 
 class ToggleLikeReviewView(CreateAPIView):
@@ -80,6 +84,7 @@ class ToggleLikeReviewView(CreateAPIView):
     queryset = Review
     serializer_class = ReviewSerializer
     lookup_url_kwarg = 'review_id'
+    permission_classes = [IsAuthenticated]
 
     def create(self, request, *args, **kwargs):
         target_review = self.get_object()
@@ -97,6 +102,7 @@ class ListUserLikedReviewsView(ListAPIView):
     Returns a list of all reviews liked by logged in User.
     """
     serializer_class = ReviewSerializer
+    permission_classes = [IsAuthenticated]
 
     def list(self, request, *args, **kwargs):
         reviews = request.user.liked_reviews.all().order_by('-created')
@@ -110,6 +116,7 @@ class ListUserCommentsView(ListAPIView):
     Returns a list of all reviews commented on by logged in User.
     """
     serializer_class = ReviewSerializer
+    permission_classes = [IsAuthenticated]
 
     def list(self, request, *args, **kwargs):
         reviews = []

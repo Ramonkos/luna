@@ -1,15 +1,12 @@
 import React from "react";
-import {Link} from 'react-router-dom'
+import { useHistory, Link, NavLink } from "react-router-dom";
 
-// import { HeaderContainer } from "./style.js";
-// import { LinkButtonWrapper } from "./style.js";
-import {SmallOrangeLeftButton} from "../../../src/style/GlobalButton"
-import {SmallOrangeRightButton} from "../../../src/style/GlobalButton"
+import { SmallOrangeLeftButton } from "../../../src/style/GlobalButton";
+import { SmallOrangeRightButton } from "../../../src/style/GlobalButton";
 import styled from "styled-components";
-import {rem} from "polished";
+import { rem } from "polished";
 
-//TODO: choose H1 font and add .active link
-export const HeaderContainer = styled.div`
+const HeaderContainer = styled.div`
   border: solid 1px white;
   width: 100%;
   height: 70px;
@@ -19,60 +16,72 @@ export const HeaderContainer = styled.div`
   background-color: #fff;
   h1 {
     padding-left: 30px;
-    font-family: 'Merienda One', cursive, Arial, serif;;
-    font-size: ${rem('36px')};
+    font-family: "Merienda One", cursive, Arial, serif;
+    font-size: ${rem("36px")};
     color: #000;
   }
 `;
 
-
-//TODO: active Links
-export const LinkButtonWrapper = styled.div`
+const LinkButtonWrapper = styled.div`
   width: 70%;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   padding-right: 30px;
   a {
-    padding-right: 70px;
-    font-size: ${rem('20px')};
-    line-height: ${rem('23px')};
-    color: #4A4A4A;
+    font-size: ${rem("20px")};
+    line-height: ${rem("23px")};
+    color: #4a4a4a;
+    padding-bottom: 20px;
   }
 `;
 
-//TODO: change a to link
+const LinkWrapper = styled.div`
+  height: 100%;
+  margin-right: 70px;
+  .active {
+    border-bottom: 3px solid #e47d31;
+  }
+`;
+
 const Header = () => {
-    return <>
-        <HeaderContainer>
-            <h1>Luna</h1>
-            <LinkButtonWrapper>
-                {/* <Link to="/">Home</Link>
-        <Link to="/search">Search</Link>
-        <Link to="/profile">Profile</Link> */}
-                {/* <Link to="#">Home</Link>
-        <Link to="#">Search</Link>
-        <Link to="#">Profile</Link> */}
-                <ul>
-                    <li>
-                        <a>Home</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li>
-                        <a>Search</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li>
-                        <a>Profile</a>
-                    </li>
-                </ul>
-                <SmallOrangeLeftButton>SignUp</SmallOrangeLeftButton>
-                <SmallOrangeRightButton>Login</SmallOrangeRightButton>
-            </LinkButtonWrapper>
-        </HeaderContainer>
+  let history = useHistory();
+  return (
+    <>
+      <HeaderContainer>
+        <Link onClick={() => history.push("/")}>
+          <h1>Luna</h1>
+        </Link>
+        <LinkButtonWrapper>
+          <ul>
+            <li>
+              <LinkWrapper>
+                <NavLink exact to="/">
+                  Home
+                </NavLink>
+              </LinkWrapper>
+            </li>
+            <li>
+              <LinkWrapper>
+                <NavLink to="/search">Search</NavLink>
+              </LinkWrapper>
+            </li>
+            <li>
+              <LinkWrapper>
+                <NavLink to="/profile">Profile</NavLink>
+              </LinkWrapper>
+            </li>
+          </ul>
+          <SmallOrangeLeftButton onClick={() => history.push("/auth/signup/")}>
+            SignUp
+          </SmallOrangeLeftButton>
+          <SmallOrangeRightButton onClick={() => history.push("/auth/login/")}>
+            Login
+          </SmallOrangeRightButton>
+        </LinkButtonWrapper>
+      </HeaderContainer>
     </>
+  );
 };
 
 export default Header;

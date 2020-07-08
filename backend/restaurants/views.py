@@ -1,9 +1,11 @@
 from django.contrib.auth import get_user_model
 from rest_framework import status
 from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveUpdateDestroyAPIView
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from restaurants.models import Restaurant
 from restaurants.serializers import RestaurantSerializer, CreateRestaurantSerializer
+from users.permission import IsOwnerOrReadOnlyRestaurant
 
 
 class ListAllRestaurantsView(ListAPIView):
@@ -15,6 +17,7 @@ class ListAllRestaurantsView(ListAPIView):
     serializer_class = RestaurantSerializer
 
 
+
 class CreateNewRestaurantView(CreateAPIView):
     """
     post:
@@ -24,6 +27,7 @@ class CreateNewRestaurantView(CreateAPIView):
     7 = Indian, 8 = Greek, 9 = Swiss, 10 = Pizza, 11 = Vegetarian, 12 = Other
     """
     serializer_class = CreateRestaurantSerializer
+    permission_classes = [IsAuthenticated]
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
@@ -74,3 +78,6 @@ class RetrieveUpdateDestroyRestaurantView(RetrieveUpdateDestroyAPIView):
     serializer_class = RestaurantSerializer
     lookup_url_kwarg = 'id'
     http_method_names = ['get', 'patch', 'delete']
+    permission_classes = [
+        IsOwnerOrReadOnlyRestaurant,
+    ]
