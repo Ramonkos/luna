@@ -37,7 +37,7 @@ const Routes = () => {
                     <Route exact path='/search/restaurants/' component={SearchRestaurantPage}/>
                     <Route exact path='/search/reviews/' component={SearchReviewPage}/>
                     <Route exact path='/search/users/' component={SearchUserPage}/>
-                    <Route path='/restaurants/:restaurantId' component={RestaurantPage}/>
+                    <Route path='/restaurants/:restaurantId/' component={RestaurantPage}/>
                     <Route exact path='/restaurant/create/' component={NewRestaurant}/>
                     {/*<Route path='/users/:userId' component={UserDetail}/>*/}
                     <Route exact path='/userprofile/' component={UserProfile}/>

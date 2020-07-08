@@ -12,13 +12,13 @@ export const SearchUserPage = (props) => {
             <TitleMasterContainer>
                 <TitleContainer>
                     <LinkWrapper>
-                        <NavLink to="/search/restaurants">Restaurants</NavLink>
+                        <NavLink to="/search/restaurants/">Restaurants</NavLink>
                     </LinkWrapper>
                     <LinkWrapper>
-                        <NavLink to="/search/reviews">Reviews</NavLink>
+                        <NavLink to="/search/reviews/">Reviews</NavLink>
                     </LinkWrapper>
                     <LinkWrapper>
-                        <NavLink to="/search/users">Users</NavLink>
+                        <NavLink to="/search/users/">Users</NavLink>
                     </LinkWrapper>
                 </TitleContainer>
             </TitleMasterContainer>

@@ -63,7 +63,7 @@ const Header = () => {
             </li>
             <li>
               <LinkWrapper>
-                <NavLink to="/search/">Search</NavLink>
+                <NavLink to="/search/restaurants/">Search</NavLink>
               </LinkWrapper>
             </li>
             <li>
