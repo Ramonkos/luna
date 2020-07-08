@@ -8,7 +8,8 @@ export const UserAccessTitle = styled.div`
     line-height: ${rem('28px')};
     text-transform: uppercase;
     color: #4C4C4C;
-`
+`;
+
 
 export const UserProfileTitle = styled.h3`
     text-transform: uppercase;
