@@ -2,7 +2,7 @@ import styled from "styled-components";
 import {rem} from "polished";
 import React from "react";
 import {UserAccessTitleWrapper, UserAccessContentContainer} from "../../../style/GlobalWrappers";
-import {Button} from "../../../style/GlobalButton";
+import {Button, LinkRecolor} from "../../../style/GlobalButton";
 import {Link} from "react-router-dom";
 
 const ConfirmationContent = styled.div`
@@ -25,11 +25,9 @@ const Confirmation = () => {
                 Since monkeys aren't good in writing the message could end up in you junk folder. Our apologies for any
                 inconvenience.
             </ConfirmationContent>
-            <Button>
-                <Link to={'/auth/verification/'}>Register</Link>
-            </Button>
+            <Button><Link to={'/auth/verification/'}>Register</Link> </Button>
         </UserAccessContentContainer>
     )
-};
+}
 
 export default Confirmation
