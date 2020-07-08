@@ -4,7 +4,7 @@ from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveUpdateDe
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from restaurants.models import Restaurant
-from restaurants.serializers import RestaurantSerializer
+from restaurants.serializers import RestaurantSerializer, CreateRestaurantSerializer
 from users.permission import IsOwnerOrReadOnlyRestaurant
 
 
@@ -26,9 +26,8 @@ class CreateNewRestaurantView(CreateAPIView):
     Categories: 1 = Burgers, 2 = Chinese, 3 = Italian, 4 = Japanese, 5 = Mexican, 6 = Thai
     7 = Indian, 8 = Greek, 9 = Swiss, 10 = Pizza, 11 = Vegetarian, 12 = Other
     """
-    serializer_class = RestaurantSerializer
+    serializer_class = CreateRestaurantSerializer
     permission_classes = [IsAuthenticated]
-
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)

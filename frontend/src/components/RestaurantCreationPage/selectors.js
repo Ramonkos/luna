@@ -27,6 +27,13 @@ export const RestaurantCategorySelect = (props) => {
                 <option value="4">Japanese</option>
                 <option value="5">Mexican</option>
                 <option value="6">Thai</option>
+                <option value="7">Indian</option>
+                <option value="8">Greek</option>
+                <option value="9">Swiss</option>
+                <option value="10">Pizza</option>
+                <option value="11">Vegetarian</option>
+                <option value="12">Other</option>
+
             </RestaurantCreationSelector>
             <ErrorMessage>{props.errorMessage ? props.errorMessage : ''}</ErrorMessage>
         </InputErrorWrapper>
