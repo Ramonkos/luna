@@ -151,7 +151,6 @@ const ReviewWithComment = (props) => {
               name="Restaurant_Rating"
               starColor={"#F8E71C"}
               emptyStarColor={"rgba(235, 235, 235, 0.5)"}
-              starDimension={"30px"}
               editing={false}
               starCount={5}
               value={4}

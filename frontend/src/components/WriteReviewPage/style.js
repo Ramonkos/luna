@@ -48,6 +48,7 @@ export const StarsReviewContainer = styled.div`
   
   p {
     margin-left: 30px;
+    margin: 8px 0 0 30px;
   
     font-family: Helvetica,serif;
     font-stretch: normal;
@@ -57,14 +58,17 @@ export const StarsReviewContainer = styled.div`
     text-align: center;
     color: #FFFFFF;
   }
+  i {
+    font-size: 27px;
+  }
 `;
 
-export const Stars = styled.div`
-  background-color: yellow;
-  width: 135px;
-  left: 16px;
-  text-align: center;
-`;
+// export const Stars = styled.div`
+//   background-color: yellow;
+//   width: 135px;
+//   left: 16px;
+//   text-align: center;
+// `;
 
 export const RatingContainer = styled.div`
   position: relative;
@@ -98,11 +102,14 @@ export const SelectRatingContainer = styled.div`
   height: 44px;
   margin-left: 341px;
   
-  largestars {
+  /* largestars {
     position: relative;
     height: 44px;
     width: 250px;
     background-color: yellow;
+  } */
+  i {
+    
   }
  
   p {
