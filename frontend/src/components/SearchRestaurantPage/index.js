@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {SearchContainer, Selector, TitleContainer, BestRatedWrapper, CardWrapper, TitleMasterContainer} from "./style";
 import {LinkWrapper} from "../SearchUserPage/style";
 import {NavLink} from "react-router-dom";
@@ -10,6 +10,22 @@ import {allRestaurantsAction} from "../../store/actions/restaurantActions";
 const SearchRestaurantPage = ({notEmpty, allRestaurants, allRestaurantsAction}) => {
     const displayMessage = () => !notEmpty ? <GenericSpinner/> : null;
 
+    const [categories] = useState([
+        {label: 'All', value: 0},
+        {label: 'Burger', value: 1},
+        {label: 'Chinese', value: 2},
+        {label: 'Italian', value: 3},
+        {label: 'Japanese', value: 4},
+        {label: 'Mexican', value: 5},
+        {label: 'Thai', value: 6},
+        {label: 'Indian', value: 7},
+        {label: 'Greek', value: 8},
+        {label: 'Swiss', value: 9},
+        {label: 'Pizza', value: 10},
+        {label: 'Vegetarian', value: 11},
+        {label: 'Other', value: 12},
+    ]);
+
     useEffect(() => {
         allRestaurantsAction();
     }, [allRestaurantsAction]);
@@ -19,19 +35,9 @@ const SearchRestaurantPage = ({notEmpty, allRestaurants, allRestaurantsAction}) 
             <input type="text" id="search" name="search" placeholder="Search"/>
 
             <Selector>
-                <option required value="">Select a category...</option>
-                <option value="1">Burger</option>
-                <option value="2">Chinese</option>
-                <option value="3">Italian</option>
-                <option value="4">Japanese</option>
-                <option value="5">Mexican</option>
-                <option value="6">Thai</option>
-                <option value="7">Indian</option>
-                <option value="8">Greek</option>
-                <option value="9">Swiss</option>
-                <option value="10">Pizza</option>
-                <option value="11">Vegetarian</option>
-                <option value="12">Other</option>
+                {categories.map(category => {
+                    return <option key={category.value} value={category.value}>{category.label}</option>
+                })}
             </Selector>
         </SearchContainer>
         <TitleMasterContainer>

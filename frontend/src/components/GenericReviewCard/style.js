@@ -86,7 +86,7 @@ export const CommentsContainer = styled.div`
   display: flex;
   flex-direction: column;
   
-    commentor {
+    h1 {
       height: 16px;
       margin-bottom: 3px;
       
@@ -98,7 +98,7 @@ export const CommentsContainer = styled.div`
       line-height: 16px;      
     }
     
-    comment {
+    h2 {
       color: #000000;
       font-family: Helvetica,serif;
       font-style: normal;
