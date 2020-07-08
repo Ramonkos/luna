@@ -39,20 +39,20 @@ export const SearchRestaurantPage = (props) =>
             </TitleContainer>
         </TitleMasterContainer>
 
-        <BestRatedWrapper>
-            <CardWrapper>
-              <GenericRestaurantCard />
-              <GenericRestaurantCard />
-              <GenericRestaurantCard />
-              <GenericRestaurantCard />
-            </CardWrapper>
-        </BestRatedWrapper>
-        <BestRatedWrapper>
-            <CardWrapper>
-              <GenericRestaurantCard />
-              <GenericRestaurantCard />
-              <GenericRestaurantCard />
-              <GenericRestaurantCard />
-            </CardWrapper>
-        </BestRatedWrapper>
+        {/*<BestRatedWrapper>*/}
+        {/*    <CardWrapper>*/}
+        {/*      <GenericRestaurantCard />*/}
+        {/*      <GenericRestaurantCard />*/}
+        {/*      <GenericRestaurantCard />*/}
+        {/*      <GenericRestaurantCard />*/}
+        {/*    </CardWrapper>*/}
+        {/*</BestRatedWrapper>*/}
+        {/*<BestRatedWrapper>*/}
+        {/*    <CardWrapper>*/}
+        {/*      <GenericRestaurantCard />*/}
+        {/*      <GenericRestaurantCard />*/}
+        {/*      <GenericRestaurantCard />*/}
+        {/*      <GenericRestaurantCard />*/}
+        {/*    </CardWrapper>*/}
+        {/*</BestRatedWrapper>*/}
     </div>
