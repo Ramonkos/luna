@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
-from rest_framework.generics import RetrieveUpdateAPIView, ListAPIView
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.generics import RetrieveUpdateAPIView, ListAPIView, RetrieveAPIView
 from rest_framework.response import Response
 from rest_framework import filters
 from users.serializers import UserSerializer
@@ -44,7 +44,7 @@ class ListSearchAllUsersView(ListAPIView):
     filter_backends = (filters.SearchFilter,)
 
 
-class ListSpecificUserView(ListAPIView):
+class RetrieveSpecificUserView(RetrieveAPIView):
     """
     get:
     Returns a specific User profile
@@ -53,3 +53,5 @@ class ListSpecificUserView(ListAPIView):
     queryset = User
     serializer_class = UserSerializer
     lookup_url_kwarg = 'user_id'
+
+

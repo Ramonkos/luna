@@ -13,8 +13,12 @@ import {GlobalStyle, theme} from "./style";
 
 //Routes Setup
 import Routes from './routes'
+import {login} from "./store/actions/loginAction";
 
-// TODO Setup login Action to check if token in storage
+const token = localStorage.getItem('token');
+if (token) {
+    store.dispatch(login(token))
+}
 
 
 ReactDOM.render(

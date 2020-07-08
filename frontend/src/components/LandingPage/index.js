@@ -1,18 +1,15 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
-
-import { Button } from "../../../src/style/GlobalButton";
-
+import React, {useEffect} from "react";
+import {Link} from "react-router-dom";
+import {Button} from "../../../src/style/GlobalButton";
 import styled from "styled-components";
-import { rem } from "polished";
+import {rem} from "polished";
 import AsianFood from "../../assets/hero-image-restaurant.jpg";
-import { UserAccessTitleWrapper } from "../../../src/style/GlobalWrappers";
-import { GenericRestaurantCard } from "../GenericRestaurantCard";
+import {UserAccessTitleWrapper} from "../../../src/style/GlobalWrappers";
+import GenericSpinner from "../GenericSpinner";
+import {top4RestaurantsAction} from "../../store/actions/restaurantActions";
+import {connect} from "react-redux";
+import GenericRestaurantList from "../GenericRestaurantList";
 
-const LandingPageContainer = styled.div`
-  width: 100%;
-  height: 350px;
-`;
 
 const HomeHeroWrapper = styled.div`
   width: 100%;
@@ -57,26 +54,39 @@ const CardWrapper = styled.div`
   align-items: center;
 `;
 
-const LandingPage = () => {
-  return (
-    <>
-      <HomeHeroWrapper>
-        <InputWrapper>
-          <input type="text" placeholder="Search..." />
-        </InputWrapper>
-        <Button>Search</Button>
-      </HomeHeroWrapper>
-      <UserAccessTitleWrapper titletext="Best Rated Restaurants" />
-      <BestRatedWrapper>
-        <CardWrapper>
-          <GenericRestaurantCard />
-          <GenericRestaurantCard />
-          <GenericRestaurantCard />
-          <GenericRestaurantCard />
-        </CardWrapper>
-      </BestRatedWrapper>
-    </>
-  );
+const LandingPage = ({top4Restaurants, top4RestaurantsAction, notEmpty}) => {
+
+    useEffect(() => {
+        top4RestaurantsAction();
+    }, [top4RestaurantsAction]);
+
+    const displayMessage = () => !notEmpty ? <GenericSpinner/> : null;
+
+    return (
+        <>
+            <HomeHeroWrapper>
+                <InputWrapper>
+                    <input type="text" placeholder="Search..."/>
+                </InputWrapper>
+                <Button>Search</Button>
+            </HomeHeroWrapper>
+            <UserAccessTitleWrapper titletext="Best Rated Restaurants"/>
+            <BestRatedWrapper>
+                <CardWrapper>
+                    {top4Restaurants && notEmpty ?
+                        <GenericRestaurantList restaurants={top4Restaurants} key={'top-4-restaurants'}/> : displayMessage()};
+                </CardWrapper>
+            </BestRatedWrapper>
+        </>
+    );
 };
 
-export default LandingPage;
+const mapStateToProps = (state) => {
+    const notEmpty = state.restaurantReducer.top4Restaurants.length;
+    return {
+        top4Restaurants: state.restaurantReducer.top4Restaurants,
+        notEmpty: notEmpty
+    }
+};
+
+export default connect(mapStateToProps, {top4RestaurantsAction})(LandingPage)

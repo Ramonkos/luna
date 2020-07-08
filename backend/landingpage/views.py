@@ -57,5 +57,6 @@ class ListTopFourRestaurantsView(ListAPIView):
         queryset = self.filter_queryset(self.get_queryset())
         serializer = self.get_serializer(queryset, many=True)
         serializer_data = serializer.data
-        serializer_data = sorted(serializer_data, key=lambda k: k['review_average'], reverse=True)
+        serializer_data = sorted(serializer_data, key=lambda k: (k['review_average'], k['amount_of_reviews']),
+                                 reverse=True)
         return Response(serializer_data[:4])
