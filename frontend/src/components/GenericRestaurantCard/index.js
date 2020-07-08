@@ -10,7 +10,7 @@ import {
 } from "./style";
 
     
-export const GenericRestaurantCard = () => (
+export const GenericRestaurantCard = ({restaurant}) => (
     <RestaurantMainContainer>
         <TopBar />
         <RestaurantDetailsContainer>
