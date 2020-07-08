@@ -13,6 +13,9 @@ import NewRestaurant from "../components/RestaurantCreationPage";
 import {WriteReviewPage} from "../components/WriteReviewPage";
 import RestaurantPage from "../components/RestaurantPage";
 import NotFoundPage from "../components/NotFoundPage";
+import {SearchUserPage} from "../components/SearchUserPage";
+import {SearchRestaurantPage} from "../components/SearchRestaurantPage";
+import {SearchReviewPage} from "../components/SearchReviewPage";
 
 const MainContainer = styled.div`
   width: 100%;
@@ -32,11 +35,14 @@ const Routes = () => {
                     <Route exact path='/auth/confirmation/' component={Confirmation}/>
                     <Route exact path='/auth/verification/' component={Verification}/>
                     {/*<Route exact path='/search/' component={Search}/>*/}
-                    <Route path='/restaurants/:restaurantId/' component={RestaurantPage}/>
-                    <Route path='/reviews/:reviewId/' component={WriteReviewPage}/>
                     <Route exact path='/restaurant/create/' component={NewRestaurant}/>
                     {/*<Route path='/users/:userId' component={UserDetail}/>*/}
                     <Route exact path='/userprofile/' component={UserProfile}/>
+
+                    <Route exact path='/search/restaurants/' component={SearchRestaurantPage}/>
+                    <Route exact path='/search/reviews/' component={SearchReviewPage}/>
+                    <Route exact path='/search/users/' component={SearchUserPage}/>
+
                     {/*<Route path="*" component={NotFoundPage} />*/}
                 </MainContainer>
             </Switch>

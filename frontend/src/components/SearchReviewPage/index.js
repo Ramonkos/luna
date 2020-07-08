@@ -1,11 +1,10 @@
 import React from 'react';
 import {SearchContainer, Selector, TitleContainer, BestRatedWrapper, CardWrapper, TitleMasterContainer} from "./style";
-import {ErrorMessage, InputErrorWrapper} from "../../style/GlobalInput";
-import {RestaurantCreationSelector} from "../RestaurantCreationPage/selectors";
+import {GenericReviewCard} from "../GenericReviewCard";
+import {LinkWrapper} from "../SearchUserPage/style";
 import {NavLink} from "react-router-dom";
-import {GenericRestaurantCard} from "../GenericRestaurantCard";
 
-export const RestaurantDetailPage = (props) =>
+export const SearchReviewPage = (props) =>
     <div>
         <SearchContainer>
             <input type="text" id="search" name="search" placeholder="Search"/>
@@ -28,26 +27,32 @@ export const RestaurantDetailPage = (props) =>
         </SearchContainer>
         <TitleMasterContainer>
             <TitleContainer>
-                <a href=''>Restaurants</a>
-                <a href=''>Reviews</a>
-                <a href=''>Users</a>
+                    <LinkWrapper>
+                        <NavLink to="/search/restaurants">Restaurants</NavLink>
+                    </LinkWrapper>
+                    <LinkWrapper>
+                        <NavLink to="/search/reviews">Reviews</NavLink>
+                    </LinkWrapper>
+                    <LinkWrapper>
+                        <NavLink to="/search/users">Users</NavLink>
+                    </LinkWrapper>
             </TitleContainer>
         </TitleMasterContainer>
 
         <BestRatedWrapper>
             <CardWrapper>
-              <GenericRestaurantCard />
-              <GenericRestaurantCard />
-              <GenericRestaurantCard />
-              <GenericRestaurantCard />
+              <GenericReviewCard />
+              <GenericReviewCard />
+              <GenericReviewCard />
+              <GenericReviewCard />
             </CardWrapper>
         </BestRatedWrapper>
         <BestRatedWrapper>
             <CardWrapper>
-              <GenericRestaurantCard />
-              <GenericRestaurantCard />
-              <GenericRestaurantCard />
-              <GenericRestaurantCard />
+              <GenericReviewCard />
+              <GenericReviewCard />
+              <GenericReviewCard />
+              <GenericReviewCard />
             </CardWrapper>
         </BestRatedWrapper>
     </div>

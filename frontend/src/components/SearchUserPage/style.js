@@ -10,13 +10,10 @@ export const SearchContainer = styled.div`
   border: 1px solid #D8D8D8;
   
   input {
-    width: 75%;
+    width: 100%;
     height: 100%;
     padding-left: 30px; 
-    border-right: 1px solid #D8D8D8;
-    border-left: none;
-    border-top: none;
-    border-bottom: none;
+    border: none;
     
     font-family: Helvetica,serif;
     font-style: normal;
@@ -26,23 +23,6 @@ export const SearchContainer = styled.div`
     
     color: #D8D8D8;
   }
-  
-  select {
-    width: 25%;
-    height: 100%;
-    }
-`;
-
-export const Selector = styled.select`
-    width: 25%;
-    height: 100%;
-    color: #D8D8D8;
-    font-family: Helvetica,serif;
-    font-weight: normal;
-    font-size: 20px;
-    line-height: 23px;
-    padding-left: 38px;
-    border: none;
 `;
 
 export const TitleMasterContainer = styled.div`
@@ -56,13 +36,18 @@ export const TitleContainer = styled.div`
   height: 54.5px;
   display: flex;
   flex-direction: row;
-  align-content: space-between;
   border-bottom: 1px solid #D8D8D8;
   
-  a {
+`;
+
+export const LinkWrapper = styled.div`
     margin-top: 19px;
     width: 200px;
     height: 23px;
+    display: flex;
+    justify-content: center;
+    
+    a {
     font-family: Helvetica,serif;
     font-style: normal;
     font-weight: bold;
@@ -71,11 +56,15 @@ export const TitleContainer = styled.div`
     
     text-align: center;
     text-transform: uppercase;
-    
     color: #4C4C4C;
-  }
+    }
+    
+    .active {
+      border-bottom: 3px solid #e47d31;
+      width: 205px;
+      margin-bottom: -11px;
+    }
 `;
-//TODO: Add active link (orange line)
 
 
 export const BestRatedWrapper = styled.div`
@@ -92,3 +81,5 @@ export const CardWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
+
+
