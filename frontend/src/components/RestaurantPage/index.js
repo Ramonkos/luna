@@ -1,16 +1,21 @@
 import React from 'react';
 import {
-    ContactContainer, ContactDetailsContainer,
+    BottomContainer, ButtonContainer, CommentContainer,
+    ContactContainer, ContactDetailsContainer, FilterButtonContainer,
     IconContainer,
     MapContactContainer,
-    MapContainer,
-    RestaurantContainer,
+    MapContainer, MiddleContainer, OpeningHoursContainer, PriceContainer, PriceLevel, PriceReviewEditContainer,
+    RestaurantContainer, RightBottomContainer, SearchFilterContainer,
     Stars,
-    StarsReviewContainer
+    StarsReviewContainer, Time
 } from "./style";
 import Web from "../../assets/web.svg";
 import Phone from "../../assets/phone.svg";
+import Clock from "../../assets/clock.svg";
+import Money from "../../assets/money.svg";
 import Pin from "../../assets/pin.svg";
+import {Button, LongOrangeButton, SmallOrangeButton} from "../../style/GlobalButton";
+import ReviewWithComment from "../ReviewWithComment";
 
 const RestaurantPage = () => {
   return (
@@ -52,11 +57,57 @@ const RestaurantPage = () => {
                         </p>
                     </ContactDetailsContainer>
                 </ContactContainer>
-
-
             </MapContactContainer>
 
+
         </RestaurantContainer>
+        <MiddleContainer>
+            <SearchFilterContainer>
+                <input id="review" name="review"
+                   placeholder="Filter list..."/>
+               <FilterButtonContainer>
+                   <SmallOrangeButton>
+                        FILTER
+                   </SmallOrangeButton>
+               </FilterButtonContainer>
+            </SearchFilterContainer>
+            <OpeningHoursContainer>
+                <icon>
+                    <img src={Clock} alt="Clock Logo"/>
+                </icon>
+                <Time>
+                    Monday-Friday 9:00 am - 8:00 pm
+                </Time>
+            </OpeningHoursContainer>
+        </MiddleContainer>
+
+        <BottomContainer>
+            <CommentContainer>
+                <ReviewWithComment>
+
+                </ReviewWithComment>
+            </CommentContainer>
+            <RightBottomContainer>
+                <PriceReviewEditContainer>
+                    <PriceContainer>
+                        <icon>
+                            <img src={Money} alt="Money Logo"/>
+                        </icon>
+                        <PriceLevel>
+                            Price level: $$$
+                        </PriceLevel>
+                    </PriceContainer>
+                    <ButtonContainer>
+                        <LongOrangeButton>
+                            WRITE A REVIEW
+                        </LongOrangeButton>
+                        <LongOrangeButton>
+                            EDIT DATA
+                        </LongOrangeButton>
+                    </ButtonContainer>
+                </PriceReviewEditContainer>
+            </RightBottomContainer>
+        </BottomContainer>
 
     </>
   );

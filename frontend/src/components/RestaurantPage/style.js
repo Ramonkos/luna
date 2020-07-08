@@ -1,7 +1,5 @@
 import React from 'react';
 import styled from "styled-components";
-import {defaultRestaurantPageBanner} from '../../constants';
-
 
 export const RestaurantContainer = styled.div`
   display: flex;
@@ -128,3 +126,134 @@ export const ContactDetailsContainer = styled.div`
     line-height: 23px;
   }
 `;
+
+export const MiddleContainer = styled.div`
+  height: 58px;
+  width: 1440px;
+  display: flex;
+  flex-direction: row;
+`;
+
+export const SearchFilterContainer = styled.div`
+  margin-top: 15px;
+  height: 40px;
+  width: 802px;
+  padding-left: 130px;
+  display: flex;
+  flex-direction: row;
+    
+    input {
+        height: 40px;
+        width: 510px;
+        background-color: white;
+        border: 1px solid #E3E3E3;
+
+        padding-left: 11px;
+        
+        font-family: Helvetica,serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 18px;
+        color: #979797;
+        }
+`;
+
+export const FilterButtonContainer = styled.div`
+  height: 40px;
+  width: 120px;
+  margin-left: 20px;
+`;
+
+export const OpeningHoursContainer = styled.div`
+  padding-top: 15px;
+  margin-left: 0;
+  width: 508px;
+  background-color: #F5F5F5;
+  display: flex;
+  flex-direction: row;
+  
+  icon {
+    position: relative;
+    height: 18px;
+    width: 18px;
+    margin-left: 17px;
+    top: 8px;
+  }
+`;
+  
+export const Time = styled.div`
+    position: relative;
+    margin-left: 25px;
+    display: flex;
+    align-items: center;
+    
+    font-family: Helvetica,serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 23px;
+`;
+
+export const BottomContainer = styled.div`
+  height: 588px;
+  width: 1440px;
+  display: flex;
+  flex-direction: row;
+`;
+
+export const RightBottomContainer = styled.div`
+  
+`
+
+export const CommentContainer = styled.div`
+  height: 588px;
+  width: 802px;
+  text-align: center;
+  padding-left: 130px;
+  padding-top: 27px;
+`;
+
+export const PriceReviewEditContainer = styled.div`
+  height: 588px;
+  width: 508px;
+    background-color: #F5F5F5;
+`;
+
+export const PriceContainer = styled.div`
+  border-top: 1px solid #D8D8D8;
+  padding-top: 15px;
+  margin-left: 0;
+  width: 508px;
+
+  display: flex;
+  flex-direction: row;
+  
+  icon {
+    position: relative;
+    height: 18px;
+    width: 18px;
+    margin-left: 17px;
+  }
+`;
+
+export const PriceLevel = styled.div`
+    position: relative;
+    margin-left: 25px;
+    display: flex;
+    align-items: center;
+    
+    font-family: Helvetica,serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 23px;
+`;
+
+export const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  height: 39px;
+  margin-top: 30px;
+  justify-content: space-around;
+`

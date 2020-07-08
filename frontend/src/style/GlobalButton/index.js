@@ -25,6 +25,22 @@ export const Button = styled.button`
     
 `
 
+export const LongOrangeButton = styled.button`
+    height: 39px;
+    width: 200px;
+    border-radius: ${ rem('28px')};
+    border: none;
+    background-color: #E47D31;
+    cursor: pointer;
+    font-family: Helvetica, Arial, serif;
+    font-size: 16px;
+    line-height: 18px;
+    color: #FFFFFF;
+    &:focus {
+      outline: none;
+    } 
+`
+
 export const SmallOrangeLeftButton = styled(Button)`
     height: ${rem('40px')};
     width: ${rem('100px')};
