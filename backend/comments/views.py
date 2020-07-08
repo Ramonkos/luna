@@ -1,10 +1,12 @@
 from django.contrib.auth import get_user_model
 from rest_framework import status
 from rest_framework.generics import ListAPIView, CreateAPIView, DestroyAPIView
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from comments.models import Comment
 from comments.serializers import CommentSerializer
 from reviews.models import Review
+from users.permission import IsOwnerOrReadOnlyCommentsReviews
 
 
 class ListUsersCommentsView(ListAPIView):
@@ -32,6 +34,7 @@ class CreateCommentView(CreateAPIView):
     serializer_class = CommentSerializer
     lookup_url_kwarg = 'review_id'
     queryset = Review
+    permission_classes = [IsAuthenticated]
 
     def create(self, request, *args, **kwargs):
         review = self.get_object()
@@ -49,3 +52,4 @@ class DestroyCommentView(DestroyAPIView):
     serializer_class = CommentSerializer
     queryset = Comment
     lookup_url_kwarg = 'review_id'
+    permission_classes = [IsOwnerOrReadOnlyCommentsReviews]

@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from rest_framework.generics import RetrieveUpdateAPIView, ListAPIView
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework import filters
 from users.serializers import UserSerializer
@@ -17,6 +18,7 @@ class RetrieveUpdateUserProfileView(RetrieveUpdateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     http_method_names = ['get', 'patch']
+    permission_classes = [IsAuthenticated]
 
     def retrieve(self, request, *args, **kwargs):
         serializer = self.get_serializer(self.request.user)
