@@ -12,20 +12,21 @@ import {
 } from "./style";
 
 
-export const GenericRestaurantCard = ({restaurant}) => {
+export const GenericRestaurantCard = ({item}) => {
 
     const history = useHistory();
 
     const onClickHandler = () => {
-        history.push(`/restaurants/${restaurant.id}/`)
+        history.push(`/restaurants/${item.id}/`)
     };
 
     return (
+
         <RestaurantMainContainer onClick={onClickHandler}>
             <TopBar/>
             <RestaurantDetailsContainer>
-                <RestaurantName>{restaurant.name.length > 20 ? `${restaurant.name.slice(0, 20)}...` : restaurant.name}</RestaurantName>
-                <RestaurantAddress>{`${restaurant.city}, ${restaurant.country}`}</RestaurantAddress>
+                <RestaurantName>{item.name.length > 20 ? `${item.name.slice(0, 20)}...` : item.name}</RestaurantName>
+                <RestaurantAddress>{`${item.city}, ${item.country}`}</RestaurantAddress>
                 <StarsReviewContainer>
                     <StarRatingComponent
                         name='Restaurant_Rating'
@@ -34,13 +35,14 @@ export const GenericRestaurantCard = ({restaurant}) => {
                         starDimension={"30px"}
                         editing={false}
                         starCount={5}
-                        value={Math.round(restaurant.review_average)}
+                        value={Math.round(item.review_average)}
                     />
-                    <p>{restaurant.restaurant_reviews.length}</p>
+                    <p>{item.restaurant_reviews.length}</p>
                 </StarsReviewContainer>
             </RestaurantDetailsContainer>
-            <img src={restaurant.restaurant_image ? restaurant.restaurant_image : defaultRestaurantCardPicture}
+            <img src={item.restaurant_image ? item.restaurant_image : defaultRestaurantCardPicture}
                  alt='Restaurant'/>
         </RestaurantMainContainer>
+
     )
 };
