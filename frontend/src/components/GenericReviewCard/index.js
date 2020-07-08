@@ -14,14 +14,14 @@ import {UserDetailContainer} from "../../style/GlobalShortUserProfile";
 import LikeIconImg from "../../assets/like.png"
 
 
-export const GenericReviewCard = () => (
+export const GenericReviewCard = ({item}) => (
     <ReviewMainContainer>
-        <TopBar />
+        <TopBar/>
         <UserDetailContainer>
-            <img src={defaultUserProfileAvatar} alt="profile picture" />
+            <img src={defaultUserProfileAvatar} alt="profile picture"/>
             <namereviewsContainer>
                 <name>
-                    Laurent H.
+                    {`${item.author.first_name} ${item.author.last_name}`}
                 </name>
                 <reviews>
                     6 Reviews in total
@@ -29,22 +29,21 @@ export const GenericReviewCard = () => (
             </namereviewsContainer>
         </UserDetailContainer>
         <RestaurantNameContainer>
-            Colinz Bar
+            {item.restaurant_review_about.name.length > 20 ? `${item.restaurant_review_about.name.slice(0, 20)}...` : item.restaurant_review_about.name}
         </RestaurantNameContainer>
         <RestaurantReviewContainer>
-            Ugh. Don't waste your time. Pizza dough good, thin crust but ingredients so so.
-            Side of mixed vegetables very oily and mainly bell...
-            <a href="">read more</a>
+            {item.text_content}
+            {/*<a href="">read more</a>*/}
         </RestaurantReviewContainer>
 
         <ButtonContainer>
             <GreyButtonPairWrapper>
                 <GreyLeftButton>
                     <LikeIcon src={LikeIconImg} alt="LikeIcon"/>
-                    Like 45
+                    {`Like ${item.amount_of_likes}`}
                 </GreyLeftButton>
                 <GreyRightButton>
-                    Comment 23
+                    {`Comment ${item.amount_of_comments}`}
                 </GreyRightButton>
             </GreyButtonPairWrapper>
         </ButtonContainer>
@@ -53,22 +52,17 @@ export const GenericReviewCard = () => (
             Latest comments
         </LatestCommentsTitle>
 
-        <CommentsContainer>
-            <commentor>
-                Colin Wirz
-            </commentor>
-            <comment>
-                Actually you have no taste!
-            </comment>
-        </CommentsContainer>
-                <CommentsContainer>
-            <commentor>
-                Laurent Meyer
-            </commentor>
-            <comment>
-                Sorry bro!
-            </comment>
-        </CommentsContainer>
+        {item.comments ? item.comments.slice(0,3).map(comment => {
+            return (<CommentsContainer>
+            <h1>
+                {`${comment.author.first_name} ${comment.author.last_name}`}
+            </h1>
+            <h2>
+                {comment.text_content}
+            </h2>
+        </CommentsContainer>)
+        }) : null}
+
 
     </ReviewMainContainer>
 );

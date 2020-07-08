@@ -1,5 +1,7 @@
 from rest_framework import serializers
 
+from comments.serializers import CommentSerializer
+from restaurants.serializers import RestaurantSerializer
 from reviews.models import Review
 from users.serializers import UserSerializer
 
@@ -8,6 +10,17 @@ class ReviewSerializer(serializers.ModelSerializer):
     author = UserSerializer(
         required=False,
         read_only=True,
+    )
+
+    restaurant_review_about = RestaurantSerializer(
+        required=False,
+        read_only=True
+    )
+
+    comments = CommentSerializer(
+        required=False,
+        read_only=True,
+        many=True,
     )
 
     amount_of_likes = serializers.SerializerMethodField()
