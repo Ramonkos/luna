@@ -11,7 +11,7 @@ const Center = styled.div`
   align-items: center;
 `;
 
-const GenericRestaurantList = ({restaurants}) => {
+const GenericRestaurantList = ({items}) => {
     const breakpointColumnsObj = {
         default: 4,
         1200: 2,
@@ -25,9 +25,8 @@ const GenericRestaurantList = ({restaurants}) => {
                 className="my-masonry-grid"
                 columnClassName="my-masonry-grid_column"
             >
-                {restaurants
-                    ? [...restaurants.map((restaurant, i) => <GenericRestaurantCard restaurant={restaurant}
-                                                                                    key={'restaurant' + restaurant.id}/>)]
+                {items
+                    ? [...items.map((item, i) => <GenericRestaurantCard item={item} key={'item' + item.id}/>)]
                     : <GenericSpinner/>
                 }
             </Masonry>

@@ -1,11 +1,20 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {SearchContainer, Selector, TitleContainer, BestRatedWrapper, CardWrapper, TitleMasterContainer} from "./style";
-import {GenericRestaurantCard} from "../GenericRestaurantCard";
 import {LinkWrapper} from "../SearchUserPage/style";
 import {NavLink} from "react-router-dom";
+import GenericSpinner from "../GenericSpinner";
+import {connect} from "react-redux";
+import GenericRestaurantList from "../GenericRestaurantList";
+import {allRestaurantsAction} from "../../store/actions/restaurantActions";
 
-export const SearchRestaurantPage = (props) =>
-    <div>
+const SearchRestaurantPage = ({notEmpty, allRestaurants, allRestaurantsAction}) => {
+    const displayMessage = () => !notEmpty ? <GenericSpinner/> : null;
+
+    useEffect(() => {
+        allRestaurantsAction();
+    }, [allRestaurantsAction]);
+
+    return <>
         <SearchContainer>
             <input type="text" id="search" name="search" placeholder="Search"/>
 
@@ -27,32 +36,34 @@ export const SearchRestaurantPage = (props) =>
         </SearchContainer>
         <TitleMasterContainer>
             <TitleContainer>
-                    <LinkWrapper>
-                        <NavLink to="/search/restaurants/">Restaurants</NavLink>
-                    </LinkWrapper>
-                    <LinkWrapper>
-                        <NavLink to="/search/reviews/">Reviews</NavLink>
-                    </LinkWrapper>
-                    <LinkWrapper>
-                        <NavLink to="/search/users/">Users</NavLink>
-                    </LinkWrapper>
+                <LinkWrapper>
+                    <NavLink to="/search/restaurants/">Restaurants</NavLink>
+                </LinkWrapper>
+                <LinkWrapper>
+                    <NavLink to="/search/reviews/">Reviews</NavLink>
+                </LinkWrapper>
+                <LinkWrapper>
+                    <NavLink to="/search/users/">Users</NavLink>
+                </LinkWrapper>
             </TitleContainer>
         </TitleMasterContainer>
+        <BestRatedWrapper>
+        <CardWrapper>
+            {allRestaurants && notEmpty ?
+                        <GenericRestaurantList items={allRestaurants} key={'all-restaurants'}/> : displayMessage()};
 
-        {/*<BestRatedWrapper>*/}
-        {/*    <CardWrapper>*/}
-        {/*      <GenericRestaurantCard />*/}
-        {/*      <GenericRestaurantCard />*/}
-        {/*      <GenericRestaurantCard />*/}
-        {/*      <GenericRestaurantCard />*/}
-        {/*    </CardWrapper>*/}
-        {/*</BestRatedWrapper>*/}
-        {/*<BestRatedWrapper>*/}
-        {/*    <CardWrapper>*/}
-        {/*      <GenericRestaurantCard />*/}
-        {/*      <GenericRestaurantCard />*/}
-        {/*      <GenericRestaurantCard />*/}
-        {/*      <GenericRestaurantCard />*/}
-        {/*    </CardWrapper>*/}
-        {/*</BestRatedWrapper>*/}
-    </div>
+        </CardWrapper>
+        </BestRatedWrapper>
+
+    </>
+};
+
+const mapStateToProps = (state) => {
+    const notEmpty = state.restaurantReducer.allRestaurants.length;
+    return {
+        allRestaurants: state.restaurantReducer.allRestaurants,
+        notEmpty: notEmpty
+    }
+};
+
+export default connect(mapStateToProps, {allRestaurantsAction})(SearchRestaurantPage);
