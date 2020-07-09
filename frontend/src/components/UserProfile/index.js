@@ -20,6 +20,11 @@ import UserEditProfile from "../UserEditProfile";
 import {getUserInformationAction} from "../../store/actions/userInfoAction";
 import {useRouteMatch} from "react-router-dom";
 import GenericSpinner from "../GenericSpinner";
+// import avatar from "../../assets/avatar.svg";
+import star from "../../assets/star.svg";
+import restaurant from "../../assets/restaurant.svg";
+import comment from "../../assets/comment.svg";
+import edit from "../../assets/edit.svg";
 
 //Styling
 
