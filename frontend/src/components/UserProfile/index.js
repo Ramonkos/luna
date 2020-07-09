@@ -21,6 +21,11 @@ import UserEditProfile from "../UserEditProfile";
 import { getUserInformationAction } from "../../store/actions/userInfoAction";
 import { useRouteMatch } from "react-router-dom";
 import GenericSpinner from "../GenericSpinner";
+// import avatar from "../../assets/avatar.svg";
+import star from "../../assets/star.svg";
+import restaurant from "../../assets/restaurant.svg";
+import comment from "../../assets/comment.svg";
+import edit from "../../assets/edit.svg";
 
 const ProfileContainer = styled.div`
   width: 100vw;
@@ -155,23 +160,23 @@ const UserProfile = ({ getUserInformationAction, targetUser }) => {
               <UserProfileButton
                 onClick={() => setValue({ display: "review" })}
               >
-                <img src={defaultUserProfileButtonIcon} />
+                <img src={star} />
                 Reviews
               </UserProfileButton>
               <UserProfileButton
                 onClick={() => setValue({ display: "comment" })}
               >
-                <img src={defaultUserProfileButtonIcon} />
+                <img src={comment} />
                 Comments
               </UserProfileButton>
               <UserProfileButton
                 onClick={() => setValue({ display: "restaurant" })}
               >
-                <img src={defaultUserProfileButtonIcon} />
+                <img src={restaurant} />
                 Restaurants
               </UserProfileButton>
               <UserProfileButton onClick={() => setValue({ display: "edit" })}>
-                <img src={defaultUserProfileButtonIcon} />
+                <img src={edit} />
                 Edit profile
               </UserProfileButton>
             </LeftWrapper>
