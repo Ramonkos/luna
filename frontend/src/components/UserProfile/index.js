@@ -156,23 +156,23 @@ const UserProfile = ({getUserInformationAction, targetUser, location}) => {
                             <UserProfileButton
                                 onClick={() => setValue({display: "review"})}
                             >
-                                <img src={defaultUserProfileButtonIcon} alt='reviews button'/>
+                                <img src={star} alt='reviews button'/>
                                 Reviews
                             </UserProfileButton>
                             <UserProfileButton
                                 onClick={() => setValue({display: "comment"})}
                             >
-                                <img src={defaultUserProfileButtonIcon} alt='comment button'/>
+                                <img src={comment} alt='comment button'/>
                                 Comments
                             </UserProfileButton>
                             <UserProfileButton
                                 onClick={() => setValue({display: "restaurant"})}
                             >
-                                <img src={defaultUserProfileButtonIcon} alt='restaurant button'/>
+                                <img src={restaurant} alt='restaurant button'/>
                                 Restaurants
                             </UserProfileButton>
                             <UserProfileButton onClick={() => setValue({display: "edit"})}>
-                                <img src={defaultUserProfileButtonIcon} alt='edit profile button'/>
+                                <img src={edit} alt='edit profile button'/>
                                 Edit profile
                             </UserProfileButton>
                         </LeftWrapper>
