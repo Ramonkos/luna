@@ -34,7 +34,7 @@ const SearchReviewPage = ({notEmpty, searchReviewResults, searchAllReviewsAction
         }
     };
 
-    return <>
+    return <div>
         <SearchContainer>
             <input
                 type="text"
@@ -64,7 +64,7 @@ const SearchReviewPage = ({notEmpty, searchReviewResults, searchAllReviewsAction
                     <GenericReviewList items={searchReviewResults} key={'search-review-results'}/> : displayMessage()}
             </CardWrapper>
         </BestRatedWrapper>
-    </>
+    </div>
 };
 
 const mapStateToProps = state => {

@@ -33,7 +33,7 @@ const SearchUserPage = ({searchUserResults, notEmpty, searchAllUsersAction}) => 
     };
 
     return (
-        <>
+        <div>
             <SearchContainer>
                 <input
                     type="text"
@@ -64,7 +64,7 @@ const SearchUserPage = ({searchUserResults, notEmpty, searchAllUsersAction}) => 
                         <GenericUserList items={searchUserResults} key={'search-review-results'}/> : displayMessage()}
                 </CardWrapper>
             </BestRatedWrapper>
-        </>
+        </div>
     );
 };
 

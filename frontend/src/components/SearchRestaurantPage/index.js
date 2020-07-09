@@ -64,7 +64,7 @@ const SearchRestaurantPage = ({notEmpty, restaurants, searchAllRestaurantsAction
         }
     };
 
-    return <>
+    return <div>
         <SearchContainer>
             <input type="text"
                    name="search"
@@ -98,7 +98,7 @@ const SearchRestaurantPage = ({notEmpty, restaurants, searchAllRestaurantsAction
                     <GenericRestaurantList items={restaurants} key={'restaurants'}/> : displayMessage()}
             </CardWrapper>
         </BestRatedWrapper>
-    </>
+    </div>
 };
 
 const mapStateToProps = (state) => {

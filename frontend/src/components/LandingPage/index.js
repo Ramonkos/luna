@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from "react";
-import {Link} from "react-router-dom";
 import {Button} from "../../../src/style/GlobalButton";
 import styled from "styled-components";
 import {rem} from "polished";
@@ -10,6 +9,9 @@ import {searchAllRestaurantsAction, top4RestaurantsAction} from "../../store/act
 import {connect} from "react-redux";
 import GenericRestaurantList from "../GenericRestaurantList";
 
+const LandingPageContainer = styled.div`
+  align-self: flex-start;
+`;
 
 const HomeHeroWrapper = styled.div`
   width: 100%;
@@ -80,7 +82,7 @@ const LandingPage = ({top4Restaurants, top4RestaurantsAction, notEmpty, searchAl
     };
 
     return (
-        <>
+        <LandingPageContainer>
             <HomeHeroWrapper>
                 <InputWrapper>
                     <input type="text"
@@ -99,7 +101,7 @@ const LandingPage = ({top4Restaurants, top4RestaurantsAction, notEmpty, searchAl
                         <GenericRestaurantList items={top4Restaurants} key={'top-4-restaurants'}/> : displayMessage()};
                 </CardWrapper>
             </BestRatedWrapper>
-        </>
+        </LandingPageContainer>
     );
 };
 
