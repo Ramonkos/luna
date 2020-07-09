@@ -3,17 +3,19 @@ import {rem} from "polished";
 import React, {useState} from "react";
 import {UserAccessTitleWrapper, UserAccessContentContainer} from "../../style/GlobalWrappers";
 import {Button, SmallOrangeButton} from "../../style/GlobalButton";
-import {    ErrorMessage,    RestaurantCreationInput} from "../../style/GlobalInput";
+import {ErrorMessage, RestaurantCreationInput} from "../../style/GlobalInput";
 import {BlackBold20Left} from "../../style/GlobalTitles";
 import {connect} from "react-redux";
 import {createRestaurantAction} from "../../store/actions/restaurantActions";
+
+// Styling
 
 const NewRestaurantFieldContainer = styled.div`
     width: ${rem('1180px')};
     display: flex;
     flex-flow: column;
     margin-top: ${rem('27px')};
-`
+`;
 
 const NewRestaurantTitle = styled(BlackBold20Left)`
     font-family: 'Karla', sans-serif;
@@ -21,7 +23,7 @@ const NewRestaurantTitle = styled(BlackBold20Left)`
     text-transform: capitalize;
     height: ${rem('23px')};    
     margin-bottom: ${rem('9px')};
-`
+`;
 
 const InputBlockWrapper = styled.div`
     height: ${rem('80px')};  //originally was 105px, now 80
@@ -29,7 +31,7 @@ const InputBlockWrapper = styled.div`
     display: flex;
     justify-content: space-between;
     margin-bottom: ${rem('9px')};
-`
+`;
 
 const InputWrapper = styled.div`
     height: ${rem('80px')};  //originally was 105px, now 80
@@ -37,12 +39,12 @@ const InputWrapper = styled.div`
     display: flex;
     flex-flow: column;
     justify-content: space-between;
-`
+`;
 
 const InputName = styled(BlackBold20Left)`
     height: ${rem('23px')};
     color: #979797;
-`
+`;
 
 export const RestaurantCreationSelector = styled.select`
     width: ${rem('370px')};
@@ -55,29 +57,28 @@ export const RestaurantCreationSelector = styled.select`
     border: 1px solid #EBEBEB;
     border-radius: 3px;
     padding-left: ${rem('23px')};
-`
+`;
 
-
-//TEST!!!
 const UploadButton = styled(SmallOrangeButton)`
   width: ${rem('220px')};
-`
-//TEST!!!
+`;
+
+// Component
 
 const NewRestaurant = ({error, history, createRestaurantAction}) => {
 
     const [data, setData] = useState({
-        name: 'React Restaurant',
-        category: '6',
-        country: 'Germany',
-        street: '1234 Test St',
-        city: 'Hamburg',
-        zip: '1234',
-        website: 'www.test.com',
-        phone: '1234567890',
-        email: 'test@something.com',
-        opening_hours: 'PH Hours',
-        price_level: '3',
+        name: '',
+        category: '',
+        country: '',
+        street: '',
+        city: '',
+        zip: '',
+        website: '',
+        phone: '',
+        email: '',
+        opening_hours: '',
+        price_level: '',
         restaurant_image: null,
     });
 
@@ -88,7 +89,7 @@ const NewRestaurant = ({error, history, createRestaurantAction}) => {
     };
 
     const handleSubmit = async e => {
-        console.log(data)
+        e.preventDefault();
         const restaurantData = new FormData();
         restaurantData.append('name', data.name);
         restaurantData.append('category', data.category);
@@ -101,35 +102,32 @@ const NewRestaurant = ({error, history, createRestaurantAction}) => {
         restaurantData.append('email', data.email);
         restaurantData.append('opening_hours', data.opening_hours);
         restaurantData.append('price_level', data.price_level);
-        restaurantData.append('restaurant_image', data.restaurant_image);
-        e.preventDefault();
-        console.log([...restaurantData]);
-        const response = await createRestaurantAction(data);
+        if (data.restaurant_image) {
+            restaurantData.append('restaurant_image', data.restaurant_image);
+        }
+        const response = await createRestaurantAction(restaurantData);
         if (response.status === 201) {
             history.push(`/restaurants/${response.data.id}/`)
         }
     };
 
-    //TEST!!!
     const hiddenFileInput = React.useRef(null);
 
     const handleClick = event => {
         hiddenFileInput.current.click();
     };
-    const handleChange = event => {
-        const name = event.target.name;
-        const value = event.target.files[0];
-        setData({...data, [name]: value})
+
+    const imageSelectHandler = e => {
+        if (e.target.files[0]) {
+            setData({...data, restaurant_image: e.target.files[0]})
+        }
     };
-    //TEST!!!
 
     return (
         <UserAccessContentContainer>
             <UserAccessTitleWrapper titletext="Create new restaurant"/>
             <NewRestaurantFieldContainer>
-
                 <NewRestaurantTitle>Basic</NewRestaurantTitle>
-
                 <InputBlockWrapper>
                     <InputWrapper>
                         <InputName>Name *</InputName>
@@ -141,7 +139,6 @@ const NewRestaurant = ({error, history, createRestaurantAction}) => {
                     </InputWrapper>
                     <InputWrapper>
                         <InputName>Category *</InputName>
-
                         <RestaurantCreationSelector
                             name='category'
                             value={data.category}
@@ -160,10 +157,8 @@ const NewRestaurant = ({error, history, createRestaurantAction}) => {
                             <option value="10">Pizza</option>
                             <option value="11">Vegetarian</option>
                             <option value="12">Other</option>
-
                         </RestaurantCreationSelector>
                     </InputWrapper>
-
                     <InputWrapper>
                         <InputName>Country *</InputName>
                         <RestaurantCreationInput
@@ -172,9 +167,7 @@ const NewRestaurant = ({error, history, createRestaurantAction}) => {
                             onChange={handleInput}
                         />
                     </InputWrapper>
-
                 </InputBlockWrapper>
-
                 <NewRestaurantTitle>Address</NewRestaurantTitle>
                 <InputBlockWrapper>
                     <InputWrapper>
@@ -202,7 +195,6 @@ const NewRestaurant = ({error, history, createRestaurantAction}) => {
                         />
                     </InputWrapper>
                 </InputBlockWrapper>
-
                 <NewRestaurantTitle>Contact</NewRestaurantTitle>
                 <InputBlockWrapper>
                     <InputWrapper>
@@ -230,7 +222,6 @@ const NewRestaurant = ({error, history, createRestaurantAction}) => {
                         />
                     </InputWrapper>
                 </InputBlockWrapper>
-
                 <NewRestaurantTitle>Details</NewRestaurantTitle>
                 <InputBlockWrapper>
                     <InputWrapper>
@@ -258,8 +249,6 @@ const NewRestaurant = ({error, history, createRestaurantAction}) => {
                     </InputWrapper>
                     <InputWrapper>
                         <InputName>Image</InputName>
-                        {/*TEST*/}
-                        <>
                             <UploadButton onClick={handleClick}>
                                 Choose a file...
                             </UploadButton>
@@ -267,11 +256,9 @@ const NewRestaurant = ({error, history, createRestaurantAction}) => {
                                 type="file"
                                 name="restaurant_image"
                                 ref={hiddenFileInput}
-                                onChange={handleChange}
+                                onChange={imageSelectHandler}
                                 style={{display: 'none'}}
                             />
-                        </>
-                        {/*TEST*/}
                     </InputWrapper>
                 </InputBlockWrapper>
                 <ErrorMessage>{error ? error : ''}</ErrorMessage>

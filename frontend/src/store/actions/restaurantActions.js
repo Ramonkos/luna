@@ -64,7 +64,7 @@ export const top4RestaurantsAction = () => async (dispatch) => {
 
 export const createRestaurantAction = (data) => async (dispatch) => {
     try {
-        const response = await Axios.post('restaurants/new/', {...data});
+        const response = await Axios.post('restaurants/new/', data);
         return response
     } catch (error) {
         console.log('Error creating a new Restaurant>', error)
