@@ -18,7 +18,7 @@ import UserProfileReview from "../UserProfileReview";
 import UserProfileComment from "../UserProfileComment";
 import UserProfileRestaurant from "../UserProfileRestaurant";
 import UserEditProfile from "../UserEditProfile";
-import {getUserInformationAction} from "../../store/actions/userInfoAction";
+import { getUserInformationAction } from "../../store/actions/userInfoAction";
 import { useRouteMatch } from "react-router-dom";
 import GenericSpinner from "../GenericSpinner";
 
@@ -29,6 +29,10 @@ const ProfileContainer = styled.div`
   flex-flow: column;
   justify-content: start;
   align-items: center;
+  img.banner {
+    width: 1440px;
+    height: 155px;
+  }
 `;
 const ProfileContent = styled.div`
   width: ${rem("1176px")};
@@ -47,7 +51,8 @@ const LeftWrapper = styled.div`
 `;
 
 const UserImageBig = styled.img`
-  border: 2px solid red; //TODO delete it, just for position checking
+  width: 234px;
+  height: 232px;
 `;
 
 const UserProfileText = styled.div`
@@ -109,91 +114,117 @@ const ContentToButtons = styled.div`
   margin-top: ${rem("24px")};
 `;
 
-const UserProfile = ({ getUserInformationAction, targetUser}) => {
-  const displayMessage = () => !targetUser ? <GenericSpinner/> : null;
+const UserProfile = ({ getUserInformationAction, targetUser }) => {
+  const displayMessage = () => (!targetUser ? <GenericSpinner /> : null);
 
   const initialState = {
     display: "review",
   };
-    
-    const match = useRouteMatch();
-    
-    useEffect(() => {
-        getUserInformationAction(match.params.userId)
-    }, [getUserInformationAction])
+
+  const match = useRouteMatch();
+
+  useEffect(() => {
+    getUserInformationAction(match.params.userId);
+  }, [getUserInformationAction]);
 
   const [value, setValue] = useState(initialState);
 
   return (
     <ProfileContainer>
-      {targetUser ?
-      <>
-      <img src={defaultUserProfileBanner} />
-      <ProfileContent>
-        <LeftWrapper>
-          <UserImageBig
-            src={defaultUserProfileAvatar}
-            alt="User Profile Image"
+      {targetUser ? (
+        <>
+          <img 
+            className="banner"
+            src={
+              targetUser.banner ? targetUser.banner : defaultUserProfileBanner
+            }
           />
-                  <UserProfileText>{targetUser.first_name}</UserProfileText>
-          <UserProfileButton onClick={() => setValue({ display: "review" })}>
-            <img src={defaultUserProfileButtonIcon} />
-            Reviews
-          </UserProfileButton>
-          <UserProfileButton onClick={() => setValue({ display: "comment" })}>
-            <img src={defaultUserProfileButtonIcon} />
-            Comments
-          </UserProfileButton>
-          <UserProfileButton
-            onClick={() => setValue({ display: "restaurant" })}
-          >
-            <img src={defaultUserProfileButtonIcon} />
-            Restaurants
-          </UserProfileButton>
-          <UserProfileButton onClick={() => setValue({ display: "edit" })}>
-            <img src={defaultUserProfileButtonIcon} />
-            Edit profile
-          </UserProfileButton>
-        </LeftWrapper>
-        <MiddleWrapper>
-          <UserDataText>
-            <UserDataName>Laurent H.</UserDataName>
-            <UserDataInfo>Zürich, CH</UserDataInfo>
-            <UserDataInfo>6 reviews</UserDataInfo>
-            <UserDataInfo>210 comments</UserDataInfo>
-            <ContentToButtons>
-              {(() => {
-                switch (value.display) {
-                  case "review":
-                    return <UserProfileReview />;
-                  case "comment":
-                    return <UserProfileComment />;
-                  case "restaurant":
-                    return <UserProfileRestaurant />;
-                  case "edit":
-                    return <UserEditProfile />;
+          <ProfileContent>
+            <LeftWrapper>
+              <UserImageBig
+                src={
+                  targetUser.avatar
+                    ? targetUser.avatar
+                    : defaultUserProfileAvatar
                 }
-              })()}
-            </ContentToButtons>
-          </UserDataText>
-        </MiddleWrapper>
-        <RightWrapper>
-          <GreyBold20LeftUppercase>about laurent</GreyBold20LeftUppercase>
-          <BlackBold20Left>Location</BlackBold20Left>
-          <BlackLight20Left>Zürich. CH</BlackLight20Left>
-          <BlackBold20Left>Luna ember since</BlackBold20Left>
-          <BlackLight20Left>April, 2018</BlackLight20Left>
-          <BlackBold20Left>Things I love</BlackBold20Left>
-          <BlackLight20Left>Everything</BlackLight20Left>
-          <BlackBold20Left>Description</BlackBold20Left>
-          <BlackLight20Left>
-            Im professional photographer with an eye for details in every thing
-            I do in my live. Every time a pass by a nice restaurant i have to
-            stop and take notes
-          </BlackLight20Left>
-        </RightWrapper>
-      </ProfileContent>
-      </> :  displayMessage()}
+                alt="User Profile Image"
+              />
+              <UserProfileText>
+                {targetUser.first_name}'s profile
+              </UserProfileText>
+              <UserProfileButton
+                onClick={() => setValue({ display: "review" })}
+              >
+                <img src={defaultUserProfileButtonIcon} />
+                Reviews
+              </UserProfileButton>
+              <UserProfileButton
+                onClick={() => setValue({ display: "comment" })}
+              >
+                <img src={defaultUserProfileButtonIcon} />
+                Comments
+              </UserProfileButton>
+              <UserProfileButton
+                onClick={() => setValue({ display: "restaurant" })}
+              >
+                <img src={defaultUserProfileButtonIcon} />
+                Restaurants
+              </UserProfileButton>
+              <UserProfileButton onClick={() => setValue({ display: "edit" })}>
+                <img src={defaultUserProfileButtonIcon} />
+                Edit profile
+              </UserProfileButton>
+            </LeftWrapper>
+            <MiddleWrapper>
+              <UserDataText>
+                <UserDataName>
+                  {targetUser.first_name} {targetUser.last_name[0] + "."}
+                </UserDataName>
+                <UserDataInfo>{targetUser.loacation}</UserDataInfo>
+                <UserDataInfo>
+                  {targetUser.amount_of_reviews} reviews
+                </UserDataInfo>
+                <UserDataInfo>
+                  {targetUser.amount_of_comments} comments
+                </UserDataInfo>
+                <ContentToButtons>
+                  {(() => {
+                    switch (value.display) {
+                      case "review":
+                        return <UserProfileReview />;
+                      case "comment":
+                        return <UserProfileComment />;
+                      case "restaurant":
+                        return <UserProfileRestaurant />;
+                      case "edit":
+                        return <UserEditProfile />;
+                    }
+                  })()}
+                </ContentToButtons>
+              </UserDataText>
+            </MiddleWrapper>
+            <RightWrapper>
+              <GreyBold20LeftUppercase>
+                about {targetUser.first_name}
+              </GreyBold20LeftUppercase>
+              <BlackBold20Left>Location</BlackBold20Left>
+              <BlackLight20Left>{targetUser.location}</BlackLight20Left>
+              <BlackBold20Left>Luna member since</BlackBold20Left>
+              <BlackLight20Left>
+                {targetUser.date_joined.slice(0, 10)}
+              </BlackLight20Left>
+              <BlackBold20Left>Things I love</BlackBold20Left>
+              <BlackLight20Left>
+                {targetUser.things_user_loves}
+              </BlackLight20Left>
+              <BlackBold20Left>Description</BlackBold20Left>
+              <BlackLight20Left>{targetUser.description}</BlackLight20Left>
+            </RightWrapper>
+          </ProfileContent>
+        </>
+      ) : (
+        displayMessage()
+      )}
     </ProfileContainer>
   );
 };

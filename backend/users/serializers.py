@@ -36,7 +36,7 @@ class UserSerializer(serializers.ModelSerializer):
         model = User
         fields = ['id', 'first_name', 'last_name', 'location', 'phone', 'things_user_loves', 'description', 'avatar',
                   'banner', 'amount_of_comments', 'amount_of_comments_liked', 'amount_of_reviews',
-                  'amount_of_liked_reviews', 'amount_of_user_restaurants']
+                  'amount_of_liked_reviews', 'amount_of_user_restaurants', 'date_joined']
         extra_kwargs = {
             'email': {'read_only': True},
         }
