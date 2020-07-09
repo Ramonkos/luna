@@ -2,7 +2,6 @@ import styled from "styled-components";
 import {rem} from "polished";
 import React, {useState, useEffect} from "react";
 import {connect} from "react-redux";
-
 import {
     defaultUserProfileAvatar,
     defaultUserProfileBanner,
@@ -18,25 +17,27 @@ import UserProfileReview from "../UserProfileReview";
 import UserProfileComment from "../UserProfileComment";
 import UserProfileRestaurant from "../UserProfileRestaurant";
 import UserEditProfile from "../UserEditProfile";
-import { getUserInformationAction } from "../../store/actions/userInfoAction";
-import { useRouteMatch } from "react-router-dom";
+import {getUserInformationAction} from "../../store/actions/userInfoAction";
+import {useRouteMatch} from "react-router-dom";
 import GenericSpinner from "../GenericSpinner";
+
+//Styling
 
 const ProfileContainer = styled.div`
   width: 100vw;
-  //background-color: green; //TODO delete it, just for position checking
   display: flex;
   flex-flow: column;
   justify-content: start;
   align-items: center;
+
   img.banner {
     width: 1440px;
     height: 155px;
   }
 `;
+
 const ProfileContent = styled.div`
   width: ${rem("1176px")};
-  //background-color: yellow; //TODO delete it, just for position checking
   display: flex;
   align-items: start;
   margin-top: ${rem("-115px")};
@@ -44,7 +45,6 @@ const ProfileContent = styled.div`
 
 const LeftWrapper = styled.div`
   width: ${rem("234px")};
-  //background-color: bisque; //TODO delete it, just for position checking
   display: flex;
   flex-flow: column;
   border-right: 1px solid #ebebeb;
@@ -70,14 +70,12 @@ const UserProfileText = styled.div`
 
 const MiddleWrapper = styled.div`
   width: ${rem("619px")};
-  //background-color: cadetblue; //TODO delete it, just for position checking
   display: flex;
   flex-flow: column;
 `;
 
 const RightWrapper = styled.div`
   width: ${rem("314px")};
-  //background-color: darkseagreen; //TODO delete it, just for position checking
   display: flex;
   flex-flow: column;
   border-right: 1px solid #ebebeb;
@@ -87,7 +85,6 @@ const RightWrapper = styled.div`
 
 const UserDataText = styled.div`
   height: ${rem("115px")};
-  //background-color: darkorange; //TODO delete it, just for position checking
   display: flex;
   flex-flow: column;
   margin-left: ${rem("16px")};
@@ -107,21 +104,22 @@ const UserDataInfo = styled(UserDataName)`
 `;
 
 const ContentToButtons = styled.div`
-  //background-color: darkorchid; //TODO delete it, just for position checking
   color: black; //TODO delete it, just for text
   display: flex;
   justify-content: flex-start;
   margin-top: ${rem("24px")};
 `;
 
-const UserProfile = ({ getUserInformationAction, targetUser, location }) => {
-  const displayMessage = () => (!targetUser ? <GenericSpinner /> : null);
+// Component
 
-  const initialState = {
-    display: "review",
-  };
+const UserProfile = ({getUserInformationAction, targetUser, location}) => {
+    const displayMessage = () => (!targetUser ? <GenericSpinner/> : null);
 
-  const match = useRouteMatch();
+    const [value, setValue] = useState({
+        display: "review"
+    });
+
+    const match = useRouteMatch();
 
     useEffect(() => {
 
@@ -130,118 +128,107 @@ const UserProfile = ({ getUserInformationAction, targetUser, location }) => {
         } else {
             getUserInformationAction(match.params.userId)
         }
-    }, [getUserInformationAction])
+    }, [getUserInformationAction, location.pathname, match.params.userId])
 
-  const [value, setValue] = useState(initialState);
-
-  return (
-    <ProfileContainer>
-      {targetUser ? (
-        <>
-          <img 
-            className="banner"
-            src={
-              targetUser.banner ? targetUser.banner : defaultUserProfileBanner
-            }
-          />
-          <ProfileContent>
-            <LeftWrapper>
-              <UserImageBig
-                src={
-                  targetUser.avatar
-                    ? targetUser.avatar
-                    : defaultUserProfileAvatar
-                }
-                alt="User Profile Image"
-              />
-              <UserProfileText>
-                {targetUser.first_name}'s profile
-              </UserProfileText>
-              <UserProfileButton
-                onClick={() => setValue({ display: "review" })}
-              >
-                <img src={defaultUserProfileButtonIcon} />
-                Reviews
-              </UserProfileButton>
-              <UserProfileButton
-                onClick={() => setValue({ display: "comment" })}
-              >
-                <img src={defaultUserProfileButtonIcon} />
-                Comments
-              </UserProfileButton>
-              <UserProfileButton
-                onClick={() => setValue({ display: "restaurant" })}
-              >
-                <img src={defaultUserProfileButtonIcon} />
-                Restaurants
-              </UserProfileButton>
-              <UserProfileButton onClick={() => setValue({ display: "edit" })}>
-                <img src={defaultUserProfileButtonIcon} />
-                Edit profile
-              </UserProfileButton>
-            </LeftWrapper>
-            <MiddleWrapper>
-              <UserDataText>
-                <UserDataName>
-                  {targetUser.first_name} {targetUser.last_name[0] + "."}
-                </UserDataName>
-                <UserDataInfo>{targetUser.loacation}</UserDataInfo>
-                <UserDataInfo>
-                  {targetUser.amount_of_reviews} reviews
-                </UserDataInfo>
-                <UserDataInfo>
-                  {targetUser.amount_of_comments} comments
-                </UserDataInfo>
-                <ContentToButtons>
-                  {(() => {
-                    switch (value.display) {
-                      case "review":
-                        return <UserProfileReview />;
-                      case "comment":
-                        return <UserProfileComment />;
-                      case "restaurant":
-                        return <UserProfileRestaurant />;
-                      case "edit":
-                        return <UserEditProfile />;
-                    }
-                  })()}
-                </ContentToButtons>
-              </UserDataText>
-            </MiddleWrapper>
-            <RightWrapper>
-              <GreyBold20LeftUppercase>
-                about {targetUser.first_name}
-              </GreyBold20LeftUppercase>
-              <BlackBold20Left>Location</BlackBold20Left>
-              <BlackLight20Left>{targetUser.location}</BlackLight20Left>
-              <BlackBold20Left>Luna member since</BlackBold20Left>
-              <BlackLight20Left>
-                {targetUser.date_joined.slice(0, 10)}
-              </BlackLight20Left>
-              <BlackBold20Left>Things I love</BlackBold20Left>
-              <BlackLight20Left>
-                {targetUser.things_user_loves}
-              </BlackLight20Left>
-              <BlackBold20Left>Description</BlackBold20Left>
-              <BlackLight20Left>{targetUser.description}</BlackLight20Left>
-            </RightWrapper>
-          </ProfileContent>
-        </>
-      ) : (
-        displayMessage()
-      )}
-    </ProfileContainer>
-  );
+    return (
+        <ProfileContainer>
+            {targetUser ? (
+                <>
+                    <img
+                        className="banner"
+                        src={targetUser.banner ? targetUser.banner : defaultUserProfileBanner}
+                        alt='banner'
+                    />
+                    <ProfileContent>
+                        <LeftWrapper>
+                            <UserImageBig
+                                src={targetUser.avatar ? targetUser.avatar : defaultUserProfileAvatar}
+                                alt="user"
+                            />
+                            <UserProfileText>
+                                {targetUser.first_name}'s profile
+                            </UserProfileText>
+                            <UserProfileButton
+                                onClick={() => setValue({display: "review"})}
+                            >
+                                <img src={defaultUserProfileButtonIcon} alt='reviews button'/>
+                                Reviews
+                            </UserProfileButton>
+                            <UserProfileButton
+                                onClick={() => setValue({display: "comment"})}
+                            >
+                                <img src={defaultUserProfileButtonIcon} alt='comment button'/>
+                                Comments
+                            </UserProfileButton>
+                            <UserProfileButton
+                                onClick={() => setValue({display: "restaurant"})}
+                            >
+                                <img src={defaultUserProfileButtonIcon} alt='restaurant button'/>
+                                Restaurants
+                            </UserProfileButton>
+                            <UserProfileButton onClick={() => setValue({display: "edit"})}>
+                                <img src={defaultUserProfileButtonIcon} alt='edit profile button'/>
+                                Edit profile
+                            </UserProfileButton>
+                        </LeftWrapper>
+                        <MiddleWrapper>
+                            <UserDataText>
+                                <UserDataName>
+                                    {targetUser.first_name} {targetUser.last_name[0] + "."}
+                                </UserDataName>
+                                <UserDataInfo>{targetUser.loacation}</UserDataInfo>
+                                <UserDataInfo>
+                                    {targetUser.amount_of_reviews} reviews
+                                </UserDataInfo>
+                                <UserDataInfo>
+                                    {targetUser.amount_of_comments} comments
+                                </UserDataInfo>
+                                <ContentToButtons>
+                                    {(() => {
+                                        switch (value.display) {
+                                            case "review":
+                                                return <UserProfileReview/>;
+                                            case "comment":
+                                                return <UserProfileComment/>;
+                                            case "restaurant":
+                                                return <UserProfileRestaurant/>;
+                                            case "edit":
+                                                return <UserEditProfile/>;
+                                        }
+                                    })()}
+                                </ContentToButtons>
+                            </UserDataText>
+                        </MiddleWrapper>
+                        <RightWrapper>
+                            <GreyBold20LeftUppercase>
+                                about {targetUser.first_name}
+                            </GreyBold20LeftUppercase>
+                            <BlackBold20Left>Location</BlackBold20Left>
+                            <BlackLight20Left>{targetUser.location}</BlackLight20Left>
+                            <BlackBold20Left>Luna member since</BlackBold20Left>
+                            <BlackLight20Left>
+                                {targetUser.date_joined.slice(0, 10)}
+                            </BlackLight20Left>
+                            <BlackBold20Left>Things I love</BlackBold20Left>
+                            <BlackLight20Left>
+                                {targetUser.things_user_loves}
+                            </BlackLight20Left>
+                            <BlackBold20Left>Description</BlackBold20Left>
+                            <BlackLight20Left>{targetUser.description}</BlackLight20Left>
+                        </RightWrapper>
+                    </ProfileContent>
+                </>
+            ) : (
+                displayMessage()
+            )}
+        </ProfileContainer>
+    );
 };
 
 const mapStateToProps = (state) => {
-    // const notEmpty = state.userInfoReducer.targetUser.length;
     return {
         targetUser: state.userInfoReducer.targetUser,
-        // notEmpty: notEmpty
     };
 };
 
-export default connect(mapStateToProps, {getUserInformationAction})(
-    UserProfile
-);
+export default connect(mapStateToProps, {getUserInformationAction})(UserProfile);
