@@ -10,7 +10,6 @@ import {
 import {NavLink} from "react-router-dom";
 import {connect} from "react-redux";
 import {searchAllUsersAction} from "../../store/actions/userActions";
-import GenericReviewList from "../GenericReviewList";
 import GenericSpinner from "../GenericSpinner";
 import GenericUserList from "../GenericUserList";
 
@@ -29,6 +28,7 @@ const SearchUserPage = ({searchUserResults, notEmpty, searchAllUsersAction}) => 
             const search_fields = '&search_fields=username&search_fields=first_name&search_fields=last_name';
             const search_string = `?search=${search}`;
             const response = await searchAllUsersAction(search_string + search_fields + search_location);
+            return response
         }
     };
 

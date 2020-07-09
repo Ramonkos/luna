@@ -49,7 +49,7 @@ const Header = () => {
   return (
     <>
       <HeaderContainer>
-        <Link onClick={() => history.push("/")}>
+        <Link to={'/'}>
           <h1>Luna</h1>
         </Link>
         <LinkButtonWrapper>
