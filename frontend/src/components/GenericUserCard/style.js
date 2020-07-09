@@ -18,6 +18,10 @@ export const TopBar = styled.div`
   border-top-left-radius: 3px;
 `;
 
+export const Line = styled.div`
+  border-top: 1px solid #EBEBEB; 
+`;
+
 export const AboutUserContainer = styled.div`
   height: 80px;
   width: 249px;
@@ -25,6 +29,7 @@ export const AboutUserContainer = styled.div`
   margin-left: 11px;
   margin-bottom: 0;
   overflow-wrap: break-word;
+
     
   font-family: Helvetica,serif;
   font-style: normal;
