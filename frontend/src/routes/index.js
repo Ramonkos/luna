@@ -13,7 +13,7 @@ import NewRestaurant from "../components/RestaurantCreationPage";
 import {WriteReviewPage} from "../components/WriteReviewPage";
 import RestaurantPage from "../components/RestaurantPage";
 import NotFoundPage from "../components/NotFoundPage";
-import {SearchUserPage} from "../components/SearchUserPage";
+import SearchUserPage from "../components/SearchUserPage";
 import SearchRestaurantPage from "../components/SearchRestaurantPage";
 import SearchReviewPage from "../components/SearchReviewPage";
 
@@ -39,6 +39,7 @@ const Routes = () => {
                     <Route exact path='/search/reviews/' component={SearchReviewPage}/>
                     <Route exact path='/search/users/' component={SearchUserPage}/>
                     <Route path='/restaurants/:restaurantId/' component={RestaurantPage}/>
+                    <Route path='/createreview/:restaurantId/' component={WriteReviewPage}/>
                     <Route exact path='/restaurant/create/' component={NewRestaurant}/>
                     <Route path='/users/:userId' component={UserProfile}/>
                     <Route exact path='/userprofile/' component={UserProfile}/>

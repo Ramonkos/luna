@@ -43,7 +43,10 @@ class ListAllRestaurantsInCategoryView(ListAPIView):
     serializer_class = RestaurantSerializer
 
     def list(self, request, *args, **kwargs):
-        queryset = Restaurant.objects.all().filter(category=kwargs['category_id'])
+        if kwargs['category_id'] == 0:
+            queryset = Restaurant.objects.all()
+        else:
+            queryset = Restaurant.objects.all().filter(category=kwargs['category_id'])
         serializer = self.get_serializer(queryset, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 

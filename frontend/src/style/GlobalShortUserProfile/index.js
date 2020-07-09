@@ -14,15 +14,16 @@ export const UserDetailContainer = styled.div`
     border-radius: 0;
   }
   
-  namereviewsContainer {
+  div {
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
 
-      name {
+      h1 {
           height: 23px;
           margin-top: 10px;
+          margin-left: 16px;
           /* margin-left: 7.73px; */
           margin-bottom: 0;
           
@@ -34,7 +35,7 @@ export const UserDetailContainer = styled.div`
           line-height: 23px;
       }
       
-      reviews {
+      h2 {
           height: 16px;
           /* margin-left: 7.73px; */
           margin-left: 16px;
@@ -56,12 +57,12 @@ export const UserDetailContainer = styled.div`
 //
 //         <UserDetailContainer>
 //             <img src={defaultRestaurantCardPicture} alt="profile picture" />
-//             <namereviewsContainer>
-//                 <name>
+//             <div>
+//                 <h1>
 //                     Laurent H.
-//                 </name>
-//                 <reviews>
+//                 </h1>
+//                 <h2>
 //                     6 Reviews in total
-//                 </reviews>
-//             </namereviewsContainer>
+//                 </h2>
+//             </div>
 //         </UserDetailContainer>

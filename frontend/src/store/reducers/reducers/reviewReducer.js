@@ -11,7 +11,7 @@ export const reviewReducer = (state = initial_state, action) => {
             return {
                 ...state,
                 searchReviewResults: action.payload,
-            }
+            };
         default:
             return state
     }

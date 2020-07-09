@@ -1,13 +1,48 @@
-import React from 'react';
-import {SearchContainer, TitleContainer, BestRatedWrapper, CardWrapper, TitleMasterContainer, LinkWrapper} from "./style";
-import {GenericUserCard} from "../GenericUserCard";
+import React, {useState} from 'react';
+import {
+    SearchContainer,
+    TitleContainer,
+    BestRatedWrapper,
+    CardWrapper,
+    TitleMasterContainer,
+    LinkWrapper
+} from "./style";
 import {NavLink} from "react-router-dom";
+import {connect} from "react-redux";
+import {searchAllUsersAction} from "../../store/actions/userActions";
+import GenericReviewList from "../GenericReviewList";
+import GenericSpinner from "../GenericSpinner";
+import GenericUserList from "../GenericUserList";
 
-export const SearchUserPage = (props) => {
+const SearchUserPage = ({searchUserResults, notEmpty, searchAllUsersAction}) => {
+    const displayMessage = () => !notEmpty ? <GenericSpinner/> : null;
+
+    const [search, setSearch] = useState('');
+
+    const inputHandler = (e, func) => {
+        func(e.currentTarget.value)
+    };
+
+    const keyPressHandler = async e => {
+        if (e.key === "Enter") {
+            const search_location = '&search_location=users';
+            const search_fields = '&search_fields=username&search_fields=first_name&search_fields=last_name';
+            const search_string = `?search=${search}`;
+            const response = await searchAllUsersAction(search_string + search_fields + search_location);
+        }
+    };
+
     return (
-        <div>
+        <>
             <SearchContainer>
-                <input type="text" id="search" name="search" placeholder="Search"/>
+                <input
+                    type="text"
+                    name="search"
+                    placeholder="Search for Users by username or by first or last name...."
+                    value={search}
+                    onChange={e => inputHandler(e, setSearch)}
+                    onKeyPress={keyPressHandler}
+                />
             </SearchContainer>
             <TitleMasterContainer>
                 <TitleContainer>
@@ -23,30 +58,22 @@ export const SearchUserPage = (props) => {
                 </TitleContainer>
             </TitleMasterContainer>
 
-            {/*<BestRatedWrapper>*/}
-            {/*    <CardWrapper>*/}
-            {/*        <GenericUserCard/>*/}
-            {/*        <GenericUserCard/>*/}
-            {/*        <GenericUserCard/>*/}
-            {/*        <GenericUserCard/>*/}
-            {/*    </CardWrapper>*/}
-            {/*</BestRatedWrapper>*/}
-            {/*<BestRatedWrapper>*/}
-            {/*    <CardWrapper>*/}
-            {/*        <GenericUserCard/>*/}
-            {/*        <GenericUserCard/>*/}
-            {/*        <GenericUserCard/>*/}
-            {/*        <GenericUserCard/>*/}
-            {/*    </CardWrapper>*/}
-            {/*</BestRatedWrapper>*/}
-            {/*<BestRatedWrapper>*/}
-            {/*    <CardWrapper>*/}
-            {/*        <GenericUserCard/>*/}
-            {/*        <GenericUserCard/>*/}
-            {/*        <GenericUserCard/>*/}
-            {/*        <GenericUserCard/>*/}
-            {/*    </CardWrapper>*/}
-            {/*</BestRatedWrapper>*/}
-        </div>
+            <BestRatedWrapper>
+                <CardWrapper>
+                    {searchUserResults && notEmpty ?
+                        <GenericUserList items={searchUserResults} key={'search-review-results'}/> : displayMessage()}
+                </CardWrapper>
+            </BestRatedWrapper>
+        </>
     );
 };
+
+const mapStateToProps = state => {
+    const notEmpty = state.userReducer.searchUserResults.length;
+    return {
+        searchUserResults: state.userReducer.searchUserResults,
+        notEmpty: notEmpty
+    }
+};
+
+export default connect(mapStateToProps, {searchAllUsersAction})(SearchUserPage)

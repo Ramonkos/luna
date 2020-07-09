@@ -25,7 +25,7 @@ export const Input = styled.input`
 
 export const RestaurantCreationInput = styled(Input)`
     width: ${rem('370px')};
-    color: #D8D8D8;
+    color: #999999;
     font-family: Karla,serif;  //TODO Get Karla font style
     font-weight: normal;
     font-size: ${rem('22px')};
@@ -50,10 +50,12 @@ export const InputErrorWrapper = styled.div`
 
 export const ErrorMessage = styled.div`
     height: ${rem('20px')};
-    width: ${rem('340px')};
-    text-align: left;
+    //width: ${rem('340px')};
+    text-align: center;
     color: red;
+    font-weight: bold;
     justify-content: center;
+    margin: ${rem('25px')} 0;
 `
 
 

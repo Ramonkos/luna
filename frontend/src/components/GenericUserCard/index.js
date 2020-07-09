@@ -7,27 +7,28 @@ import {
 } from "./style";
 
 import {UserDetailContainer} from "../../style/GlobalShortUserProfile";
+import {Link} from "react-router-dom";
 
 
-export const GenericUserCard = () => (
+export const GenericUserCard = ({item}) => (
     <ReviewMainContainer>
-        <TopBar />
+        <TopBar/>
         <UserDetailContainer>
-            <img src={defaultUserProfileAvatar} alt="profile picture" />
+            <img src={defaultUserProfileAvatar} alt="profile picture"/>
             <namereviewsContainer>
                 <name>
-                    Laurent H.
+                    {`${item.first_name} ${item.last_name}`}
                 </name>
                 <reviews>
-                    6 Reviews in total
+                    {item.amount_of_reviews} Reviews in total
                 </reviews>
             </namereviewsContainer>
         </UserDetailContainer>
 
         <AboutUserContainer>
-            Ugh. Don't waste your time. Pizza dough good, thin crust but ingredients so so.
-            Side of mixed vegetables very oily and mainly bell...
-            <a href="">read more</a>
+            {item.description.length > 146 ? (
+                    <Link to={`/users/${item.id}/`}>{`${item.description.slice(0, 147)}... read more`}</Link>) :
+                <p>{item.description}</p>}
         </AboutUserContainer>
     </ReviewMainContainer>
 );
