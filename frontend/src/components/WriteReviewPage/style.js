@@ -9,6 +9,7 @@ export const RestaurantContainer = styled.div`
   width: 100%;
   height: 204px;
   background-image: url("https://via.placeholder.com/1440x496"); //TODO change URL to constant folder
+  margin-bottom: 40px;
    
   restaurantname {
     position:relative;
@@ -47,8 +48,7 @@ export const StarsReviewContainer = styled.div`
   margin-left: 130px;
   
   p {
-    margin-left: 30px;
-  
+    margin: 8px 0 0 30px;
     font-family: Helvetica,serif;
     font-stretch: normal;
     font-weight: 300;
@@ -57,13 +57,9 @@ export const StarsReviewContainer = styled.div`
     text-align: center;
     color: #FFFFFF;
   }
-`;
-
-export const Stars = styled.div`
-  background-color: yellow;
-  width: 135px;
-  left: 16px;
-  text-align: center;
+  i {
+    font-size: 27px;
+  }
 `;
 
 export const RatingContainer = styled.div`
@@ -97,6 +93,7 @@ export const SelectRatingContainer = styled.div`
   top: 13px;
   height: 44px;
   margin-left: 341px;
+  margin-bottom: 25px;
   
   largestars {
     position: relative;
@@ -107,7 +104,7 @@ export const SelectRatingContainer = styled.div`
  
   p {
     height: 23px;
-    margin-top: 10.5px;
+    margin-top: 18px;
     margin-bottom: 10.5px;
     margin-left: 33px;
     
@@ -117,6 +114,9 @@ export const SelectRatingContainer = styled.div`
     font-size: 20px;
     line-height: 23px;
     color: #7E7E7E
+  }
+  i {
+    font-size: 40px;
   }
 `;
 
@@ -146,5 +146,3 @@ export const ButtonContainer = styled.div`
   position: relative;
   top: 14.5px;
 `
-
-
