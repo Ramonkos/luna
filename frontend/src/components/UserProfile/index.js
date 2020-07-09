@@ -184,18 +184,9 @@ const UserProfile = ({getUserInformationAction, targetUser, location}) => {
                                     {targetUser.amount_of_comments} comments
                                 </UserDataInfo>
                                 <ContentToButtons>
-                                    {(() => {
-                                        switch (value.display) {
-                                            case "review":
-                                                return <UserProfileReview/>;
-                                            case "comment":
-                                                return <UserProfileComment/>;
-                                            case "restaurant":
-                                                return <UserProfileRestaurant/>;
-                                            case "edit":
-                                                return <UserEditProfile/>;
-                                        }
-                                    })()}
+                                    {value.display === 'edit' ? <UserEditProfile/> : value.display === 'comment' ?
+                                        <UserProfileComment/> : value.display === 'restaurant' ?
+                                            <UserProfileRestaurant/> : <UserProfileReview/>}
                                 </ContentToButtons>
                             </UserDataText>
                         </MiddleWrapper>
