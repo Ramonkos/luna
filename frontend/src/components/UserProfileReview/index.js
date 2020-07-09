@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { useRouteMatch } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { UserProfileTitle } from "../../style/GlobalTitles";
 import {
@@ -12,67 +12,65 @@ import {
   StarWrapper,
 } from "../../style/GlobalUserReviewRestaurant";
 import { searchUserReviewsAction } from "../../store/actions/reviewActions";
+import GenericSpinner from "../GenericSpinner";
+import StarRatingComponent from "react-star-rating-component";
 
 const UserProfileReview = ({
   searchUserReviewsAction,
-  // targetUser,
-  location,
+  userReviewResults,
+  user_id,
+  notEmpty,
 }) => {
-  // const displayMessage = () => (!targetUser ? <GenericSpinner /> : null);
+  const displayMessage = () => (!notEmpty ? <GenericSpinner /> : null);
 
-  const match = useRouteMatch();
-
-  // useEffect(() => {
-  //   if (location.pathname === "/userprofile/") {
-  //     searchUserReviewsAction("me");
-  //   } else {
-  //     searchUserReviewsAction(match.params.userId);
-  //   }
-  // }, [searchUserReviewsAction]);
+  useEffect(() => {
+    console.log("user_id", user_id);
+    searchUserReviewsAction(user_id);
+  }, [searchUserReviewsAction]);
 
   return (
     <CommentContainer>
       <TitleWrapper>
         <UserProfileTitle>Reviews</UserProfileTitle>
       </TitleWrapper>
-      <CommentWrapper>
-        <ReviewCommentWrapper>
-          <TitleRestaurant>
-            <a>Läderach Chocolatier Suisse</a>
-            <p>02.03.2020 22:29</p>
-          </TitleRestaurant>
-          <StarWrapper>★★★★★</StarWrapper>
-          <p>
-            Monotonectally productize virtual internal or "organic" sources
-            vis-a-vis error-free opportunities. Holisticly disintermediate
-            market-driven deliverables through integrated human capital.
-            Continually.
-          </p>
-        </ReviewCommentWrapper>
-      </CommentWrapper>
-      <CommentWrapper>
-        <ReviewCommentWrapper>
-          <TitleRestaurant>
-            <a>Läderach Chocolatier Suisse</a>
-            <p>02.03.2020 22:29</p>
-          </TitleRestaurant>
-          <StarWrapper>★★★★★</StarWrapper>
-          <p>
-            Efficiently repurpose interoperable internal or "organic" sources
-            through transparent alignments. Holisticly incubate.
-          </p>
-        </ReviewCommentWrapper>
-      </CommentWrapper>
+      {userReviewResults.map((review) => {
+        return (
+          <CommentWrapper>
+            <ReviewCommentWrapper>
+              <TitleRestaurant>
+                <Link to={`/restaurants/${review.restaurant_review_about.id}/`}>
+                  {review.restaurant_review_about.name}
+                </Link>
+                <p>
+                  {review.created.slice(0, 10) +
+                    " " +
+                    review.created.slice(11, 16)}
+                </p>
+              </TitleRestaurant>
+              <StarWrapper>
+                <StarRatingComponent
+                  name="Restaurant_Rating"
+                  starColor={"#F8E71C"}
+                  emptyStarColor={"rgba(235, 235, 235, 0.5)"}
+                  editing={false}
+                  starCount={5}
+                  value={review.rating}
+                />
+              </StarWrapper>
+              <p>{review.text_content}</p>
+            </ReviewCommentWrapper>
+          </CommentWrapper>
+        );
+      })}
     </CommentContainer>
   );
 };
 
 const mapStateToProps = (state) => {
-  // const notEmpty = state.userInfoReducer.targetUser.length;
-  console.log(state.reviewsUser);
+  const notEmpty = state.reviewReducer.userReviewResults.length;
   return {
-    reviewsUser: state.userReviewReducer,
-    // notEmpty: notEmpty
+    userReviewResults: state.reviewReducer.userReviewResults,
+    notEmpty: notEmpty,
   };
 };
 

@@ -1,26 +1,25 @@
 import styled from "styled-components";
-import {rem} from "polished";
-import React, {useState, useEffect} from "react";
-import {connect} from "react-redux";
+import { rem } from "polished";
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
 import {
-    defaultUserProfileAvatar,
-    defaultUserProfileBanner,
-    defaultUserProfileButtonIcon,
+  defaultUserProfileAvatar,
+  defaultUserProfileBanner,
+  defaultUserProfileButtonIcon,
 } from "../../constants";
-import {UserProfileButton} from "../../style/GlobalButton";
+import { UserProfileButton } from "../../style/GlobalButton";
 import {
-    BlackBold20Left,
-    BlackLight20Left,
-    GreyBold20LeftUppercase,
+  BlackBold20Left,
+  BlackLight20Left,
+  GreyBold20LeftUppercase,
 } from "../../style/GlobalTitles";
 import UserProfileReview from "../UserProfileReview";
 import UserProfileComment from "../UserProfileComment";
 import UserProfileRestaurant from "../UserProfileRestaurant";
 import UserEditProfile from "../UserEditProfile";
-import {getUserInformationAction} from "../../store/actions/userInfoAction";
-import {useRouteMatch} from "react-router-dom";
+import { getUserInformationAction } from "../../store/actions/userInfoAction";
+import { useRouteMatch } from "react-router-dom";
 import GenericSpinner from "../GenericSpinner";
-// import avatar from "../../assets/avatar.svg";
 import star from "../../assets/star.svg";
 import restaurant from "../../assets/restaurant.svg";
 import comment from "../../assets/comment.svg";
@@ -117,124 +116,134 @@ const ContentToButtons = styled.div`
 
 // Component
 
-const UserProfile = ({getUserInformationAction, targetUser, location}) => {
-    const displayMessage = () => (!targetUser ? <GenericSpinner/> : null);
+const UserProfile = ({ getUserInformationAction, targetUser, location }) => {
+  const displayMessage = () => (!targetUser ? <GenericSpinner /> : null);
 
-    const [value, setValue] = useState({
-        display: "review"
-    });
+  const [value, setValue] = useState({
+    display: "review",
+  });
 
-    const match = useRouteMatch();
+  const match = useRouteMatch();
 
-    useEffect(() => {
+  useEffect(() => {
+    if (location.pathname === "/userprofile/") {
+      getUserInformationAction("me");
+    } else {
+      getUserInformationAction(match.params.userId);
+    }
+  }, [getUserInformationAction, location.pathname, match.params.userId]);
 
-        if (location.pathname === '/userprofile/') {
-            getUserInformationAction('me')
-        } else {
-            getUserInformationAction(match.params.userId)
-        }
-    }, [getUserInformationAction, location.pathname, match.params.userId])
-
-    return (
-        <ProfileContainer>
-            {targetUser ? (
-                <>
-                    <img
-                        className="banner"
-                        src={targetUser.banner ? targetUser.banner : defaultUserProfileBanner}
-                        alt='banner'
-                    />
-                    <ProfileContent>
-                        <LeftWrapper>
-                            <UserImageBig
-                                src={targetUser.avatar ? targetUser.avatar : defaultUserProfileAvatar}
-                                alt="user"
-                            />
-                            <UserProfileText>
-                                {targetUser.first_name}'s profile
-                            </UserProfileText>
-                            <UserProfileButton
-                                onClick={() => setValue({display: "review"})}
-                            >
-                                <img src={star} alt='reviews button'/>
-                                Reviews
-                            </UserProfileButton>
-                            <UserProfileButton
-                                onClick={() => setValue({display: "comment"})}
-                            >
-                                <img src={comment} alt='comment button'/>
-                                Comments
-                            </UserProfileButton>
-                            <UserProfileButton
-                                onClick={() => setValue({display: "restaurant"})}
-                            >
-                                <img src={restaurant} alt='restaurant button'/>
-                                Restaurants
-                            </UserProfileButton>
-                            {targetUser.user_is_logged_in_user ? (
-                                <UserProfileButton onClick={() => setValue({display: "edit"})}>
-                                    <img src={edit} alt='edit profile button'/>
-                                    Edit profile
-                                </UserProfileButton>) : null}
-                        </LeftWrapper>
-                        <MiddleWrapper>
-                            <UserDataText>
-                                <UserDataName>
-                                    {targetUser.first_name} {targetUser.last_name[0] + "."}
-                                </UserDataName>
-                                <UserDataInfo>{targetUser.loacation}</UserDataInfo>
-                                <UserDataInfo>
-                                    {targetUser.amount_of_reviews} reviews
-                                </UserDataInfo>
-                                <UserDataInfo>
-                                    {targetUser.amount_of_comments} comments
-                                </UserDataInfo>
-                                <ContentToButtons>
-                                    {(() => {
-                                        switch (value.display) {
-                                            case "review":
-                                                return <UserProfileReview/>;
-                                            case "comment":
-                                                return <UserProfileComment/>;
-                                            case "restaurant":
-                                                return <UserProfileRestaurant/>;
-                                            case "edit":
-                                                return <UserEditProfile/>;
-                                        }
-                                    })()}
-                                </ContentToButtons>
-                            </UserDataText>
-                        </MiddleWrapper>
-                        <RightWrapper>
-                            <GreyBold20LeftUppercase>
-                                about {targetUser.first_name}
-                            </GreyBold20LeftUppercase>
-                            <BlackBold20Left>Location</BlackBold20Left>
-                            <BlackLight20Left>{targetUser.location}</BlackLight20Left>
-                            <BlackBold20Left>Luna member since</BlackBold20Left>
-                            <BlackLight20Left>
-                                {targetUser.date_joined.slice(0, 10)}
-                            </BlackLight20Left>
-                            <BlackBold20Left>Things I love</BlackBold20Left>
-                            <BlackLight20Left>
-                                {targetUser.things_user_loves}
-                            </BlackLight20Left>
-                            <BlackBold20Left>Description</BlackBold20Left>
-                            <BlackLight20Left>{targetUser.description}</BlackLight20Left>
-                        </RightWrapper>
-                    </ProfileContent>
-                </>
-            ) : (
-                displayMessage()
-            )}
-        </ProfileContainer>
-    );
+  return (
+    <ProfileContainer>
+      {targetUser ? (
+        <>
+          <img
+            className="banner"
+            src={
+              targetUser.banner ? targetUser.banner : defaultUserProfileBanner
+            }
+            alt="banner"
+          />
+          <ProfileContent>
+            <LeftWrapper>
+              <UserImageBig
+                src={
+                  targetUser.avatar
+                    ? targetUser.avatar
+                    : defaultUserProfileAvatar
+                }
+                alt="user"
+              />
+              <UserProfileText>
+                {targetUser.first_name}'s profile
+              </UserProfileText>
+              <UserProfileButton
+                onClick={() => setValue({ display: "review" })}
+              >
+                <img src={star} alt="reviews button" />
+                Reviews
+              </UserProfileButton>
+              <UserProfileButton
+                onClick={() => setValue({ display: "comment" })}
+              >
+                <img src={comment} alt="comment button" />
+                Comments
+              </UserProfileButton>
+              <UserProfileButton
+                onClick={() => setValue({ display: "restaurant" })}
+              >
+                <img src={restaurant} alt="restaurant button" />
+                Restaurants
+              </UserProfileButton>
+              {targetUser.user_is_logged_in_user ? (
+                <UserProfileButton
+                  onClick={() => setValue({ display: "edit" })}
+                >
+                  <img src={edit} alt="edit profile button" />
+                  Edit profile
+                </UserProfileButton>
+              ) : null}
+            </LeftWrapper>
+            <MiddleWrapper>
+              <UserDataText>
+                <UserDataName>
+                  {targetUser.first_name} {targetUser.last_name[0] + "."}
+                </UserDataName>
+                <UserDataInfo>{targetUser.loacation}</UserDataInfo>
+                <UserDataInfo>
+                  {targetUser.amount_of_reviews} reviews
+                </UserDataInfo>
+                <UserDataInfo>
+                  {targetUser.amount_of_comments} comments
+                </UserDataInfo>
+                <ContentToButtons>
+                  {(() => {
+                    switch (value.display) {
+                      case "review":
+                        return <UserProfileReview location={location} user_id={targetUser.id}/>;
+                      case "comment":
+                        return <UserProfileComment location={location} user_id={targetUser.id}/>;
+                      case "restaurant":
+                        return <UserProfileRestaurant location={location} user_id={targetUser.id}/>;
+                      case "edit":
+                        return <UserEditProfile location={location} user_id={targetUser.id}/>;
+                    }
+                  })()}
+                </ContentToButtons>
+              </UserDataText>
+            </MiddleWrapper>
+            <RightWrapper>
+              <GreyBold20LeftUppercase>
+                about {targetUser.first_name}
+              </GreyBold20LeftUppercase>
+              <BlackBold20Left>Location</BlackBold20Left>
+              <BlackLight20Left>{targetUser.location}</BlackLight20Left>
+              <BlackBold20Left>Luna member since</BlackBold20Left>
+              <BlackLight20Left>
+                {targetUser.date_joined.slice(0, 10)}
+              </BlackLight20Left>
+              <BlackBold20Left>Things I love</BlackBold20Left>
+              <BlackLight20Left>
+                {targetUser.things_user_loves}
+              </BlackLight20Left>
+              <BlackBold20Left>Description</BlackBold20Left>
+              <BlackLight20Left>{targetUser.description}</BlackLight20Left>
+            </RightWrapper>
+          </ProfileContent>
+        </>
+      ) : (
+        displayMessage()
+      )}
+    </ProfileContainer>
+  );
 };
 
 const mapStateToProps = (state) => {
-    return {
-        targetUser: state.userInfoReducer.targetUser,
-    };
+  return {
+    targetUser: state.userInfoReducer.targetUser,
+  };
 };
 
-export default connect(mapStateToProps, {getUserInformationAction})(UserProfile);
+export default connect(mapStateToProps, { getUserInformationAction })(
+  UserProfile
+);
