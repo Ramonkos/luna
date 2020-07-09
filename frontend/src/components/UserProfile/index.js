@@ -1,25 +1,25 @@
 import styled from "styled-components";
-import { rem } from "polished";
-import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
+import {rem} from "polished";
+import React, {useState, useEffect} from "react";
+import {connect} from "react-redux";
 
 import {
-  defaultUserProfileAvatar,
-  defaultUserProfileBanner,
-  defaultUserProfileButtonIcon,
+    defaultUserProfileAvatar,
+    defaultUserProfileBanner,
+    defaultUserProfileButtonIcon,
 } from "../../constants";
-import { UserProfileButton } from "../../style/GlobalButton";
+import {UserProfileButton} from "../../style/GlobalButton";
 import {
-  BlackBold20Left,
-  BlackLight20Left,
-  GreyBold20LeftUppercase,
+    BlackBold20Left,
+    BlackLight20Left,
+    GreyBold20LeftUppercase,
 } from "../../style/GlobalTitles";
 import UserProfileReview from "../UserProfileReview";
 import UserProfileComment from "../UserProfileComment";
 import UserProfileRestaurant from "../UserProfileRestaurant";
 import UserEditProfile from "../UserEditProfile";
 import {getUserInformationAction} from "../../store/actions/userInfoAction";
-import { useRouteMatch } from "react-router-dom";
+import {useRouteMatch} from "react-router-dom";
 import GenericSpinner from "../GenericSpinner";
 
 const ProfileContainer = styled.div`
@@ -109,103 +109,108 @@ const ContentToButtons = styled.div`
   margin-top: ${rem("24px")};
 `;
 
-const UserProfile = ({ getUserInformationAction, targetUser}) => {
-  const displayMessage = () => !targetUser ? <GenericSpinner/> : null;
+const UserProfile = ({getUserInformationAction, targetUser, location}) => {
+    const displayMessage = () => !targetUser ? <GenericSpinner/> : null;
 
-  const initialState = {
-    display: "review",
-  };
-    
+    const initialState = {
+        display: "review",
+    };
+
     const match = useRouteMatch();
-    
+
     useEffect(() => {
-        getUserInformationAction(match.params.userId)
+        console.log(location.pathname)
+        if (location.pathname === '/userprofile/') {
+            getUserInformationAction('me')
+        } else {
+            getUserInformationAction(match.params.userId)
+        }
     }, [getUserInformationAction])
 
-  const [value, setValue] = useState(initialState);
+    const [value, setValue] = useState(initialState);
 
-  return (
-    <ProfileContainer>
-      {targetUser ?
-      <>
-      <img src={defaultUserProfileBanner} />
-      <ProfileContent>
-        <LeftWrapper>
-          <UserImageBig
-            src={defaultUserProfileAvatar}
-            alt="User Profile Image"
-          />
-                  <UserProfileText>{targetUser.first_name}</UserProfileText>
-          <UserProfileButton onClick={() => setValue({ display: "review" })}>
-            <img src={defaultUserProfileButtonIcon} />
-            Reviews
-          </UserProfileButton>
-          <UserProfileButton onClick={() => setValue({ display: "comment" })}>
-            <img src={defaultUserProfileButtonIcon} />
-            Comments
-          </UserProfileButton>
-          <UserProfileButton
-            onClick={() => setValue({ display: "restaurant" })}
-          >
-            <img src={defaultUserProfileButtonIcon} />
-            Restaurants
-          </UserProfileButton>
-          <UserProfileButton onClick={() => setValue({ display: "edit" })}>
-            <img src={defaultUserProfileButtonIcon} />
-            Edit profile
-          </UserProfileButton>
-        </LeftWrapper>
-        <MiddleWrapper>
-          <UserDataText>
-            <UserDataName>Laurent H.</UserDataName>
-            <UserDataInfo>Zürich, CH</UserDataInfo>
-            <UserDataInfo>6 reviews</UserDataInfo>
-            <UserDataInfo>210 comments</UserDataInfo>
-            <ContentToButtons>
-              {(() => {
-                switch (value.display) {
-                  case "review":
-                    return <UserProfileReview />;
-                  case "comment":
-                    return <UserProfileComment />;
-                  case "restaurant":
-                    return <UserProfileRestaurant />;
-                  case "edit":
-                    return <UserEditProfile />;
-                }
-              })()}
-            </ContentToButtons>
-          </UserDataText>
-        </MiddleWrapper>
-        <RightWrapper>
-          <GreyBold20LeftUppercase>about laurent</GreyBold20LeftUppercase>
-          <BlackBold20Left>Location</BlackBold20Left>
-          <BlackLight20Left>Zürich. CH</BlackLight20Left>
-          <BlackBold20Left>Luna ember since</BlackBold20Left>
-          <BlackLight20Left>April, 2018</BlackLight20Left>
-          <BlackBold20Left>Things I love</BlackBold20Left>
-          <BlackLight20Left>Everything</BlackLight20Left>
-          <BlackBold20Left>Description</BlackBold20Left>
-          <BlackLight20Left>
-            Im professional photographer with an eye for details in every thing
-            I do in my live. Every time a pass by a nice restaurant i have to
-            stop and take notes
-          </BlackLight20Left>
-        </RightWrapper>
-      </ProfileContent>
-      </> :  displayMessage()}
-    </ProfileContainer>
-  );
+    return (
+        <ProfileContainer>
+            {targetUser ?
+                <>
+                    <img src={defaultUserProfileBanner}/>
+                    <ProfileContent>
+                        <LeftWrapper>
+                            <UserImageBig
+                                src={defaultUserProfileAvatar}
+                                alt="User Profile Image"
+                            />
+                            <UserProfileText>{targetUser.first_name}</UserProfileText>
+                            <UserProfileButton onClick={() => setValue({display: "review"})}>
+                                <img src={defaultUserProfileButtonIcon}/>
+                                Reviews
+                            </UserProfileButton>
+                            <UserProfileButton onClick={() => setValue({display: "comment"})}>
+                                <img src={defaultUserProfileButtonIcon}/>
+                                Comments
+                            </UserProfileButton>
+                            <UserProfileButton
+                                onClick={() => setValue({display: "restaurant"})}
+                            >
+                                <img src={defaultUserProfileButtonIcon}/>
+                                Restaurants
+                            </UserProfileButton>
+                            <UserProfileButton onClick={() => setValue({display: "edit"})}>
+                                <img src={defaultUserProfileButtonIcon}/>
+                                Edit profile
+                            </UserProfileButton>
+                        </LeftWrapper>
+                        <MiddleWrapper>
+                            <UserDataText>
+                                <UserDataName>Laurent H.</UserDataName>
+                                <UserDataInfo>Zürich, CH</UserDataInfo>
+                                <UserDataInfo>6 reviews</UserDataInfo>
+                                <UserDataInfo>210 comments</UserDataInfo>
+                                <ContentToButtons>
+                                    {(() => {
+                                        switch (value.display) {
+                                            case "review":
+                                                return <UserProfileReview/>;
+                                            case "comment":
+                                                return <UserProfileComment/>;
+                                            case "restaurant":
+                                                return <UserProfileRestaurant/>;
+                                            case "edit":
+                                                return <UserEditProfile/>;
+                                        }
+                                    })()}
+                                </ContentToButtons>
+                            </UserDataText>
+                        </MiddleWrapper>
+                        <RightWrapper>
+                            <GreyBold20LeftUppercase>about laurent</GreyBold20LeftUppercase>
+                            <BlackBold20Left>Location</BlackBold20Left>
+                            <BlackLight20Left>Zürich. CH</BlackLight20Left>
+                            <BlackBold20Left>Luna ember since</BlackBold20Left>
+                            <BlackLight20Left>April, 2018</BlackLight20Left>
+                            <BlackBold20Left>Things I love</BlackBold20Left>
+                            <BlackLight20Left>Everything</BlackLight20Left>
+                            <BlackBold20Left>Description</BlackBold20Left>
+                            <BlackLight20Left>
+                                Im professional photographer with an eye for details in every thing
+                                I do in my live. Every time a pass by a nice restaurant i have to
+                                stop and take notes
+                            </BlackLight20Left>
+                        </RightWrapper>
+                    </ProfileContent>
+                </> : displayMessage()}
+        </ProfileContainer>
+    );
 };
 
 const mapStateToProps = (state) => {
-  // const notEmpty = state.userInfoReducer.targetUser.length;
-  return {
-    targetUser: state.userInfoReducer.targetUser,
-    // notEmpty: notEmpty
-  };
+    // const notEmpty = state.userInfoReducer.targetUser.length;
+    return {
+        targetUser: state.userInfoReducer.targetUser,
+        // notEmpty: notEmpty
+    };
 };
 
-export default connect(mapStateToProps, { getUserInformationAction })(
-  UserProfile
+export default connect(mapStateToProps, {getUserInformationAction})(
+    UserProfile
 );
