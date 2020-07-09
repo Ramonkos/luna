@@ -114,7 +114,7 @@ const ContentToButtons = styled.div`
   margin-top: ${rem("24px")};
 `;
 
-const UserProfile = ({ getUserInformationAction, targetUser }) => {
+const UserProfile = ({ getUserInformationAction, targetUser, location }) => {
   const displayMessage = () => (!targetUser ? <GenericSpinner /> : null);
 
   const initialState = {
@@ -123,9 +123,14 @@ const UserProfile = ({ getUserInformationAction, targetUser }) => {
 
   const match = useRouteMatch();
 
-  useEffect(() => {
-    getUserInformationAction(match.params.userId);
-  }, [getUserInformationAction]);
+    useEffect(() => {
+
+        if (location.pathname === '/userprofile/') {
+            getUserInformationAction('me')
+        } else {
+            getUserInformationAction(match.params.userId)
+        }
+    }, [getUserInformationAction])
 
   const [value, setValue] = useState(initialState);
 
