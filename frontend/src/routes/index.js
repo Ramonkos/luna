@@ -13,7 +13,7 @@ import NewRestaurant from "../components/RestaurantCreationPage";
 import {WriteReviewPage} from "../components/WriteReviewPage";
 import RestaurantPage from "../components/RestaurantPage";
 import NotFoundPage from "../components/NotFoundPage";
-import {SearchUserPage} from "../components/SearchUserPage";
+import SearchUserPage from "../components/SearchUserPage";
 import SearchRestaurantPage from "../components/SearchRestaurantPage";
 import SearchReviewPage from "../components/SearchReviewPage";
 
