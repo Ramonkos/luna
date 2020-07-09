@@ -7,6 +7,7 @@ export const SearchContainer = styled.div`
   height: 50px;
   width: 100%;
   border: 1px solid #D8D8D8;
+  align-self: flex-start;
   
   input {
     width: 75%;

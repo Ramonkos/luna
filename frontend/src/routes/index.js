@@ -17,17 +17,18 @@ import SearchRestaurantPage from "../components/SearchRestaurantPage";
 import SearchReviewPage from "../components/SearchReviewPage";
 
 const MainContainer = styled.div`
+  display: grid;
+  grid-template-rows: 71px 1fr 95px;
   width: 100%;
-  height: 100%;
-  min-height: 770px;
+  height: 100vh;
 `;
 
 const Routes = () => {
     return <>
         <Router>
-            <Header/>
-            <Switch>
-                <MainContainer>
+            <MainContainer>
+                <Header/>
+                <Switch>
                     <Route exact path='/' component={LandingPage}/>
                     <Route exact path='/auth/login/' component={Login}/>
                     <Route exact path='/auth/signup/' component={Registration}/>
@@ -41,9 +42,9 @@ const Routes = () => {
                     <Route exact path='/restaurant/create/' component={NewRestaurant}/>
                     <Route path='/users/:userId' component={UserProfile}/>
                     <Route exact path='/userprofile/' component={UserProfile}/>
-                </MainContainer>
-            </Switch>
-            <Footer/>
+                </Switch>
+                <Footer/>
+            </MainContainer>
         </Router>
     </>
 };

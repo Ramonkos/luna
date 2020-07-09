@@ -6,16 +6,16 @@ import GenericSpinner from "../GenericSpinner";
 import './index.css';
 
 const Center = styled.div`
-  display: flex;
-  flex-flow: column;
+  width: 100%;
   align-items: center;
 `;
 
 const GenericRestaurantList = ({items}) => {
     const breakpointColumnsObj = {
         default: 4,
-        1200: 2,
-        // 1150: 1
+        1200: 3,
+        900: 2,
+        600: 1,
     };
 
     return (
