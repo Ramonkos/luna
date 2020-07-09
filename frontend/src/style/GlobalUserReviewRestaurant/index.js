@@ -56,4 +56,7 @@ export const TitleRestaurant = styled.div`
 
 export const StarWrapper = styled.div`
   margin: 15px 0;
+  i {
+    font-size: 27px;
+  }
 `;

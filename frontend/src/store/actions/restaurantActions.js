@@ -5,7 +5,8 @@ import {
     GET_ALL_RESTAURANTS,
     SEARCH_ALL_RESTAURANTS,
     SEARCH_RESTAURANTS_BY_CATEGORY,
-    GET_SPECIFIC_RESTAURANT
+    GET_SPECIFIC_RESTAURANT,
+    GET_FROM_USER_RESTAURANT,
 } from '../actionTypes';
 
 export const top4Restaurants = (restaurantInfo) => {
@@ -46,6 +47,13 @@ export const searchRestaurantsByCategory = (restaurantInfo) => {
 export const getSpecificRestaurant = (restaurantInfo) => {
     return {
         type: GET_SPECIFIC_RESTAURANT,
+        payload: restaurantInfo
+    }
+}
+
+export const getFromUserRestaurant = (restaurantInfo) => {
+    return {
+        type: GET_FROM_USER_RESTAURANT,
         payload: restaurantInfo
     }
 }
