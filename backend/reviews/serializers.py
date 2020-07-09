@@ -1,5 +1,4 @@
 from rest_framework import serializers
-
 from comments.serializers import CommentSerializer
 from restaurants.serializers import RestaurantSerializer
 from reviews.models import Review
@@ -14,7 +13,7 @@ class ReviewSerializer(serializers.ModelSerializer):
 
     restaurant_review_about = RestaurantSerializer(
         required=False,
-        read_only=True
+        read_only=True,
     )
 
     comments = CommentSerializer(

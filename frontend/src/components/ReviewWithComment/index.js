@@ -1,19 +1,20 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, {useState} from "react";
 import StarRatingComponent from "react-star-rating-component";
-
 import {
-  SmallestOrangeButton,
-  GreyLeftButton,
-  GreyRightButton,
+    SmallestOrangeButton,
+    GreyLeftButton,
+    GreyRightButton,
 } from "../../../src/style/GlobalButton";
-
-import { UserDetailContainer } from "../../../src/style/GlobalShortUserProfile";
+import {UserDetailContainer} from "../../../src/style/GlobalShortUserProfile";
 import Avatar from "../../assets/laurent.jpg";
 import IconLike from "../../assets/like.png";
-
 import styled from "styled-components";
-import { rem } from "polished";
+import {rem} from "polished";
+import {connect, useDispatch} from "react-redux";
+import {createCommentOnReviewAction, toggleLikeCommentAction} from "../../store/actions/commentAction";
+import {getSpecificRestaurantAction} from "../../store/actions/restaurantActions";
+
+// Styling
 
 const ReviewContainer = styled.div`
   width: 650px;
@@ -128,88 +129,116 @@ const StarWrapper = styled.div`
   /* margin-left: 20px; */
 `;
 
-const ReviewWithComment = (props) => {
-  const initialState = {
-    toggle: true,
-  };
+const ReviewWithComment = ({review, toggleLikeCommentAction, createCommentOnReviewAction, restaurantId}) => {
+    const dispatch = useDispatch();
 
-  const [value, setValue] = useState(initialState);
+    const [value, setValue] = useState({
+        toggle: true,
+    });
 
-  return (
-    <ReviewContainer>
-      <UserRatingWrapper>
-        <LeftUserRatingWrapper>
-          <UserDetailContainer>
-            <img src={Avatar} alt="profile picture" />
-            <div>
-              <h1>Laurent H.</h1>
-              <h2>6 Reviews in total</h2>
-            </div>
-          </UserDetailContainer>
-          <StarWrapper>
-            <StarRatingComponent
-              name="Restaurant_Rating"
-              starColor={"#F8E71C"}
-              emptyStarColor={"rgba(235, 235, 235, 0.5)"}
-              editing={false}
-              starCount={5}
-              value={4}
-              // value={Math.round(restaurant.review_average)}
-            />
-          </StarWrapper>
-        </LeftUserRatingWrapper>
-        <p>01.01.2020 15:10</p>
-      </UserRatingWrapper>
+    const [comment, setComment] = useState('');
 
-      <ReviewCommentInputWrapper>
-        <p>
-          Dynamically envisioneer goal-oriented mindshare through go forward
-          alignments. Dramatically strategize equity invested strategic theme
-          areas and vertical core competencies.
-        </p>
-        {value.toggle ? (
-          <CommentsHiddenWrapper>
-            <ButtonWrapper>
-              <GreyLeftButton>
-                <img src={IconLike} alt="like icon" />
-                Like 64
-              </GreyLeftButton>
-              <GreyRightButton>Comment 23</GreyRightButton>
-            </ButtonWrapper>
-            <p onClick={() => setValue({ toggle: !value.toggle })}>
-              View all comments
-            </p>
-          </CommentsHiddenWrapper>
-        ) : (
-          <CommentsDisplayedWrapper>
-            <InputButtonWrapper>
-              <input type="text" placeholder="Write comment"></input>
-              <SmallestOrangeButton>Post</SmallestOrangeButton>
-            </InputButtonWrapper>
-            <p onClick={() => setValue({ toggle: !value.toggle })}>Hide</p>
-          </CommentsDisplayedWrapper>
-        )}
-      </ReviewCommentInputWrapper>
-      {value.toggle ? null : (
-        <>
-          <CommentWrapper>
-            <NameCommentWrapper>
-              <a>Tarzan</a>
-              <p>Very tasty restaurant...</p>
-            </NameCommentWrapper>
-            <p>02.03.2020 22:29</p>
-          </CommentWrapper>
-          <CommentWrapper>
-            <NameCommentWrapper>
-              <a>James Bond</a>
-              <p>I like it...</p>
-            </NameCommentWrapper>
-            <p>02.03.2020 22:29</p>
-          </CommentWrapper>
-        </>
-      )}
-    </ReviewContainer>
-  );
+    const inputHandler = (e, func) => {
+        func(e.currentTarget.value)
+    };
+
+    const likeHandler = async e => {
+        e.preventDefault();
+        const response = await toggleLikeCommentAction(review.id);
+        if (response.status === 202) {
+            const resetReviewResponse = await dispatch(getSpecificRestaurantAction(restaurantId));
+            return resetReviewResponse
+        }
+    };
+
+    const commentHandler = async e => {
+        e.preventDefault();
+        const commentData = {text_content: comment}
+        const response = await createCommentOnReviewAction(review.id, commentData);
+        if (response.status === 201) {
+            const resetReviewResponse = await dispatch(getSpecificRestaurantAction(restaurantId));
+            return resetReviewResponse
+        }
+    };
+
+    return (
+        <ReviewContainer>
+            <UserRatingWrapper>
+                <LeftUserRatingWrapper>
+                    <UserDetailContainer>
+                        <img src={review.author.avatar ? review.author.avatar : Avatar} alt="profile"/>
+                        <div>
+                            <h1>{`${review.author.first_name} ${review.author.last_name.slice(0, 1)}.`}</h1>
+                            <h2>{review.author.amount_of_reviews} Reviews in total</h2>
+                        </div>
+                    </UserDetailContainer>
+                    <StarWrapper>
+                        <StarRatingComponent
+                            name="Restaurant_Rating"
+                            starColor={"#F8E71C"}
+                            emptyStarColor={"rgba(235, 235, 235, 0.5)"}
+                            editing={false}
+                            starCount={5}
+                            value={review.rating}
+                            // value={Math.round(restaurant.review_average)}
+                        />
+                    </StarWrapper>
+                </LeftUserRatingWrapper>
+                <p>{review.created.slice(0, 10)}</p>
+            </UserRatingWrapper>
+
+            <ReviewCommentInputWrapper>
+                <p>
+                    {review.text_content}
+                </p>
+                {value.toggle ? (
+                    <CommentsHiddenWrapper>
+                        <ButtonWrapper>
+                            <GreyLeftButton onClick={likeHandler}>
+                                <img src={IconLike} alt="like icon"/>
+                                {`Like ${review.amount_of_likes}`}
+                            </GreyLeftButton>
+                            <GreyRightButton
+                                onClick={() => setValue({toggle: !value.toggle})}>{`Comment ${review.amount_of_comments}`}</GreyRightButton>
+                        </ButtonWrapper>
+                        <p onClick={() => setValue({toggle: !value.toggle})}>
+                            View all comments
+                        </p>
+                    </CommentsHiddenWrapper>
+                ) : (
+                    <CommentsDisplayedWrapper>
+                        <InputButtonWrapper>
+                            <input
+                                type="text"
+                                placeholder="Write comment"
+                                value={comment}
+                                onChange={e => inputHandler(e, setComment)}
+                            />
+                            <SmallestOrangeButton onClick={commentHandler}>Post</SmallestOrangeButton>
+                        </InputButtonWrapper>
+                        <p onClick={() => setValue({toggle: !value.toggle})}>Hide</p>
+                    </CommentsDisplayedWrapper>
+                )}
+            </ReviewCommentInputWrapper>
+            {value.toggle ? null : (
+                review.comments.map(comment => {
+                    return (
+                        <CommentWrapper key={`Comment ${comment.id}`}>
+                            <NameCommentWrapper>
+                                <a>{`${comment.author.first_name} ${comment.author.last_name.slice(0, 1)}.`}</a>
+                                <p>{comment.text_content}</p>
+                            </NameCommentWrapper>
+                            <p>{comment.created.slice(0, 10)}</p>
+                        </CommentWrapper>
+                    )
+                })
+            )}
+        </ReviewContainer>
+    );
 };
 
-export default ReviewWithComment;
+const mapStateToProps = state => {
+    return {}
+};
+
+export default connect(mapStateToProps, {toggleLikeCommentAction, createCommentOnReviewAction})(ReviewWithComment);
