@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {
   BottomContainer,
   ButtonContainer,
@@ -33,8 +33,19 @@ import {
 } from "../../style/GlobalButton";
 import ReviewWithComment from "../ReviewWithComment";
 import StarRatingComponent from "react-star-rating-component";
+import {getSpecificRestaurantAction} from "../../store/actions/restaurantActions";
+import {connect} from "react-redux";
+import { useRouteMatch } from 'react-router-dom';
 
-const RestaurantPage = () => {
+const RestaurantPage = ({targetRestaurant, getSpecificRestaurantAction}) => {
+
+   const match = useRouteMatch();
+
+  useEffect(() => {
+    // console.log(match.params.restaurantId);
+    getSpecificRestaurantAction(match.params.restaurantId)
+  }, [getSpecificRestaurantAction])
+
   return (
     <>
       <RestaurantContainer>
@@ -115,6 +126,12 @@ const RestaurantPage = () => {
   );
 };
 
-export default RestaurantPage;
+const mapStateToProps = state => {
+  return {
+    targetRestaurant: state.restaurantReducer.targetRestaurant
+  }
+};
+
+export default connect(mapStateToProps, {getSpecificRestaurantAction})(RestaurantPage);
 
 //TODO: add map functionality

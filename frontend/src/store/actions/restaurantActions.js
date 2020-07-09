@@ -4,7 +4,8 @@ import {
     CREATE_RESTAURANT,
     GET_ALL_RESTAURANTS,
     SEARCH_ALL_RESTAURANTS,
-    SEARCH_RESTAURANTS_BY_CATEGORY
+    SEARCH_RESTAURANTS_BY_CATEGORY,
+    GET_SPECIFIC_RESTAURANT
 } from '../actionTypes';
 
 export const top4Restaurants = (restaurantInfo) => {
@@ -41,6 +42,14 @@ export const searchRestaurantsByCategory = (restaurantInfo) => {
         payload: restaurantInfo
     }
 };
+
+export const getSpecificRestaurant = (restaurantInfo) => {
+    return {
+        type: GET_SPECIFIC_RESTAURANT,
+        payload: restaurantInfo
+    }
+}
+
 
 export const top4RestaurantsAction = () => async (dispatch) => {
     try {
@@ -92,6 +101,17 @@ export const searchRestaurantsByCategoryAction = (category) => async (dispatch) 
         return response
     } catch (error) {
         console.log('Error in searching Restaurants by Category>', error);
+        return error
+    }
+};
+
+export const getSpecificRestaurantAction = (restaurant_id) => async (dispatch) => {
+    try {
+        const response = await Axios.get(`restaurants/${restaurant_id}/`);
+        dispatch(getSpecificRestaurant(response.data));
+        return response
+    } catch (error) {
+        console.log('Error in getting specific Restaurant>', error);
         return error
     }
 };

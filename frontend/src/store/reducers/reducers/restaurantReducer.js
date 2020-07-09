@@ -3,7 +3,8 @@ import {
     CREATE_RESTAURANT,
     GET_ALL_RESTAURANTS,
     SEARCH_ALL_RESTAURANTS,
-    SEARCH_RESTAURANTS_BY_CATEGORY
+    SEARCH_RESTAURANTS_BY_CATEGORY,
+    GET_SPECIFIC_RESTAURANT
 } from "../../actionTypes";
 
 
@@ -40,6 +41,11 @@ export const restaurantReducer = (state = initial_state, action) => {
                 ...state,
                 restaurants: action.payload
             };
+        case GET_SPECIFIC_RESTAURANT:
+            return {
+                ...state,
+                targetRestaurant: action.payload
+            }
         default:
             return state
     }
