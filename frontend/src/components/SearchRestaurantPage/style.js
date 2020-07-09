@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from "styled-components";
 
 export const SearchContainer = styled.div`
@@ -49,7 +48,7 @@ export const TitleMasterContainer = styled.div`
   display: flex;
    justify-content: center;
   
-`
+`;
 
 export const TitleContainer = styled.div`
   width: 630px;

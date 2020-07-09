@@ -46,7 +46,7 @@ class RestaurantSerializer(serializers.ModelSerializer):
     )
 
     restaurant_reviews = ReviewForRestaurantSerializer(
-        required= False,
+        required=False,
         read_only=True,
         many=True,
     )
