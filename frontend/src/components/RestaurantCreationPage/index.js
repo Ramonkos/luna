@@ -2,59 +2,17 @@ import styled from "styled-components";
 import {rem} from "polished";
 import React, {useState} from "react";
 import {UserAccessTitleWrapper, UserAccessContentContainer} from "../../style/GlobalWrappers";
-import {Button} from "../../style/GlobalButton";
-import {
-    ErrorMessage,
-    GeneralInput,
-    Input, InputErrorWrapper,
-    RestaurantCreationInput,
-    RestaurantGeneralInput
-} from "../../style/GlobalInput";
+import {Button, SmallOrangeButton} from "../../style/GlobalButton";
+import {    ErrorMessage,    RestaurantCreationInput} from "../../style/GlobalInput";
 import {BlackBold20Left} from "../../style/GlobalTitles";
-import {
-    RestaurantCategorySelect,
-    RestaurantCountrySelect,
-    RestaurantCreationSelector,
-    RestaurantPriceSelect
-} from "./selectors";
 import {connect} from "react-redux";
 import {createRestaurantAction} from "../../store/actions/restaurantActions";
 
-const VerificationContent = styled.div`
-    height: ${rem('280px')};
-    width: ${rem('710px')};
-    display: flex;
-    //flex-flow: column;
-    justify-content: space-between;
-    margin-bottom: ${rem('60px')};
-    margin-top: ${rem('77px')};    
-`
-
-const LongButton = styled(Button)`
-    width: ${rem('260px')};
-`
-
-const InputWrapper = styled.div`
-    height: ${rem('105px')};
-    width: ${rem('370px')};
-    display: flex;
-    flex-flow: column;
-    justify-content: space-between;
-    //background-color: gold; 
-`
-
-const UserAccessContentContainer2 = styled(UserAccessContentContainer)`
-    //background-color: cadetblue;
-`
-
 const NewRestaurantFieldContainer = styled.div`
     width: ${rem('1180px')};
-    height: ${rem('592px')};    
     display: flex;
     flex-flow: column;
-    justify-content: space-between;
     margin-top: ${rem('27px')};
-    //background-color: burlywood;
 `
 
 const NewRestaurantTitle = styled(BlackBold20Left)`
@@ -63,22 +21,48 @@ const NewRestaurantTitle = styled(BlackBold20Left)`
     text-transform: capitalize;
     height: ${rem('23px')};    
     margin-bottom: ${rem('9px')};
-    //background-color: cornflowerblue;
 `
 
 const InputBlockWrapper = styled.div`
-    height: ${rem('105px')};
+    height: ${rem('80px')};  //originally was 105px, now 80
     width: ${rem('1180px')};
     display: flex;
     justify-content: space-between;
     margin-bottom: ${rem('9px')};
-    //background-color: darkorange;
 `
+
+const InputWrapper = styled.div`
+    height: ${rem('80px')};  //originally was 105px, now 80
+    width: ${rem('370px')};
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+`
+
 const InputName = styled(BlackBold20Left)`
     height: ${rem('23px')};
     color: #979797;
-    //background-color: darkseagreen;
 `
+
+export const RestaurantCreationSelector = styled.select`
+    width: ${rem('370px')};
+    height: ${rem('50px')};
+    color: #999999;
+    font-family: Karla,serif;  //TODO Get Karla font style
+    font-weight: normal;
+    font-size: ${rem('22px')};
+    line-height: ${rem('26px')};
+    border: 1px solid #EBEBEB;
+    border-radius: 3px;
+    padding-left: ${rem('23px')};
+`
+
+
+//TEST!!!
+const UploadButton = styled(SmallOrangeButton)`
+  width: ${rem('220px')};
+`
+//TEST!!!
 
 const NewRestaurant = ({error, history, createRestaurantAction}) => {
 
@@ -117,6 +101,7 @@ const NewRestaurant = ({error, history, createRestaurantAction}) => {
         restaurantData.append('email', data.email);
         restaurantData.append('opening_hours', data.opening_hours);
         restaurantData.append('price_level', data.price_level);
+        restaurantData.append('restaurant_image', data.restaurant_image);
         e.preventDefault();
         console.log([...restaurantData]);
         const response = await createRestaurantAction(data);
@@ -125,17 +110,30 @@ const NewRestaurant = ({error, history, createRestaurantAction}) => {
         }
     };
 
+    //TEST!!!
+    const hiddenFileInput = React.useRef(null);
+
+    const handleClick = event => {
+        hiddenFileInput.current.click();
+    };
+    const handleChange = event => {
+        const name = event.target.name;
+        const value = event.target.files[0];
+        setData({...data, [name]: value})
+    };
+    //TEST!!!
+
     return (
-        <UserAccessContentContainer2>
+        <UserAccessContentContainer>
             <UserAccessTitleWrapper titletext="Create new restaurant"/>
             <NewRestaurantFieldContainer>
 
                 <NewRestaurantTitle>Basic</NewRestaurantTitle>
+
                 <InputBlockWrapper>
                     <InputWrapper>
-                        <InputName>Name *</InputName> {/*TODO * position correction*/}
+                        <InputName>Name *</InputName>
                         <RestaurantCreationInput
-                            errorMessage={error}
                             name='name'
                             value={data.name}
                             onChange={handleInput}
@@ -143,56 +141,53 @@ const NewRestaurant = ({error, history, createRestaurantAction}) => {
                     </InputWrapper>
                     <InputWrapper>
                         <InputName>Category *</InputName>
-                        <InputErrorWrapper>
-                            <RestaurantCreationSelector
-                                name='category'
-                                value={data.category}
-                                onChange={handleInput}
-                            >
-                                <option required value="">Select a value...</option>
-                                <option value="1">Burger</option>
-                                <option value="2">Chinese</option>
-                                <option value="3">Italian</option>
-                                <option value="4">Japanese</option>
-                                <option value="5">Mexican</option>
-                                <option value="6">Thai</option>
-                                <option value="7">Indian</option>
-                                <option value="8">Greek</option>
-                                <option value="9">Swiss</option>
-                                <option value="10">Pizza</option>
-                                <option value="11">Vegetarian</option>
-                                <option value="12">Other</option>
 
-                            </RestaurantCreationSelector>
-                            <ErrorMessage>{error ? error : ''}</ErrorMessage>
-                        </InputErrorWrapper>
+                        <RestaurantCreationSelector
+                            name='category'
+                            value={data.category}
+                            onChange={handleInput}
+                        >
+                            <option required value="">Select a value...</option>
+                            <option value="1">Burger</option>
+                            <option value="2">Chinese</option>
+                            <option value="3">Italian</option>
+                            <option value="4">Japanese</option>
+                            <option value="5">Mexican</option>
+                            <option value="6">Thai</option>
+                            <option value="7">Indian</option>
+                            <option value="8">Greek</option>
+                            <option value="9">Swiss</option>
+                            <option value="10">Pizza</option>
+                            <option value="11">Vegetarian</option>
+                            <option value="12">Other</option>
+
+                        </RestaurantCreationSelector>
                     </InputWrapper>
+
                     <InputWrapper>
-                        <InputName>Country *</InputName> {/*TODO * position correction*/}
+                        <InputName>Country *</InputName>
                         <RestaurantCreationInput
-                            errorMessage={error}
                             name='country'
                             value={data.country}
                             onChange={handleInput}
                         />
                     </InputWrapper>
+
                 </InputBlockWrapper>
 
                 <NewRestaurantTitle>Address</NewRestaurantTitle>
                 <InputBlockWrapper>
                     <InputWrapper>
-                        <InputName>Street *</InputName> {/*TODO * position correction*/}
+                        <InputName>Street *</InputName>
                         <RestaurantCreationInput
-                            errorMessage={error}
                             name='street'
                             value={data.street}
                             onChange={handleInput}
                         />
                     </InputWrapper>
                     <InputWrapper>
-                        <InputName>City *</InputName> {/*TODO * position correction*/}
+                        <InputName>City *</InputName>
                         <RestaurantCreationInput
-                            errorMessage={error}
                             name='city'
                             value={data.city}
                             onChange={handleInput}
@@ -201,7 +196,6 @@ const NewRestaurant = ({error, history, createRestaurantAction}) => {
                     <InputWrapper>
                         <InputName>Zip</InputName>
                         <RestaurantCreationInput
-                            errorMessage={error}
                             name='zip'
                             value={data.zip}
                             onChange={handleInput}
@@ -214,16 +208,14 @@ const NewRestaurant = ({error, history, createRestaurantAction}) => {
                     <InputWrapper>
                         <InputName>Website</InputName>
                         <RestaurantCreationInput
-                            errorMessage={error}
                             name='website'
                             value={data.website}
                             onChange={handleInput}
                         />
                     </InputWrapper>
                     <InputWrapper>
-                        <InputName>Phone *</InputName> {/*TODO * position correction*/}
+                        <InputName>Phone *</InputName>
                         <RestaurantCreationInput
-                            errorMessage={error}
                             name='phone'
                             value={data.phone}
                             onChange={handleInput}
@@ -232,7 +224,6 @@ const NewRestaurant = ({error, history, createRestaurantAction}) => {
                     <InputWrapper>
                         <InputName>Email</InputName>
                         <RestaurantCreationInput
-                            errorMessage={error}
                             name='email'
                             value={data.email}
                             onChange={handleInput}
@@ -243,40 +234,50 @@ const NewRestaurant = ({error, history, createRestaurantAction}) => {
                 <NewRestaurantTitle>Details</NewRestaurantTitle>
                 <InputBlockWrapper>
                     <InputWrapper>
-                        <InputName>Opening hours *</InputName> {/*TODO * position correction*/}
+                        <InputName>Opening hours *</InputName>
                         <RestaurantCreationInput
-                            errorMessage={error}
                             name='opening_hours'
                             value={data.opening_hours}
                             onChange={handleInput}
                         />
                     </InputWrapper>
                     <InputWrapper>
-                        <InputName>Price level</InputName> {/*TODO * position correction*/}
-                        <InputErrorWrapper>
-                            <RestaurantCreationSelector
-                                name='price_level'
-                                value={data.price_level}
-                                onChange={handleInput}
-                            >
-                                <option required value="">Select a value...</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </RestaurantCreationSelector>
-                            <ErrorMessage>{error ? error : ''}</ErrorMessage>
-                        </InputErrorWrapper>
+                        <InputName>Price level</InputName>
+                        <RestaurantCreationSelector
+                            name='price_level'
+                            value={data.price_level}
+                            onChange={handleInput}
+                        >
+                            <option required value="">Select a value...</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </RestaurantCreationSelector>
                     </InputWrapper>
-                    {/*<InputWrapper>*/}
-                    {/*    <InputName>Email</InputName>*/}
-                    {/*    <RestaurantGeneralInput errorMessage={error}/>*/}
-                    {/*</InputWrapper>*/}
+                    <InputWrapper>
+                        <InputName>Image</InputName>
+                        {/*TEST*/}
+                        <>
+                            <UploadButton onClick={handleClick}>
+                                Choose a file...
+                            </UploadButton>
+                            <input
+                                type="file"
+                                name="restaurant_image"
+                                ref={hiddenFileInput}
+                                onChange={handleChange}
+                                style={{display: 'none'}}
+                            />
+                        </>
+                        {/*TEST*/}
+                    </InputWrapper>
                 </InputBlockWrapper>
+                <ErrorMessage>{error ? error : ''}</ErrorMessage>
             </NewRestaurantFieldContainer>
             <Button onClick={handleSubmit}>Create</Button>
-        </UserAccessContentContainer2>
+        </UserAccessContentContainer>
     )
 };
 
