@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from "styled-components";
 
 export const ReviewMainContainer = styled.div`
@@ -42,4 +41,3 @@ export const AboutUserContainer = styled.div`
     color: #E47D31;
   }
 `;
-

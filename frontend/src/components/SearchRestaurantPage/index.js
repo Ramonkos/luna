@@ -1,5 +1,13 @@
-import React, {useEffect, useState} from 'react';
-import {SearchContainer, Selector, TitleContainer, BestRatedWrapper, CardWrapper, TitleMasterContainer, LinkWrapper} from "./style";
+import React, {useState} from 'react';
+import {
+    SearchContainer,
+    Selector,
+    TitleContainer,
+    BestRatedWrapper,
+    CardWrapper,
+    TitleMasterContainer,
+    LinkWrapper
+} from "./style";
 import {NavLink} from "react-router-dom";
 import GenericSpinner from "../GenericSpinner";
 import {connect} from "react-redux";
@@ -8,6 +16,8 @@ import {
     searchAllRestaurantsAction,
     searchRestaurantsByCategoryAction
 } from "../../store/actions/restaurantActions";
+
+// Component
 
 const SearchRestaurantPage = ({notEmpty, restaurants, searchAllRestaurantsAction, searchRestaurantsByCategoryAction}) => {
     const displayMessage = () => !notEmpty ? <GenericSpinner/> : null;
@@ -42,6 +52,7 @@ const SearchRestaurantPage = ({notEmpty, restaurants, searchAllRestaurantsAction
             const search_fields = '&search_fields=name&search_fields=city';
             const search_string = `?search=${search}`;
             const response = await searchAllRestaurantsAction(search_string + search_fields + search_location);
+            return response
         }
     };
 
@@ -49,6 +60,7 @@ const SearchRestaurantPage = ({notEmpty, restaurants, searchAllRestaurantsAction
         selectorCounter++;
         if (selectorCounter % 2 === 0) {
             const response = await searchRestaurantsByCategoryAction(e.target.value)
+            return response
         }
     };
 
@@ -61,7 +73,6 @@ const SearchRestaurantPage = ({notEmpty, restaurants, searchAllRestaurantsAction
                    onChange={e => inputHandler(e, setSearch)}
                    onKeyPress={keyPressHandler}
             />
-
             <Selector onClick={selectHandler}>
                 {categories.map(category => {
                     return <option key={category.value} value={category.value}>{category.label}</option>
@@ -85,10 +96,8 @@ const SearchRestaurantPage = ({notEmpty, restaurants, searchAllRestaurantsAction
             <CardWrapper>
                 {restaurants && notEmpty ?
                     <GenericRestaurantList items={restaurants} key={'restaurants'}/> : displayMessage()}
-
             </CardWrapper>
         </BestRatedWrapper>
-
     </>
 };
 

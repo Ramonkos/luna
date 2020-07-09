@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from "styled-components";
 
 export const ReviewMainContainer = styled.div`
@@ -105,7 +104,6 @@ export const CommentsContainer = styled.div`
       font-size: 14px;
       line-height: 16px;
     }
-  
-`
+`;
 
 

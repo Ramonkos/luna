@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from "styled-components";
 
 export const SearchContainer = styled.div`
@@ -66,7 +65,6 @@ export const LinkWrapper = styled.div`
       margin-bottom: -11px;
     }
 `;
-
 
 export const BestRatedWrapper = styled.div`
   width: 100%;

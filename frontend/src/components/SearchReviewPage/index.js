@@ -1,11 +1,19 @@
-import React, {useEffect, useState} from 'react';
-import {LinkWrapper, SearchContainer, TitleContainer, BestRatedWrapper, CardWrapper, TitleMasterContainer} from "./style";
+import React, {useState} from 'react';
+import {
+    LinkWrapper,
+    SearchContainer,
+    TitleContainer,
+    BestRatedWrapper,
+    CardWrapper,
+    TitleMasterContainer
+} from "./style";
 import {NavLink} from "react-router-dom";
 import GenericSpinner from "../GenericSpinner";
 import GenericReviewList from "../GenericReviewList";
 import {connect} from "react-redux";
 import {searchAllReviewsAction} from "../../store/actions/reviewActions";
-import {loginAction} from "../../store/actions/loginAction";
+
+// Component
 
 const SearchReviewPage = ({notEmpty, searchReviewResults, searchAllReviewsAction}) => {
     const displayMessage = () => !notEmpty ? <GenericSpinner/> : null;
@@ -22,6 +30,7 @@ const SearchReviewPage = ({notEmpty, searchReviewResults, searchAllReviewsAction
             const search_fields = '&search_fields=restaurant_review_about__name&search_fields=restaurant_review_about__city';
             const search_string = `?search=${search}`;
             const response = await searchAllReviewsAction(search_string + search_fields + search_location);
+            return response
         }
     };
 
@@ -67,4 +76,4 @@ const mapStateToProps = state => {
     }
 };
 
-export default connect(mapStateToProps, {searchAllReviewsAction})(SearchReviewPage)
+export default connect(mapStateToProps, {searchAllReviewsAction})(SearchReviewPage);

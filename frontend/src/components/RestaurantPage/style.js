@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from "styled-components";
 
 export const RestaurantContainer = styled.div`
@@ -206,7 +205,7 @@ export const BottomContainer = styled.div`
 
 export const RightBottomContainer = styled.div`
   
-`
+`;
 
 export const CommentContainer = styled.div`
   height: 588px;
@@ -258,4 +257,4 @@ export const ButtonContainer = styled.div`
   height: 39px;
   margin-top: 30px;
   justify-content: space-around;
-`
+`;
