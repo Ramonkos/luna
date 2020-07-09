@@ -123,3 +123,14 @@ export const getSpecificRestaurantAction = (restaurant_id) => async (dispatch) =
         return error
     }
 };
+
+export const getFromUserRestaurantAction = (user_id) => async (dispatch) => {
+    try {
+        const response = await Axios.get(`restaurants/user/${user_id}/`);
+        dispatch(getFromUserRestaurant(response.data));
+        return response
+    } catch (error) {
+        console.log('Error in getting Restaurants>', error);
+        return error
+    }
+};
