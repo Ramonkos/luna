@@ -39,7 +39,7 @@ import { useRouteMatch } from 'react-router-dom';
 import GenericSpinner from "../GenericSpinner";
 
 
-const RestaurantPage = ({getSpecificRestaurantAction, targetRestaurant}) => {
+const RestaurantPage = ({getSpecificRestaurantAction, targetRestaurant, history}) => {
 
   const displayMessage = () => !targetRestaurant ? <GenericSpinner/> : null;
 
@@ -89,7 +89,7 @@ const RestaurantPage = ({getSpecificRestaurantAction, targetRestaurant}) => {
                             return <Restaurantdescription>Pizza</Restaurantdescription>;
                       case 11:
                             return <Restaurantdescription>Vegetarian</Restaurantdescription>;
-                      case 12:
+                      default:
                             return <Restaurantdescription>Other</Restaurantdescription>;
                     }
                 })()}
@@ -163,14 +163,14 @@ const RestaurantPage = ({getSpecificRestaurantAction, targetRestaurant}) => {
                             return <PriceLevel>Price level: $$$</PriceLevel>;
                       case 4:
                             return <PriceLevel>Price level: $$$$</PriceLevel>;
-                      case 5:
+                      default:
                             return <PriceLevel>Price level: $$$$$</PriceLevel>
                     }
                   })()}
                   </PriceContainer>
                   <ButtonContainer>
-                    <LongOrangeButton>WRITE A REVIEW</LongOrangeButton>
-                    <LongOrangeButton>EDIT DATA</LongOrangeButton>
+                    <LongOrangeButton onClick={() => {history.push(`/createreview/${targetRestaurant.id}/`)}}>WRITE A REVIEW</LongOrangeButton>
+                    {targetRestaurant.logged_in_user_is_restaurant_owner ? <LongOrangeButton>EDIT DATA</LongOrangeButton> : null }
                   </ButtonContainer>
                 </PriceReviewEditContainer>
               </RightBottomContainer>
