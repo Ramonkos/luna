@@ -8,7 +8,7 @@ import Registration from "../components/UserAccess/registration";
 import Confirmation from "../components/UserAccess/confirmation";
 import Verification from "../components/UserAccess/verification";
 import styled from "styled-components";
-import {UserProfile} from "../components/UserProfile";
+import UserProfile from "../components/UserProfile";
 import NewRestaurant from "../components/RestaurantCreationPage";
 import {WriteReviewPage} from "../components/WriteReviewPage";
 import RestaurantPage from "../components/RestaurantPage";
