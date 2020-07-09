@@ -5,16 +5,16 @@ import {
     TopBar,
     AboutUserContainer,
 } from "./style";
-
 import {UserDetailContainer} from "../../style/GlobalShortUserProfile";
 import {Link} from "react-router-dom";
 
+// Component
 
 export const GenericUserCard = ({item}) => (
     <ReviewMainContainer>
         <TopBar/>
         <UserDetailContainer>
-            <img src={defaultUserProfileAvatar} alt="profile picture"/>
+            <img src={defaultUserProfileAvatar} alt="profile"/>
             <namereviewsContainer>
                 <name>
                     {`${item.first_name} ${item.last_name}`}

@@ -12,7 +12,6 @@ import UserProfile from "../components/UserProfile";
 import NewRestaurant from "../components/RestaurantCreationPage";
 import {WriteReviewPage} from "../components/WriteReviewPage";
 import RestaurantPage from "../components/RestaurantPage";
-import NotFoundPage from "../components/NotFoundPage";
 import SearchUserPage from "../components/SearchUserPage";
 import SearchRestaurantPage from "../components/SearchRestaurantPage";
 import SearchReviewPage from "../components/SearchReviewPage";
@@ -21,7 +20,6 @@ const MainContainer = styled.div`
   width: 100%;
   height: 100%;
   min-height: 770px;
-  //background-color: red;
 `;
 
 const Routes = () => {
@@ -43,7 +41,6 @@ const Routes = () => {
                     <Route exact path='/restaurant/create/' component={NewRestaurant}/>
                     <Route path='/users/:userId' component={UserProfile}/>
                     <Route exact path='/userprofile/' component={UserProfile}/>
-                    {/*<Route path="*" component={NotFoundPage} />*/}
                 </MainContainer>
             </Switch>
             <Footer/>
