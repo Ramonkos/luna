@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import { UserProfileTitle } from "../../style/GlobalTitles";
 import {
@@ -37,9 +38,9 @@ const UserProfileReview = ({
           <CommentWrapper>
             <ReviewCommentWrapper>
               <TitleRestaurant>
-                <a to={review.restaurant_review_about.website}>
+                <Link to={`/restaurants/${review.restaurant_review_about.id}/`}>
                   {review.restaurant_review_about.name}
-                </a>
+                </Link>
                 <p>
                   {review.created.slice(0, 10) +
                     " " +
