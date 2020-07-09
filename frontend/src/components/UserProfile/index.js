@@ -1,18 +1,18 @@
 import styled from "styled-components";
-import { rem } from "polished";
-import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
+import {rem} from "polished";
+import React, {useState, useEffect} from "react";
+import {connect} from "react-redux";
 
 import {
-  defaultUserProfileAvatar,
-  defaultUserProfileBanner,
-  defaultUserProfileButtonIcon,
+    defaultUserProfileAvatar,
+    defaultUserProfileBanner,
+    defaultUserProfileButtonIcon,
 } from "../../constants";
-import { UserProfileButton } from "../../style/GlobalButton";
+import {UserProfileButton} from "../../style/GlobalButton";
 import {
-  BlackBold20Left,
-  BlackLight20Left,
-  GreyBold20LeftUppercase,
+    BlackBold20Left,
+    BlackLight20Left,
+    GreyBold20LeftUppercase,
 } from "../../style/GlobalTitles";
 import UserProfileReview from "../UserProfileReview";
 import UserProfileComment from "../UserProfileComment";
@@ -230,13 +230,13 @@ const UserProfile = ({ getUserInformationAction, targetUser }) => {
 };
 
 const mapStateToProps = (state) => {
-  // const notEmpty = state.userInfoReducer.targetUser.length;
-  return {
-    targetUser: state.userInfoReducer.targetUser,
-    // notEmpty: notEmpty
-  };
+    // const notEmpty = state.userInfoReducer.targetUser.length;
+    return {
+        targetUser: state.userInfoReducer.targetUser,
+        // notEmpty: notEmpty
+    };
 };
 
-export default connect(mapStateToProps, { getUserInformationAction })(
-  UserProfile
+export default connect(mapStateToProps, {getUserInformationAction})(
+    UserProfile
 );
