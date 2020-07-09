@@ -141,10 +141,10 @@ const ReviewWithComment = (props) => {
         <LeftUserRatingWrapper>
           <UserDetailContainer>
             <img src={Avatar} alt="profile picture" />
-            <namereviewsContainer>
-              <name>Laurent H.</name>
-              <reviews>6 Reviews in total</reviews>
-            </namereviewsContainer>
+            <div>
+              <h1>Laurent H.</h1>
+              <h2>6 Reviews in total</h2>
+            </div>
           </UserDetailContainer>
           <StarWrapper>
             <StarRatingComponent

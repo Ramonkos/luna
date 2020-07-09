@@ -10,7 +10,7 @@ export const SearchContainer = styled.div`
   border: 1px solid #D8D8D8;
   
   input {
-    width: 75%;
+    width: 100%;
     height: 100%;
     padding-left: 30px; 
     border-right: 1px solid #D8D8D8;
@@ -26,30 +26,12 @@ export const SearchContainer = styled.div`
     
     color: #D8D8D8;
   }
-  
-  select {
-    width: 25%;
-    height: 100%;
-    }
-`;
-
-export const Selector = styled.select`
-    width: 25%;
-    height: 100%;
-    color: #D8D8D8;
-    font-family: Helvetica,serif;
-    font-weight: normal;
-    font-size: 20px;
-    line-height: 23px;
-    padding-left: 38px;
-    border: none;
 `;
 
 export const TitleMasterContainer = styled.div`
   display: flex;
    justify-content: center;
-  
-`
+`;
 
 export const TitleContainer = styled.div`
   width: 630px;
@@ -57,7 +39,6 @@ export const TitleContainer = styled.div`
   display: flex;
   flex-direction: row;
   border-bottom: 1px solid #D8D8D8;
-  
 `;
 
 export const LinkWrapper = styled.div`

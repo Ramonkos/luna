@@ -8,7 +8,6 @@ export const ReviewMainContainer = styled.div`
   background: white;
   border-radius: 3px;
   border: 1px solid #EBEBEB;
-
 `;
 
 export const TopBar = styled.div`

@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {SearchContainer, Selector, TitleContainer, BestRatedWrapper, CardWrapper, TitleMasterContainer} from "./style";
-import {LinkWrapper} from "../SearchUserPage/style";
+import {SearchContainer, Selector, TitleContainer, BestRatedWrapper, CardWrapper, TitleMasterContainer, LinkWrapper} from "./style";
 import {NavLink} from "react-router-dom";
 import GenericSpinner from "../GenericSpinner";
 import {connect} from "react-redux";
