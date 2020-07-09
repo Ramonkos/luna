@@ -20,6 +20,7 @@ import UserProfileRestaurant from "../UserProfileRestaurant";
 import UserEditProfile from "../UserEditProfile";
 import {getUserInformationAction} from "../../store/actions/userInfoAction";
 import { useRouteMatch } from "react-router-dom";
+import GenericSpinner from "../GenericSpinner";
 
 const ProfileContainer = styled.div`
   width: 100vw;
@@ -108,7 +109,9 @@ const ContentToButtons = styled.div`
   margin-top: ${rem("24px")};
 `;
 
-const UserProfile = ({ getUserInformationAction, targetUser }) => {
+const UserProfile = ({ getUserInformationAction, targetUser}) => {
+  const displayMessage = () => !targetUser ? <GenericSpinner/> : null;
+
   const initialState = {
     display: "review",
   };
@@ -123,6 +126,8 @@ const UserProfile = ({ getUserInformationAction, targetUser }) => {
 
   return (
     <ProfileContainer>
+      {targetUser ?
+      <>
       <img src={defaultUserProfileBanner} />
       <ProfileContent>
         <LeftWrapper>
@@ -188,13 +193,16 @@ const UserProfile = ({ getUserInformationAction, targetUser }) => {
           </BlackLight20Left>
         </RightWrapper>
       </ProfileContent>
+      </> :  displayMessage()}
     </ProfileContainer>
   );
 };
 
 const mapStateToProps = (state) => {
+  // const notEmpty = state.userInfoReducer.targetUser.length;
   return {
     targetUser: state.userInfoReducer.targetUser,
+    // notEmpty: notEmpty
   };
 };
 
