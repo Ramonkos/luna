@@ -5,9 +5,12 @@ import {NavLink} from "react-router-dom";
 import GenericSpinner from "../GenericSpinner";
 import {connect} from "react-redux";
 import GenericRestaurantList from "../GenericRestaurantList";
-import {allRestaurantsAction} from "../../store/actions/restaurantActions";
+import {
+    searchAllRestaurantsAction,
+    searchRestaurantsByCategoryAction
+} from "../../store/actions/restaurantActions";
 
-const SearchRestaurantPage = ({notEmpty, allRestaurants, allRestaurantsAction}) => {
+const SearchRestaurantPage = ({notEmpty, restaurants, searchAllRestaurantsAction, searchRestaurantsByCategoryAction}) => {
     const displayMessage = () => !notEmpty ? <GenericSpinner/> : null;
 
     const [categories] = useState([
@@ -26,15 +29,41 @@ const SearchRestaurantPage = ({notEmpty, allRestaurants, allRestaurantsAction}) 
         {label: 'Other', value: 12},
     ]);
 
-    useEffect(() => {
-        allRestaurantsAction();
-    }, [allRestaurantsAction]);
+    const [search, setSearch] = useState('');
+
+    let selectorCounter = 0;
+
+    const inputHandler = (e, func) => {
+        func(e.currentTarget.value)
+    };
+
+    const keyPressHandler = async e => {
+        if (e.key === "Enter") {
+            const search_location = '&search_location=restaurants';
+            const search_fields = '&search_fields=name&search_fields=city';
+            const search_string = `?search=${search}`;
+            const response = await searchAllRestaurantsAction(search_string + search_fields + search_location);
+        }
+    };
+
+    const selectHandler = async e => {
+        selectorCounter++;
+        if (selectorCounter % 2 === 0) {
+            const response = await searchRestaurantsByCategoryAction(e.target.value)
+        }
+    };
 
     return <>
         <SearchContainer>
-            <input type="text" id="search" name="search" placeholder="Search"/>
+            <input type="text"
+                   name="search"
+                   placeholder="Search for restaurant's by name or by city...."
+                   value={search}
+                   onChange={e => inputHandler(e, setSearch)}
+                   onKeyPress={keyPressHandler}
+            />
 
-            <Selector>
+            <Selector onClick={selectHandler}>
                 {categories.map(category => {
                     return <option key={category.value} value={category.value}>{category.label}</option>
                 })}
@@ -54,22 +83,25 @@ const SearchRestaurantPage = ({notEmpty, allRestaurants, allRestaurantsAction}) 
             </TitleContainer>
         </TitleMasterContainer>
         <BestRatedWrapper>
-        <CardWrapper>
-            {allRestaurants && notEmpty ?
-                        <GenericRestaurantList items={allRestaurants} key={'all-restaurants'}/> : displayMessage()};
+            <CardWrapper>
+                {restaurants && notEmpty ?
+                    <GenericRestaurantList items={restaurants} key={'restaurants'}/> : displayMessage()}
 
-        </CardWrapper>
+            </CardWrapper>
         </BestRatedWrapper>
 
     </>
 };
 
 const mapStateToProps = (state) => {
-    const notEmpty = state.restaurantReducer.allRestaurants.length;
+    const notEmpty = state.restaurantReducer.restaurants.length;
     return {
-        allRestaurants: state.restaurantReducer.allRestaurants,
+        restaurants: state.restaurantReducer.restaurants,
         notEmpty: notEmpty
     }
 };
 
-export default connect(mapStateToProps, {allRestaurantsAction})(SearchRestaurantPage);
+export default connect(mapStateToProps, {
+    searchAllRestaurantsAction,
+    searchRestaurantsByCategoryAction
+})(SearchRestaurantPage);

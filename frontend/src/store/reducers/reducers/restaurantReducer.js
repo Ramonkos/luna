@@ -1,10 +1,16 @@
-import {GET_TOP_4_RESTAURANTS, CREATE_RESTAURANT, GET_ALL_RESTAURANTS} from "../../actionTypes";
+import {
+    GET_TOP_4_RESTAURANTS,
+    CREATE_RESTAURANT,
+    GET_ALL_RESTAURANTS,
+    SEARCH_ALL_RESTAURANTS,
+    SEARCH_RESTAURANTS_BY_CATEGORY
+} from "../../actionTypes";
 
 
 const initial_state = {
     top4Restaurants: [],
     targetRestaurant: null,
-    allRestaurants: [],
+    restaurants: [],
 };
 
 export const restaurantReducer = (state = initial_state, action) => {
@@ -22,7 +28,17 @@ export const restaurantReducer = (state = initial_state, action) => {
         case GET_ALL_RESTAURANTS:
             return {
                 ...state,
-                allRestaurants: action.payload
+                restaurants: action.payload
+            };
+        case SEARCH_ALL_RESTAURANTS:
+            return {
+                ...state,
+                restaurants: action.payload
+            };
+        case SEARCH_RESTAURANTS_BY_CATEGORY:
+            return {
+                ...state,
+                restaurants: action.payload
             };
         default:
             return state

@@ -1,5 +1,11 @@
 import Axios from '../../axios';
-import {GET_TOP_4_RESTAURANTS, CREATE_RESTAURANT, GET_ALL_RESTAURANTS} from '../actionTypes';
+import {
+    GET_TOP_4_RESTAURANTS,
+    CREATE_RESTAURANT,
+    GET_ALL_RESTAURANTS,
+    SEARCH_ALL_RESTAURANTS,
+    SEARCH_RESTAURANTS_BY_CATEGORY
+} from '../actionTypes';
 
 export const top4Restaurants = (restaurantInfo) => {
     return {
@@ -22,6 +28,20 @@ export const getAllRestaurants = (restaurantInfo) => {
     }
 };
 
+export const searchAllRestaurants = (restaurantInfo) => {
+    return {
+        type: SEARCH_ALL_RESTAURANTS,
+        payload: restaurantInfo
+    }
+};
+
+export const searchRestaurantsByCategory = (restaurantInfo) => {
+    return {
+        type: SEARCH_RESTAURANTS_BY_CATEGORY,
+        payload: restaurantInfo
+    }
+};
+
 export const top4RestaurantsAction = () => async (dispatch) => {
     try {
         const response = await Axios.get('home/');
@@ -37,7 +57,7 @@ export const createRestaurantAction = (data) => async (dispatch) => {
     try {
         const response = await Axios.post('restaurants/new/', {...data});
         return response
-    }  catch (error) {
+    } catch (error) {
         console.log('Error creating a new Restaurant>', error)
         return error
     }
@@ -50,6 +70,28 @@ export const allRestaurantsAction = () => async (dispatch) => {
         return response
     } catch (error) {
         console.log('Error getting all Restaurants>', error);
+        return error
+    }
+};
+
+export const searchAllRestaurantsAction = (search_string) => async (dispatch) => {
+    try {
+        const response = await Axios.get(`search/${search_string}`);
+        dispatch(searchAllRestaurants(response.data));
+        return response
+    } catch (error) {
+        console.log('Error in searching Restaurants>', error);
+        return error
+    }
+};
+
+export const searchRestaurantsByCategoryAction = (category) => async (dispatch) => {
+    try {
+        const response = await Axios.get(`restaurants/category/${category}/`);
+        dispatch(searchRestaurantsByCategory(response.data));
+        return response
+    } catch (error) {
+        console.log('Error in searching Restaurants by Category>', error);
         return error
     }
 };
