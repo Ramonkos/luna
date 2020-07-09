@@ -18,6 +18,10 @@ export const TopBar = styled.div`
   border-top-left-radius: 3px;
 `;
 
+export const Line = styled.div`
+  border-top: 1px solid #EBEBEB; 
+`;
+
 export const RestaurantNameContainer = styled.div`
   height: 21px;
   margin-top: 14.5px;
