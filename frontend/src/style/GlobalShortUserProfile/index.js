@@ -3,10 +3,9 @@ import React from "react";
 
 export const UserDetailContainer = styled.div`
   height: 66.5px;
-  width: 100%;
+  width: 300px;
   display: flex;
   flex-direction: row;
-  /* border-bottom: 1px solid #EBEBEB; */
   margin-bottom: 0;
   
   img {
@@ -19,11 +18,12 @@ export const UserDetailContainer = styled.div`
     height: 100%;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
 
       name {
           height: 23px;
           margin-top: 10px;
-          margin-left: 7.73px;
+          /* margin-left: 7.73px; */
           margin-bottom: 0;
           
           color: #E47D31;
@@ -36,7 +36,8 @@ export const UserDetailContainer = styled.div`
       
       reviews {
           height: 16px;
-          margin-left: 7.73px;
+          /* margin-left: 7.73px; */
+          margin-left: 16px;
           margin-top: 5px;
           margin-bottom: 0;
           

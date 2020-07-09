@@ -53,8 +53,7 @@ export const StarsReviewContainer = styled.div`
   z-index: 1;
   
   p {
-    margin-left: 30px;
-  
+    margin: 9px 30px;
     font-family: Helvetica,serif;
     font-stretch: normal;
     font-weight: 300;
@@ -62,6 +61,9 @@ export const StarsReviewContainer = styled.div`
     line-height: 23px;
     text-align: center;
     color: #FFFFFF;
+  }
+  i {
+    font-size: 27px;
   }
 `;
 

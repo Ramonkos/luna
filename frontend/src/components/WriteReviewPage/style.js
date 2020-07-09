@@ -95,11 +95,14 @@ export const SelectRatingContainer = styled.div`
   margin-left: 341px;
   margin-bottom: 25px;
   
-  largestars {
+  /* largestars {
     position: relative;
     height: 44px;
     width: 250px;
     background-color: yellow;
+  } */
+  i {
+    
   }
  
   p {
