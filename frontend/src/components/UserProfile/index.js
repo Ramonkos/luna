@@ -171,10 +171,11 @@ const UserProfile = ({getUserInformationAction, targetUser, location}) => {
                                 <img src={restaurant} alt='restaurant button'/>
                                 Restaurants
                             </UserProfileButton>
-                            <UserProfileButton onClick={() => setValue({display: "edit"})}>
-                                <img src={edit} alt='edit profile button'/>
-                                Edit profile
-                            </UserProfileButton>
+                            {targetUser.user_is_logged_in_user ? (
+                                <UserProfileButton onClick={() => setValue({display: "edit"})}>
+                                    <img src={edit} alt='edit profile button'/>
+                                    Edit profile
+                                </UserProfileButton>) : null}
                         </LeftWrapper>
                         <MiddleWrapper>
                             <UserDataText>

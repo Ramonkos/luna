@@ -32,11 +32,16 @@ class UserSerializer(serializers.ModelSerializer):
     def get_amount_of_user_restaurants(self, obj):
         return len(obj.user_restaurants.all())
 
+    user_is_logged_in_user = serializers.SerializerMethodField()
+
+    def get_user_is_logged_in_user(self, obj):
+        return obj == self.context['request'].user
+
     class Meta:
         model = User
         fields = ['id', 'first_name', 'last_name', 'location', 'phone', 'things_user_loves', 'description', 'avatar',
                   'banner', 'amount_of_comments', 'amount_of_comments_liked', 'amount_of_reviews',
-                  'amount_of_liked_reviews', 'amount_of_user_restaurants', 'date_joined']
+                  'amount_of_liked_reviews', 'amount_of_user_restaurants', 'date_joined', 'user_is_logged_in_user']
         extra_kwargs = {
             'email': {'read_only': True},
         }
