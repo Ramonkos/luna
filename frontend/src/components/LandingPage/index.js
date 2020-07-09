@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import {Button} from "../../../src/style/GlobalButton";
 import styled from "styled-components";
@@ -6,10 +6,9 @@ import {rem} from "polished";
 import AsianFood from "../../assets/hero-image-restaurant.jpg";
 import {UserAccessTitleWrapper} from "../../../src/style/GlobalWrappers";
 import GenericSpinner from "../GenericSpinner";
-import {top4RestaurantsAction} from "../../store/actions/restaurantActions";
+import {searchAllRestaurantsAction, top4RestaurantsAction} from "../../store/actions/restaurantActions";
 import {connect} from "react-redux";
 import GenericRestaurantList from "../GenericRestaurantList";
-
 
 
 const HomeHeroWrapper = styled.div`
@@ -55,7 +54,13 @@ const CardWrapper = styled.div`
   align-items: center;
 `;
 
-const LandingPage = ({top4Restaurants, top4RestaurantsAction, notEmpty}) => {
+const LandingPage = ({top4Restaurants, top4RestaurantsAction, notEmpty, searchAllRestaurantsAction, history}) => {
+
+    const [search, setSearch] = useState('');
+
+    const inputHandler = (e, func) => {
+        func(e.currentTarget.value)
+    };
 
     useEffect(() => {
         top4RestaurantsAction();
@@ -63,13 +68,29 @@ const LandingPage = ({top4Restaurants, top4RestaurantsAction, notEmpty}) => {
 
     const displayMessage = () => !notEmpty ? <GenericSpinner/> : null;
 
+    const submitHandler = async e => {
+        e.preventDefault();
+        const search_location = '&search_location=restaurants';
+        const search_fields = '&search_fields=name&search_fields=city';
+        const search_string = `?search=${search}`;
+        const response = await searchAllRestaurantsAction(search_string + search_fields + search_location);
+        if (response.status === 200) {
+            history.push('/search/restaurants/');
+        }
+    };
+
     return (
         <>
             <HomeHeroWrapper>
                 <InputWrapper>
-                    <input type="text" placeholder="Search..."/>
+                    <input type="text"
+                           name="search"
+                           placeholder="Search Restaurants by name or location...."
+                           value={search}
+                           onChange={e => inputHandler(e, setSearch)}
+                    />
                 </InputWrapper>
-                <Button>Search</Button>
+                <Button onClick={submitHandler}>Search</Button>
             </HomeHeroWrapper>
             <UserAccessTitleWrapper titletext="Best Rated Restaurants"/>
             <BestRatedWrapper>
@@ -90,4 +111,4 @@ const mapStateToProps = (state) => {
     }
 };
 
-export default connect(mapStateToProps, {top4RestaurantsAction})(LandingPage)
+export default connect(mapStateToProps, {top4RestaurantsAction, searchAllRestaurantsAction})(LandingPage)
