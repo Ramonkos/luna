@@ -1,5 +1,6 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { connect } from "react-redux";
+import { useRouteMatch } from "react-router-dom";
 
 import { UserProfileTitle } from "../../style/GlobalTitles";
 import {
@@ -8,10 +9,26 @@ import {
   ReviewCommentWrapper,
   TitleWrapper,
   TitleRestaurant,
-  StarWrapper
+  StarWrapper,
 } from "../../style/GlobalUserReviewRestaurant";
+import { searchUserReviewsAction } from "../../store/actions/reviewActions";
 
-const UserProfileReview = () => {
+const UserProfileReview = ({
+  searchUserReviewsAction,
+  // targetUser,
+  location,
+}) => {
+  // const displayMessage = () => (!targetUser ? <GenericSpinner /> : null);
+
+  const match = useRouteMatch();
+
+  // useEffect(() => {
+  //   if (location.pathname === "/userprofile/") {
+  //     searchUserReviewsAction("me");
+  //   } else {
+  //     searchUserReviewsAction(match.params.userId);
+  //   }
+  // }, [searchUserReviewsAction]);
 
   return (
     <CommentContainer>
@@ -50,4 +67,15 @@ const UserProfileReview = () => {
   );
 };
 
-export default UserProfileReview;
+const mapStateToProps = (state) => {
+  // const notEmpty = state.userInfoReducer.targetUser.length;
+  console.log(state.reviewsUser);
+  return {
+    reviewsUser: state.userReviewReducer,
+    // notEmpty: notEmpty
+  };
+};
+
+export default connect(mapStateToProps, { searchUserReviewsAction })(
+  UserProfileReview
+);

@@ -1,8 +1,9 @@
-import {SEARCH_ALL_REVIEWS} from '../../actionTypes'
+import {SEARCH_ALL_REVIEWS, GET_USER_REVIEWS} from '../../actionTypes'
 
 const initial_state = {
     targetReview: null,
     searchReviewResults: [],
+    userReviewResults: [],
 };
 
 export const reviewReducer = (state = initial_state, action) => {
@@ -11,6 +12,18 @@ export const reviewReducer = (state = initial_state, action) => {
             return {
                 ...state,
                 searchReviewResults: action.payload,
+            };
+        default:
+            return state
+    }
+};
+
+export const userReviewReducer = (state = initial_state, action) => {
+    switch (action.type) {
+        case GET_USER_REVIEWS :
+            return {
+                ...state,
+                userReviewResults: action.payload,
             };
         default:
             return state
