@@ -1,6 +1,4 @@
-import React from 'react';
 import styled from "styled-components";
-import { rem } from "polished";
 
 export const RestaurantMainContainer = styled.div`
   position: relative;
@@ -75,28 +73,3 @@ export const StarsReviewContainer = styled.div`
   }
   
 `;
-
-
-
-// export const ReviewAmount = styled.p`
-//     /* margin-top: 0px;
-//     width: 23px;
-//     margin-left: 67px;
-  
-//     font-family: Helvetica,serif;
-//     font-stretch: normal;
-//     font-weight: 300;
-//     font-size: 100px;
-//     line-height: 23px;
-//     text-align: center;
-//     color: #4C4C4C; */
-// `;
-
-// export const Stars = styled.div`
-//   margin-top: 0px;
-//   margin-left: 16px;
-//   background-color: yellow;
-//   width: 135px;
-//   left: 16px;
-//   text-align: center;
-// `;

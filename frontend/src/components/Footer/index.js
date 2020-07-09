@@ -15,11 +15,11 @@ const Footer = () => {
         <FooterContainer>
             <UpperWrapper>
                 <FooterLinks>
-                    <a href="#">About Us</a>
-                    <a href="#">Press</a>
-                    <a href="#">Blog</a>
-                    <a href="#">iOS</a>
-                    <a href="#">Android</a>
+                    <a href="/">About Us</a>
+                    <a href="/">Press</a>
+                    <a href="/">Blog</a>
+                    <a href="/">iOS</a>
+                    <a href="/">Android</a>
                 </FooterLinks>
                 <FooterSocialIcons>
                     <ul>

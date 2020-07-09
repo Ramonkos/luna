@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from "styled-components";
 
 export const RestaurantContainer = styled.div`
@@ -270,4 +269,4 @@ export const ButtonContainer = styled.div`
   height: 39px;
   margin-top: 30px;
   justify-content: space-around;
-`
+`;
