@@ -6,16 +6,15 @@ export const RestaurantContainer = styled.div`
   flex-direction: column;
   width: 100%;
   height: 496px;
-  background-image: url("https://via.placeholder.com/1440x496"); //TODO change URL to constant folder
   
-  darkbackground {
+  img {
     position: absolute;
-    height: 204px;
     width: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    height: 496px;
   }
-   
-  restaurantname {
+`;
+
+export const Restaurantname = styled.div`
     position:relative;
     height: 34px;
     margin-left: 130px;
@@ -28,9 +27,16 @@ export const RestaurantContainer = styled.div`
     font-size: 30px;
     line-height: 34px;
     color: #FFFFFF
-  }
+`;
   
-  restaurantdescription {
+export const Darkbackground = styled.div`
+    position: absolute;
+    height: 204px;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    `;
+
+export const Restaurantdescription = styled.div`
     position: relative;
     height: 28px;
     margin-left: 130px;
@@ -42,8 +48,8 @@ export const RestaurantContainer = styled.div`
     font-size: 24px;
     line-height: 28px;
     color: #FFFFFF  
-  }
 `;
+
 
 export const StarsReviewContainer = styled.div`
   display: flex;
@@ -92,7 +98,7 @@ export const MapContainer = styled.div`
     
     img {
       width: 100%;
-      height: 100%;
+      height: 167px;
     }
 `;
 
@@ -111,7 +117,13 @@ export const IconContainer = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  align-items: center;   
+  align-items: center;
+  
+  img {
+  position: relative;
+  width: 20px;
+  height: 24px;
+  }
 `;
 
 export const ContactDetailsContainer = styled.div`
@@ -174,14 +186,14 @@ export const OpeningHoursContainer = styled.div`
   background-color: #F5F5F5;
   display: flex;
   flex-direction: row;
-  
-  icon {
+`;
+
+export const Icon = styled.div`
     position: relative;
     height: 18px;
     width: 18px;
     margin-left: 17px;
     top: 8px;
-  }
 `;
   
 export const Time = styled.div`
@@ -230,13 +242,13 @@ export const PriceContainer = styled.div`
 
   display: flex;
   flex-direction: row;
-  
-  icon {
+`;
+
+export const IconPrice = styled.div`
     position: relative;
     height: 18px;
     width: 18px;
     margin-left: 17px;
-  }
 `;
 
 export const PriceLevel = styled.div`
