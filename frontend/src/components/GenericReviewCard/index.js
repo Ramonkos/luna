@@ -19,14 +19,14 @@ export const GenericReviewCard = ({item}) => (
         <TopBar/>
         <UserDetailContainer>
             <img src={defaultUserProfileAvatar} alt="profile picture"/>
-            <namereviewsContainer>
-                <name>
+            <div>
+                <h1>
                     {`${item.author.first_name} ${item.author.last_name}`}
-                </name>
-                <reviews>
+                </h1>
+                <h2>
                     6 Reviews in total
-                </reviews>
-            </namereviewsContainer>
+                </h2>
+            </div>
         </UserDetailContainer>
         <RestaurantNameContainer>
             {item.restaurant_review_about.name.length > 20 ? `${item.restaurant_review_about.name.slice(0, 20)}...` : item.restaurant_review_about.name}
