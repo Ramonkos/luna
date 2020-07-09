@@ -11,6 +11,7 @@ import {connect} from "react-redux";
 import GenericRestaurantList from "../GenericRestaurantList";
 
 
+
 const HomeHeroWrapper = styled.div`
   width: 100%;
   height: 350px;
@@ -74,7 +75,7 @@ const LandingPage = ({top4Restaurants, top4RestaurantsAction, notEmpty}) => {
             <BestRatedWrapper>
                 <CardWrapper>
                     {top4Restaurants && notEmpty ?
-                        <GenericRestaurantList restaurants={top4Restaurants} key={'top-4-restaurants'}/> : displayMessage()};
+                        <GenericRestaurantList items={top4Restaurants} key={'top-4-restaurants'}/> : displayMessage()};
                 </CardWrapper>
             </BestRatedWrapper>
         </>

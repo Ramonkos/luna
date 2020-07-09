@@ -1,8 +1,7 @@
 .my-masonry-grid {
     display: flex;
     margin-left: -20px; /* gutter size offset */
-    /* width: auto; */
-    max-width: 1180px;
+    max-width: 1280px;
     margin-bottom: 50px;
 }
 

@@ -1,9 +1,10 @@
-import {GET_TOP_4_RESTAURANTS, CREATE_RESTAURANT} from "../../actionTypes";
+import {GET_TOP_4_RESTAURANTS, CREATE_RESTAURANT, GET_ALL_RESTAURANTS} from "../../actionTypes";
 
 
 const initial_state = {
     top4Restaurants: [],
-    targetRestaurant: null
+    targetRestaurant: null,
+    allRestaurants: [],
 };
 
 export const restaurantReducer = (state = initial_state, action) => {
@@ -17,7 +18,12 @@ export const restaurantReducer = (state = initial_state, action) => {
             return {
                 ...state,
                 targetRestaurant: action.payload
-            }
+            };
+        case GET_ALL_RESTAURANTS:
+            return {
+                ...state,
+                allRestaurants: action.payload
+            };
         default:
             return state
     }

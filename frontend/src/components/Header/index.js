@@ -63,12 +63,12 @@ const Header = () => {
             </li>
             <li>
               <LinkWrapper>
-                <NavLink to="/search">Search</NavLink>
+                <NavLink to="/search/restaurants/">Search</NavLink>
               </LinkWrapper>
             </li>
             <li>
               <LinkWrapper>
-                <NavLink to="/profile">Profile</NavLink>
+                <NavLink to="/userprofile/">Profile</NavLink>
               </LinkWrapper>
             </li>
           </ul>

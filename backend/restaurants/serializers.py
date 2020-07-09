@@ -1,6 +1,5 @@
 from rest_framework import serializers
 from restaurants.models import Restaurant
-from reviews.serializers import ReviewSerializer
 from users.serializers import UserSerializer
 
 
