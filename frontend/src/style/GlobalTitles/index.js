@@ -24,6 +24,8 @@ export const GreyBold20LeftUppercase = styled(BlackBold20Left)`
     margin-bottom: ${rem('27px')};
 `
 
+export const UserProfileTitle = styled(GreyBold20LeftUppercase)``
+
 export const BlackLight20Left = styled(BlackBold20Left)`
     font-weight: lighter;
     margin-bottom: ${rem('25px')};

@@ -8,7 +8,7 @@ import Registration from "../components/UserAccess/registration";
 import Confirmation from "../components/UserAccess/confirmation";
 import Verification from "../components/UserAccess/verification";
 import styled from "styled-components";
-import {UserProfile} from "../components/UserProfile";
+import UserProfile from "../components/UserProfile";
 import NewRestaurant from "../components/RestaurantCreationPage";
 import {WriteReviewPage} from "../components/WriteReviewPage";
 import RestaurantPage from "../components/RestaurantPage";
@@ -40,7 +40,7 @@ const Routes = () => {
                     <Route exact path='/search/users/' component={SearchUserPage}/>
                     <Route path='/restaurants/:restaurantId/' component={RestaurantPage}/>
                     <Route exact path='/restaurant/create/' component={NewRestaurant}/>
-                    {/*<Route path='/users/:userId' component={UserDetail}/>*/}
+                    <Route path='/users/:userId' component={UserProfile}/>
                     <Route exact path='/userprofile/' component={UserProfile}/>
                     {/*<Route path="*" component={NotFoundPage} />*/}
                 </MainContainer>
