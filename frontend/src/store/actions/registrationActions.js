@@ -1,5 +1,5 @@
 import Axios from '../../axios';
-import {SIGNUP, SIGNUP_ERROR, VERIFICATION_ERROR} from "../actionTypes";
+import {SIGNUP, SIGNUP_ERROR, VERIFICATION_ERROR, RESET_ERRORS} from "../actionTypes";
 import {setError} from "./errorActions";
 
 export const signUpSuccess = email => {
@@ -23,6 +23,12 @@ export const verificationError = errors => {
     }
 };
 
+export const resetError = () => {
+    return {
+        type: RESET_ERRORS,
+    }
+}
+
 export const signUpAction = email => async (dispatch) => {
     try {
         const response = await Axios.post('auth/registration/', {email: email});
@@ -39,7 +45,25 @@ export const registrationVerificationAction = data => async (dispatch) => {
     try {
         const response = await Axios.post('auth/registration/validate/', {...data});
         return response
-    } catch (error) {
-        console.log('Error in registration process, Error>', error)
-    }
+    } catch (e) {
+        //Network Error
+        if (!e.response) {
+            await dispatch(setError(e.message));
+            return e;
+        }
+        ;
+        let errors = {}
+        // Cleaning up error messages from the backend, getting rid of nested arrays
+        for (let i of Object.keys(e.response.data)) {
+            errors[i] = e.response.data[i].join(' ');
+        }
+        ;
+        console.log(errors)
+        if (errors.detail === "Your Validation Code is incorrect") {
+            await dispatch(signUpError(errors.detail))
+        } else {
+            await dispatch(verificationError(errors));
+        }
+        return e.response;
+    };
 };
