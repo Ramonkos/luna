@@ -17,37 +17,17 @@ import SearchRestaurantPage from "../components/SearchRestaurantPage";
 import SearchReviewPage from "../components/SearchReviewPage";
 
 const MainContainer = styled.div`
-  display: grid;
-  grid-template-rows: 71px 1fr 95px;
+  /* display: grid;
+  grid-template-rows: 71px 1fr 95px; */
   width: 100%;
-  height: 85vh;
+  height: 100vh;
   margin-bottom: 100px;
-
-  /* height: 100vh;
-  width: 100%;
-  border: red solid 2px; */
-  /* margin-bottom: 180px; */
-  /* display: flex;
-  flex-direction: column;
-
-  
-
-  /* align-items: space-between; */
-  /* justify-content: space-between; */
-  /* footer {
-    position:absolute;
-    left:0;
-    bottom:0;
-    right:0;
-  } */
 `;
-
 
 const Cheat = styled.div`
   height: 92px;
   width: 1000px;
 `;
-
 
 const Routes = () => {
   return (
@@ -81,7 +61,7 @@ const Routes = () => {
             <Route exact path="/userprofile/" component={UserProfile} />
           </Switch>
         </MainContainer>
-        {/* <Cheat/> */}
+        <Cheat />
         <Footer />
       </Router>
     </>
