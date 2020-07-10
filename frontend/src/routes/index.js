@@ -10,11 +10,12 @@ import Verification from "../components/UserAccess/verification";
 import styled from "styled-components";
 import UserProfile from "../components/UserProfile";
 import NewRestaurant from "../components/RestaurantCreationPage";
-import { WriteReviewPage } from "../components/WriteReviewPage";
+import WriteReviewPage from "../components/WriteReviewPage";
 import RestaurantPage from "../components/RestaurantPage";
 import SearchUserPage from "../components/SearchUserPage";
 import SearchRestaurantPage from "../components/SearchRestaurantPage";
 import SearchReviewPage from "../components/SearchReviewPage";
+import authComponent from '../HOCs';
 
 const MainContainer = styled.div`
   display: grid;
@@ -42,39 +43,28 @@ const MainContainer = styled.div`
 `;
 
 const Routes = () => {
-  return (
-    <>
-      <Router>
-        <MainContainer>
-          <Header />
-          <Switch>
-            <Route exact path="/" component={LandingPage} />
-            <Route exact path="/auth/login/" component={Login} />
-            <Route exact path="/auth/signup/" component={Registration} />
-            <Route exact path="/auth/confirmation/" component={Confirmation} />
-            <Route exact path="/auth/verification/" component={Verification} />
-            <Route
-              exact
-              path="/search/restaurants/"
-              component={SearchRestaurantPage}
-            />
-            <Route exact path="/search/reviews/" component={SearchReviewPage} />
-            <Route exact path="/search/users/" component={SearchUserPage} />
-            <Route
-              path="/restaurants/:restaurantId/"
-              component={RestaurantPage}
-            />
-            <Route
-              path="/createreview/:restaurantId/"
-              component={WriteReviewPage}
-            />
-            <Route exact path="/restaurant/create/" component={NewRestaurant} />
-            <Route path="/users/:userId" component={UserProfile} />
-            <Route exact path="/userprofile/" component={UserProfile} />
-          </Switch>
-          <Footer />
-        </MainContainer>
-      </Router>
+    return <>
+        <Router>
+            <MainContainer>
+                <Header/>
+                <Switch>
+                    <Route exact path='/' component={LandingPage}/>
+                    <Route exact path='/auth/login/' component={Login}/>
+                    <Route exact path='/auth/signup/' component={Registration}/>
+                    <Route exact path='/auth/confirmation/' component={Confirmation}/>
+                    <Route exact path='/auth/verification/' component={Verification}/>
+                    <Route exact path='/search/restaurants/' component={SearchRestaurantPage}/>
+                    <Route exact path='/search/reviews/' component={SearchReviewPage}/>
+                    <Route exact path='/search/users/' component={SearchUserPage}/>
+                    <Route path='/restaurants/:restaurantId/' component={RestaurantPage}/>
+                    <Route path='/createreview/:restaurantId/' component={authComponent(WriteReviewPage)}/>
+                    <Route exact path='/restaurant/create/' component={authComponent(NewRestaurant)}/>
+                    <Route path='/users/:userId' component={UserProfile}/>
+                    <Route exact path='/userprofile/' component={authComponent(UserProfile)}/>
+                </Switch>
+                <Footer/>
+            </MainContainer>
+        </Router>
     </>
   );
 };

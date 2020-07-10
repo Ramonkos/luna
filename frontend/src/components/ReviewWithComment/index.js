@@ -13,6 +13,7 @@ import {rem} from "polished";
 import {connect, useDispatch} from "react-redux";
 import {createCommentOnReviewAction, toggleLikeCommentAction} from "../../store/actions/commentAction";
 import {getSpecificRestaurantAction} from "../../store/actions/restaurantActions";
+import {Link} from "react-router-dom";
 
 // Styling
 
@@ -60,6 +61,7 @@ const CommentsDisplayedWrapper = styled.div`
   p {
     color: #e47d31;
     font-weight: normal;
+    cursor: pointer;
   }
 `;
 
@@ -70,10 +72,14 @@ const InputButtonWrapper = styled.div`
     margin-right: 10px;
     font-size: ${rem("14px")};
     line-height: ${rem("16px")};
-    color: #d8d8d8 !important;
+    //color: #d8d8d8 !important;  //commented out by Attila
+    color: #979797;   //added by Attila
     border: 1px solid #ebebeb;
     border-radius: 3px;
     padding-left: 10px;
+    &:focus {   //added by Attila
+      outline: none;
+    } 
   }
 `;
 
@@ -85,6 +91,7 @@ const CommentsHiddenWrapper = styled.div`
   p {
     color: #e47d31;
     font-weight: normal;
+    cursor: pointer;
   }
 `;
 
@@ -166,9 +173,9 @@ const ReviewWithComment = ({review, toggleLikeCommentAction, createCommentOnRevi
             <UserRatingWrapper>
                 <LeftUserRatingWrapper>
                     <UserDetailContainer>
-                        <img src={review.author.avatar ? review.author.avatar : Avatar} alt="profile"/>
+                        <Link to={`/users/${review.author.id}/`}><img src={review.author.avatar ? review.author.avatar : Avatar} alt="profile"/></Link>
                         <div>
-                            <h1>{`${review.author.first_name} ${review.author.last_name.slice(0, 1)}.`}</h1>
+                            <Link to={`/users/${review.author.id}/`}><h1>{`${review.author.first_name} ${review.author.last_name.slice(0, 1)}.`}</h1></Link>
                             <h2>{review.author.amount_of_reviews} Reviews in total</h2>
                         </div>
                     </UserDetailContainer>

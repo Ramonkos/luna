@@ -58,7 +58,6 @@ export const getFromUserRestaurant = (restaurantInfo) => {
     }
 }
 
-
 export const top4RestaurantsAction = () => async (dispatch) => {
     try {
         const response = await Axios.get('home/');

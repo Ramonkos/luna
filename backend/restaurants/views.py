@@ -17,7 +17,6 @@ class ListAllRestaurantsView(ListAPIView):
     serializer_class = RestaurantSerializer
 
 
-
 class CreateNewRestaurantView(CreateAPIView):
     """
     post:

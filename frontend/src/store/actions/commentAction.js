@@ -1,4 +1,12 @@
 import Axios from '../../axios';
+import {GET_USER_COMMENTS} from "../actionTypes";
+
+export const getUserComments = (userComments) => {
+    return {
+        type: GET_USER_COMMENTS,
+        payload: userComments
+    }
+}
 
 export const toggleLikeCommentAction = (reviewId) => async (dispatch) => {
     try {
@@ -19,3 +27,15 @@ export const createCommentOnReviewAction = (reviewId, data) => async (dispatch) 
         return error
     }
 };
+
+export const getUserCommentsAction = (user_id, data) => async (dispatch) => {
+    try {
+        const response = await Axios.get(`comment/user/${user_id}/`, data)
+        dispatch(getUserComments(response.data));
+        return response
+    } catch (error) {
+        console.log('Error fetching comments>', error);
+        return error
+    }
+};
+

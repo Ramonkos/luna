@@ -7,6 +7,8 @@ export const RestaurantMainContainer = styled.div`
   background: white;
   border-radius: 3px;
   border: 1px solid #EBEBEB;
+  cursor: pointer;
+  
   img {
       height: 283px;
       width: 100%;
