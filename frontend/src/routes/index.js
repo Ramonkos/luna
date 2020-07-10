@@ -1,5 +1,5 @@
-import React from 'react';
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Login from "../components/UserAccess/login";
@@ -22,6 +22,24 @@ const MainContainer = styled.div`
   grid-template-rows: 71px 1fr 95px;
   width: 100%;
   height: 100vh;
+
+  /* height: 100vh;
+  width: 100%;
+  border: red solid 2px; */
+  /* margin-bottom: 180px; */
+  /* display: flex;
+  flex-direction: column;
+
+  
+
+  /* align-items: space-between; */
+  /* justify-content: space-between; */
+  /* footer {
+    position:absolute;
+    left:0;
+    bottom:0;
+    right:0;
+  } */
 `;
 
 const Routes = () => {
@@ -50,4 +68,4 @@ const Routes = () => {
     </>
 };
 
-export default Routes
+export default Routes;
