@@ -6,9 +6,7 @@ export const CommentContainer = styled.div`
   padding: 15px 15px 0 15px;
   background-color: #fff;
   border-right: 1px solid #ebebeb;
-
-
-  border: 1px solid green;
+  margin-bottom: 100px;
   height: 500px;
   overflow: scroll;
 `;

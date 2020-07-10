@@ -20,7 +20,8 @@ const MainContainer = styled.div`
   display: grid;
   grid-template-rows: 71px 1fr 95px;
   width: 100%;
-  height: 100vh;
+  height: 85vh;
+  margin-bottom: 100px;
 
   /* height: 100vh;
   width: 100%;
@@ -41,12 +42,19 @@ const MainContainer = styled.div`
   } */
 `;
 
+
+const Cheat = styled.div`
+  height: 92px;
+  width: 1000px;
+`;
+
+
 const Routes = () => {
   return (
     <>
       <Router>
+        <Header />
         <MainContainer>
-          <Header />
           <Switch>
             <Route exact path="/" component={LandingPage} />
             <Route exact path="/auth/login/" component={Login} />
@@ -72,8 +80,9 @@ const Routes = () => {
             <Route path="/users/:userId" component={UserProfile} />
             <Route exact path="/userprofile/" component={UserProfile} />
           </Switch>
-          <Footer />
         </MainContainer>
+        {/* <Cheat/> */}
+        <Footer />
       </Router>
     </>
   );
