@@ -15,6 +15,7 @@ import RestaurantPage from "../components/RestaurantPage";
 import SearchUserPage from "../components/SearchUserPage";
 import SearchRestaurantPage from "../components/SearchRestaurantPage";
 import SearchReviewPage from "../components/SearchReviewPage";
+import authComponent from '../HOCs';
 
 const MainContainer = styled.div`
   display: grid;
@@ -38,10 +39,10 @@ const Routes = () => {
                     <Route exact path='/search/reviews/' component={SearchReviewPage}/>
                     <Route exact path='/search/users/' component={SearchUserPage}/>
                     <Route path='/restaurants/:restaurantId/' component={RestaurantPage}/>
-                    <Route path='/createreview/:restaurantId/' component={WriteReviewPage}/>
-                    <Route exact path='/restaurant/create/' component={NewRestaurant}/>
+                    <Route path='/createreview/:restaurantId/' component={authComponent(WriteReviewPage)}/>
+                    <Route exact path='/restaurant/create/' component={authComponent(NewRestaurant)}/>
                     <Route path='/users/:userId' component={UserProfile}/>
-                    <Route exact path='/userprofile/' component={UserProfile}/>
+                    <Route exact path='/userprofile/' component={authComponent(UserProfile)}/>
                 </Switch>
                 <Footer/>
             </MainContainer>
