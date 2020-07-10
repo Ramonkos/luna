@@ -123,3 +123,26 @@ export const CardWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
+
+export const ValidSearchContainer = styled.div`
+    font-family: Helvetica,serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 60px;
+    line-height: 23px;
+    border: 2px #E47D31 solid;
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    
+    text-align: center;
+    text-transform: uppercase;
+    color: #4C4C4C;
+  
+`
+
+export const ParentWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+`

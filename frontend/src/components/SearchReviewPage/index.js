@@ -12,11 +12,22 @@ import GenericSpinner from "../GenericSpinner";
 import GenericReviewList from "../GenericReviewList";
 import {connect} from "react-redux";
 import {searchAllReviewsAction} from "../../store/actions/reviewActions";
+import {ParentWrapper, ValidSearchContainer} from "../SearchRestaurantPage/style";
 
 // Component
 
 const SearchReviewPage = ({notEmpty, searchReviewResults, searchAllReviewsAction}) => {
-    const displayMessage = () => !notEmpty ? <GenericSpinner/> : null;
+
+    const displayMessage = () => !notEmpty ?
+        <ParentWrapper>
+            <ValidSearchContainer>
+                <p>
+                  Please enter valid search
+                </p>
+            </ValidSearchContainer>
+
+        </ParentWrapper> : null;
+
 
     const [search, setSearch] = useState('');
 

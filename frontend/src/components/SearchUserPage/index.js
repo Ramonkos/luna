@@ -12,9 +12,21 @@ import {connect} from "react-redux";
 import {searchAllUsersAction} from "../../store/actions/userActions";
 import GenericSpinner from "../GenericSpinner";
 import GenericUserList from "../GenericUserList";
+import {ParentWrapper, ValidSearchContainer} from "../SearchRestaurantPage/style";
 
 const SearchUserPage = ({searchUserResults, notEmpty, searchAllUsersAction}) => {
-    const displayMessage = () => !notEmpty ? <GenericSpinner/> : null;
+
+    const displayMessage = () => !notEmpty ?
+    <ParentWrapper>
+        <ValidSearchContainer>
+            <p>
+              Please enter valid search
+            </p>
+        </ValidSearchContainer>
+
+    </ParentWrapper> : null;
+
+
 
     const [search, setSearch] = useState('');
 
