@@ -54,6 +54,7 @@ const Test3 = styled.div`
   display: flex;
   flex-flow: column;
   align-items: flex-start;
+
 `
 
 //Attila test until here
