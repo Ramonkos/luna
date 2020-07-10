@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
 import styled from "styled-components";
 import { rem } from "polished";
 import { UserProfileTitle } from "../../style/GlobalTitles";
-
+import { getUserCommentsAction } from "../../store/actions/commentAction";
+import GenericSpinner from "../GenericSpinner";
 
 const CommentContainer = styled.div`
   width: 620px;
@@ -41,8 +43,8 @@ const ReviewCommentWrapper = styled.div`
   a {
     font-size: 20px;
     line-height: 23px;
-    color: #4C4C4C;
-    margin-bottom: 15px
+    color: #4c4c4c;
+    margin-bottom: 15px;
   }
   p {
     font-weight: 300;
@@ -57,29 +59,51 @@ const TitleWrapper = styled.div`
   margin-bottom: 15px;
 `;
 
-const UserProfileComment = (props) => {
+const UserProfileComment = ({
+  getUserCommentsAction,
+  userComments,
+  user_id,
+  notEmpty,
+}) => {
+  const displayMessage = () => (!notEmpty ? <GenericSpinner /> : null);
+
+  useEffect(() => {
+    console.log("user_id", user_id);
+    getUserCommentsAction(user_id);
+  }, [getUserCommentsAction]);
 
   return (
     <CommentContainer>
       <TitleWrapper>
         <UserProfileTitle>Comments</UserProfileTitle>
       </TitleWrapper>
-      <CommentWrapper>
-        <ReviewCommentWrapper>
-          <a>Review 1</a>
-          <p>I like it...</p>
-        </ReviewCommentWrapper>
-        <p>02.03.2020 22:29</p>
-      </CommentWrapper>
-      <CommentWrapper>
-        <ReviewCommentWrapper>
-          <a>Review 2</a>
-          <p>I don't like it...</p>
-        </ReviewCommentWrapper>
-        <p>02.03.2020 22:29</p>
-      </CommentWrapper>
+      {userComments.map((comment, i) => {
+        return (
+          <CommentWrapper>
+            <ReviewCommentWrapper>
+              <a>Review {i + 1}</a>
+              <p>{comment.text_content}</p>
+            </ReviewCommentWrapper>
+            <p>
+              {comment.created.slice(0, 10) +
+                " " +
+                comment.created.slice(11, 16)}
+            </p>
+          </CommentWrapper>
+        );
+      })}
     </CommentContainer>
   );
 };
 
-export default UserProfileComment;
+const mapStateToProps = (state) => {
+  const notEmpty = state.restaurantReducer.userComments.length;
+  return {
+    userComments: state.restaurantReducer.userComments,
+    notEmpty: notEmpty,
+  };
+};
+
+export default connect(mapStateToProps, { getUserCommentsAction })(
+  UserProfileComment
+);
