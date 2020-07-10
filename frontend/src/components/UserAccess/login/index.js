@@ -20,8 +20,8 @@ const LoginContent = styled.div`
 `
 
 const Login = ({error, loginAction, history}) => {
-    const [email, setEmail] = useState('joseph@test.com');
-    const [password, setPassword] = useState('josephloveszoey');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
     const inputHandler = (e, func) => {
         func(e.currentTarget.value)

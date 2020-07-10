@@ -41,12 +41,12 @@ const Verification = ({fieldErrors, nonFieldErrors, networkError, registrationVe
     const dispatch = useDispatch();
 
     const [data, setData] = useState({
-        code: '00000',
-        email: 'racoxo8690@mailerv.net',
-        username: 'TestUser02',
-        location: 'Basel, Switzerland',
-        password: 'password01',
-        password_repeat: 'password01'
+        code: '',
+        email: '',
+        username: '',
+        location: '',
+        password: '',
+        password_repeat: ''
     });
 
     const handleInput = e => {
