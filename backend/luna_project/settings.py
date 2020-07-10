@@ -29,7 +29,7 @@ SECRET_KEY = 'k3(-4f4s0tfg@ran#r3(h1!3#&4%3^btj@itm(*fdmu4n-ii#l'
 DEBUG = ast.literal_eval(os.environ.get('DJANGO_DEBUG'))
 # DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -67,6 +67,8 @@ CORS_ORIGIN_WHITELIST = [
     # "http://localhost:3000",
     # "http://127.0.0.1:8000"
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'luna_project.urls'
 
