@@ -13,7 +13,7 @@ import {rem} from "polished";
 import {connect, useDispatch} from "react-redux";
 import {createCommentOnReviewAction, toggleLikeCommentAction} from "../../store/actions/commentAction";
 import {getSpecificRestaurantAction} from "../../store/actions/restaurantActions";
-import {Link} from "react-router-dom";
+import {Link, useHistory} from "react-router-dom";
 
 // Styling
 
@@ -139,6 +139,8 @@ const StarWrapper = styled.div`
 const ReviewWithComment = ({review, toggleLikeCommentAction, createCommentOnReviewAction, restaurantId}) => {
     const dispatch = useDispatch();
 
+    const history = useHistory();
+
     const [value, setValue] = useState({
         toggle: true,
     });
@@ -156,6 +158,9 @@ const ReviewWithComment = ({review, toggleLikeCommentAction, createCommentOnRevi
             const resetReviewResponse = await dispatch(getSpecificRestaurantAction(restaurantId));
             return resetReviewResponse
         }
+        if (response.response.data.detail === 'Authentication credentials were not provided.') {
+            history.push('/auth/login/')
+        }
     };
 
     const commentHandler = async e => {
@@ -165,6 +170,9 @@ const ReviewWithComment = ({review, toggleLikeCommentAction, createCommentOnRevi
         if (response.status === 201) {
             const resetReviewResponse = await dispatch(getSpecificRestaurantAction(restaurantId));
             return resetReviewResponse
+        }
+        if (response.response.data.detail === 'Authentication credentials were not provided.') {
+            history.push('/auth/login/')
         }
     };
 

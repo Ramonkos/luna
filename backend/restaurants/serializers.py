@@ -74,14 +74,13 @@ class RestaurantSerializer(serializers.ModelSerializer):
     class Meta:
         model = Restaurant
         fields = ['id', 'name', 'category', 'country', 'street', 'city', 'zip', 'website', 'phone', 'email',
-                  'opening_hours', 'price_level', 'restaurant_image', 'take_reservations', 'delivery', 'take_away',
-                  'wifi', 'owner', 'restaurant_reviews', 'logged_in_user_is_restaurant_owner', 'created',
-                  'amount_of_reviews', 'review_average']
-        depth = 2
+                  'opening_hours', 'price_level', 'restaurant_image', 'restaurant_banner', 'take_reservations',
+                  'delivery', 'take_away', 'wifi', 'owner', 'restaurant_reviews', 'logged_in_user_is_restaurant_owner',
+                  'created','amount_of_reviews', 'review_average']
 
 
 class CreateRestaurantSerializer(serializers.ModelSerializer):
     class Meta:
         model = Restaurant
         fields = ['id', 'name', 'category', 'country', 'street', 'city', 'zip', 'website', 'phone', 'email',
-                  'opening_hours', 'price_level', 'restaurant_image', 'owner']
+                  'opening_hours', 'price_level', 'restaurant_image', 'restaurant_banner', 'owner']

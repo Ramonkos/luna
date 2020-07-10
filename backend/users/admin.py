@@ -17,7 +17,7 @@ class CustomUserModel(UserAdmin):
         (None, {'fields': ('email', 'username', 'password')}),
         ('Personal info', {'fields': ('first_name', 'last_name', 'location', 'phone', 'description',
                                       'things_user_loves')}),
-        ('Files', {'fields': ('avatar',)}),
+        ('Files', {'fields': ('avatar', 'banner')}),
         ('Permissions', {
             'fields': ('is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions'),
         }),

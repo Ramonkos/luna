@@ -6,9 +6,9 @@ from rest_framework.documentation import include_docs_urls
 from rest_framework_simplejwt import views as jwt_views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('backend/admin/', admin.site.urls),
     # API Documentation Generation
-    path('api/docs/', include_docs_urls(title='Sagittarius Luna Backend API', public=True, permission_classes=[])),
+    path('backend/api/docs/', include_docs_urls(title='Sagittarius Luna Backend API', public=True, permission_classes=[])),
     # Registration / Password Management
     path('backend/api/auth/', include('registrationprofiles.urls')),
     # Search / Top 4 Restaurant / Categories Management
