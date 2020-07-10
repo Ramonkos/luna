@@ -33,6 +33,7 @@ export const UserDetailContainer = styled.div`
           font-style: normal;
           font-size: 20px;
           line-height: 23px;
+          text-align: left;  //added by Attila
       }
       
       h2 {
