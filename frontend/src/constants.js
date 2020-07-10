@@ -1,7 +1,7 @@
 // Use for default User Avatar on User Cards:
 // `https://eu.ui-avatars.com/api/?name=${user.first_name}+${user.last_name}`
 
-export const baseUrl = 'http://sagittarius.propulsion-learn.ch/backend/api/'; // TODO Set this to proper URL for Deployment
+export const baseUrl = 'https://sagittarius.propulsion-learn.ch/backend/api/'; // TODO Set this to proper URL for Deployment
 
 export const defaultLandingPageBanner = 'https://via.placeholder.com/1440x351'; // 1440 x 351
 export const defaultRestaurantReviewBanner = 'https://via.placeholder.com/1440x204'; // 1440 x 204
