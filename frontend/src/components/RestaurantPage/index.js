@@ -37,7 +37,26 @@ import {useRouteMatch} from 'react-router-dom';
 import GenericSpinner from "../GenericSpinner";
 
 // Component
+//Attila test from here
+import styled from "styled-components";
 
+const Test = styled.div`
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+`
+const Test2 = styled.div`
+  display: flex;
+  justify-content: space-between;
+  width: 1180px;
+`
+const Test3 = styled.div`
+  display: flex;
+  flex-flow: column;
+  align-items: flex-start;
+`
+
+//Attila test until here
 const RestaurantPage = ({getSpecificRestaurantAction, targetRestaurant, history}) => {
 
     const displayMessage = () => !targetRestaurant ? <GenericSpinner/> : null;
@@ -55,14 +74,17 @@ const RestaurantPage = ({getSpecificRestaurantAction, targetRestaurant, history}
     const [value, setValue] = useState(initialState)
 
     return (
-        <>
+        // <>
+        <Test>
             {targetRestaurant ?
                 <>
                     <RestaurantContainer>
                         <img src={targetRestaurant.restaurant_image} alt="https://via.placeholder.com/1440x496"/>
                         <Darkbackground/>
-                        <Restaurantname>{targetRestaurant.name}</Restaurantname>
-                        {(() => {
+                        <Test2>
+                            <Test3>
+                                <Restaurantname>{targetRestaurant.name}</Restaurantname>
+                                {(() => {
                             switch (targetRestaurant.category) {
                                 case 1:
                                     return <Restaurantdescription>Burger</Restaurantdescription>;
@@ -90,7 +112,7 @@ const RestaurantPage = ({getSpecificRestaurantAction, targetRestaurant, history}
                                     return <Restaurantdescription>Other</Restaurantdescription>;
                             }
                         })()}
-                        <StarsReviewContainer>
+                                <StarsReviewContainer>
                             <StarRatingComponent
                                 name="Restaurant_Rating"
                                 starColor={"#F8E71C"}
@@ -102,7 +124,8 @@ const RestaurantPage = ({getSpecificRestaurantAction, targetRestaurant, history}
                             />
                             <p>{targetRestaurant.restaurant_reviews.length} reviews</p>
                         </StarsReviewContainer>
-                        <MapContactContainer>
+                            </Test3>
+                            <MapContactContainer>
                             <MapContainer>
                                 <img
                                     src="https://images.squarespace-cdn.com/content/v1/5a30f2b3f9a61e096271d9fd/1517234067603-0J1YATJDM1DN273OGB11/ke17ZwdGBToddI8pDm48kOypHelj2N-66W5FaAehoTsUqsxRUqqbr1mOJYKfIPR7LoDQ9mXPOjoJoqy81S2I8N_N4V1vUb5AoIIIbLZhVYy7Mythp_T-mtop-vrsUOmeInPi9iDjx9w8K4ZfjXt2dlqsvmUpSyP0YKzy_6YMYf0DF1GrsRFOiulVY8PHr8SvG6v6ULRah83RgHXAWD5lbQ/Hera+Z%C3%BCrich+Google+Maps"
@@ -122,6 +145,7 @@ const RestaurantPage = ({getSpecificRestaurantAction, targetRestaurant, history}
                                 </ContactDetailsContainer>
                             </ContactContainer>
                         </MapContactContainer>
+                        </Test2>
                     </RestaurantContainer>
                     <MiddleContainer>
                         <SearchFilterContainer>
@@ -175,7 +199,8 @@ const RestaurantPage = ({getSpecificRestaurantAction, targetRestaurant, history}
                         </RightBottomContainer>
                     </BottomContainer>
                 </> : displayMessage()}
-        </>
+        </Test>
+        // </>
     );
 };
 

@@ -4,8 +4,8 @@ export const RestaurantContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 496px;
-  
+  height: 496px;  
+  align-items: center;  //added by Attila
   img {
     position: absolute;
     width: 100%;
@@ -16,7 +16,7 @@ export const RestaurantContainer = styled.div`
 export const Restaurantname = styled.div`
     position:relative;
     height: 34px;
-    margin-left: 130px;
+    //margin-left: 130px;
     margin-top: 33px;
     margin-bottom: 0;
     
@@ -38,7 +38,7 @@ export const Darkbackground = styled.div`
 export const Restaurantdescription = styled.div`
     position: relative;
     height: 28px;
-    margin-left: 130px;
+    //margin-left: 130px;
     margin-top: 13px;
     
     font-family: Helvetica,serif;
@@ -54,7 +54,7 @@ export const StarsReviewContainer = styled.div`
   display: flex;
   margin-top: 13px;
   height: 27px;
-  margin-left: 130px;
+  //margin-left: 130px;
   z-index: 1;
   
   p {
@@ -83,21 +83,23 @@ export const MapContactContainer = styled.div`
   width: 361px;
   height: 336px;
   background-color: white;
-  z-index: 2;
-  position: absolute;
+  //z-index: 2;
+  //position: absolute;
   margin-top: 27px;
-  margin-left: 956px;
+  //margin-left: 956px;
   display: flex;
   flex-direction: column;
 `;
 
 export const MapContainer = styled.div`
-    width: 100%;
-    height: 167px;
+    //width: 100%;
+    width: 361px;
+    height: 177px;
     
     img {
-      width: 100%;
-      height: 167px;
+      //width: 100%;
+      width: 361px;
+      height: 177px;
     }
 `;
 
@@ -169,6 +171,10 @@ export const SearchFilterContainer = styled.div`
         font-size: 16px;
         line-height: 18px;
         color: #979797;
+        
+        &:focus {   //added by Attila
+          outline: none;
+        }
         }
 `;
 
@@ -209,7 +215,7 @@ export const Time = styled.div`
 `;
 
 export const BottomContainer = styled.div`
-  height: 588px;
+  //height: 588px;
   width: 1440px;
   display: flex;
   flex-direction: row;

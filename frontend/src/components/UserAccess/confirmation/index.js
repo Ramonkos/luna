@@ -26,7 +26,7 @@ const Confirmation = () => {
                 Since monkeys aren't good in writing the message could end up in you junk folder. Our apologies for any
                 inconvenience.
             </ConfirmationContent>
-            <Button><Link to={'/auth/verification/'}>Register</Link> </Button>
+            <Button><Link to={'/auth/verification/'}>To verification</Link> </Button>
         </UserAccessContentContainer>
     )
 }
