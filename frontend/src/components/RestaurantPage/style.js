@@ -83,7 +83,7 @@ export const MapContactContainer = styled.div`
   width: 361px;
   height: 336px;
   background-color: white;
-  //z-index: 2;
+  z-index: 2;
   //position: absolute;
   margin-top: 27px;
   //margin-left: 956px;
