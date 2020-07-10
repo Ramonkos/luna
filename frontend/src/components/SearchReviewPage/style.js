@@ -25,6 +25,18 @@ export const SearchContainer = styled.div`
     line-height: 23px;
     
     color: #D8D8D8;
+    
+    ::-webkit-input-placeholder { /* Edge */
+      color: #D8D8D8;
+    }
+    
+    :-ms-input-placeholder { /* Internet Explorer 10-11 */
+      color: #D8D8D8;
+    }
+    
+    ::placeholder {
+      color: #D8D8D8;
+    }
   }
 `;
 

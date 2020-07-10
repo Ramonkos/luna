@@ -9,6 +9,8 @@ export const SearchContainer = styled.div`
   border: 1px solid #D8D8D8;
   align-self: flex-start;
   
+
+  
   input {
     width: 75%;
     height: 100%;
@@ -25,11 +27,31 @@ export const SearchContainer = styled.div`
     line-height: 23px;
     
     color: #D8D8D8;
+    
+    ::-webkit-input-placeholder { /* Edge */
+      color: #D8D8D8;
+    }
+    
+    :-ms-input-placeholder { /* Internet Explorer 10-11 */
+      color: #D8D8D8;
+    }
+    
+    ::placeholder {
+      color: #D8D8D8;
+    }
   }
   
   select {
     width: 25%;
     height: 100%;
+    
+    font-family: Helvetica,serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 20px;
+    line-height: 23px;
+    
+    color: #D8D8D8;
     }
 `;
 
