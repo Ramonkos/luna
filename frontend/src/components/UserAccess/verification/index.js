@@ -5,7 +5,7 @@ import {UserAccessTitleWrapper, UserAccessContentContainer} from "../../../style
 import {Button} from "../../../style/GlobalButton";
 import {Input} from "../../../style/GlobalInput";
 import {connect} from "react-redux";
-import {registrationVerificationAction} from "../../../store/actions/registrationActions";
+import {registrationVerificationAction, resetError} from "../../../store/actions/registrationActions";
 import Error from "../../Error";
 import {useDispatch} from "react-redux";
 import {loginAction} from "../../../store/actions/loginAction";
@@ -37,16 +37,16 @@ const LongButton = styled(Button)`
 `
 
 
-const Verification = ({fieldErrors, nonFieldErrors, networkError, registrationVerificationAction, history}) => {
+const Verification = ({fieldErrors, nonFieldErrors, networkError, registrationVerificationAction, history, error}) => {
     const dispatch = useDispatch();
 
     const [data, setData] = useState({
-        code: '',
-        email: '',
-        username: '',
-        location: '',
-        password: '',
-        password_repeat: ''
+        code: '00000',
+        email: 'racoxo8690@mailerv.net',
+        username: 'TestUser02',
+        location: 'Basel, Switzerland',
+        password: 'password01',
+        password_repeat: 'password01'
     });
 
     const handleInput = e => {
@@ -57,11 +57,13 @@ const Verification = ({fieldErrors, nonFieldErrors, networkError, registrationVe
 
     const handleSubmit = async e => {
         e.preventDefault();
+        dispatch(resetError());
         const response = await registrationVerificationAction(data);
         if (response.status === 201) {
             const loginData = {email: data.email, password: data.password};
             const loginResponse = await dispatch(loginAction(loginData));
             if (loginResponse.status === 200) {
+                dispatch(resetError());
                 history.push('/')
             }
         }
@@ -76,39 +78,52 @@ const Verification = ({fieldErrors, nonFieldErrors, networkError, registrationVe
                            placeholder="E-Mail"
                            name='email'
                            onChange={handleInput}
+                           value={data['email']}
                     />
+                    <Error errorMessage={fieldErrors['email']}/>
                     <Input type='text'
                            placeholder="Username"
                            name='username'
                            onChange={handleInput}
+                           value={data['username']}
                     />
+                    <Error errorMessage={fieldErrors['username']}/>
                     <Input type='password'
                            placeholder="Password"
                            name='password'
                            onChange={handleInput}
+                           value={data['password']}
                     />
+                    <Error errorMessage={fieldErrors['password']}/>
                 </LeftHolder>
                 <RightHolder>
                     <Input type='text'
                            placeholder="Validation Code"
                            name='code'
                            onChange={handleInput}
+                           value={data['code']}
                     />
+                    <Error errorMessage={fieldErrors['code']}/>
                     <Input type='text'
                            placeholder="Location"
                            name='location'
                            onChange={handleInput}
+                           value={data['location']}
                     />
+                    <Error errorMessage={fieldErrors['password']}/>
                     <Input type='password'
                            placeholder="Password Repeat"
                            name='password_repeat'
                            onChange={handleInput}
+                           value={data['password_repeat']}
                     />
+                    <Error errorMessage={fieldErrors['password_repeat']}/>
                 </RightHolder>
-                <Error errorMessage={nonFieldErrors ? nonFieldErrors : null}/>
-                <Error errorMessage={networkError ? networkError : null}/>
             </VerificationContent>
             <LongButton onClick={handleSubmit}>Finish Registration</LongButton>
+            <Error errorMessage={nonFieldErrors ? nonFieldErrors : null}/>
+            <Error errorMessage={networkError ? networkError : null}/>
+            <Error errorMessage={error ? error : null}/>
         </UserAccessContentContainer>
     )
 };
@@ -117,7 +132,8 @@ const mapStateToProps = state => {
     return {
         fieldErrors: state.signUpReducer.verificationErrors,
         nonFieldErrors: state.signUpReducer.verificationErrors.non_field_errors,
-        networkError: state.errorReducer.error
+        networkError: state.errorReducer.error,
+        error: state.signUpReducer.error
     };
 };
 

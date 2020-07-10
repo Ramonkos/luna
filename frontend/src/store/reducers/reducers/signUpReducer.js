@@ -1,4 +1,4 @@
-import {SIGNUP, SIGNUP_ERROR, VERIFICATION_ERROR} from "../../actionTypes";
+import {SIGNUP, SIGNUP_ERROR, VERIFICATION_ERROR, RESET_ERRORS} from "../../actionTypes";
 
 const initialState = {
     email: '',
@@ -34,6 +34,9 @@ export const signUpReducer = (state = initialState, action) => {
                 ...state,
                 verificationErrors: {...state.verificationErrors, ...action.payload}
             }
+        }
+        case RESET_ERRORS: {
+            return initialState
         }
         default:
             return state
