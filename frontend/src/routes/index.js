@@ -10,7 +10,7 @@ import Verification from "../components/UserAccess/verification";
 import styled from "styled-components";
 import UserProfile from "../components/UserProfile";
 import NewRestaurant from "../components/RestaurantCreationPage";
-import {WriteReviewPage} from "../components/WriteReviewPage";
+import WriteReviewPage from "../components/WriteReviewPage";
 import RestaurantPage from "../components/RestaurantPage";
 import SearchUserPage from "../components/SearchUserPage";
 import SearchRestaurantPage from "../components/SearchRestaurantPage";
