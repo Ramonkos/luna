@@ -145,7 +145,7 @@ export const ErrorButtonContainer = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  justify-items: space-between;
+  //justify-items: space-between;
   
   position:relative;
   width: 832px;
