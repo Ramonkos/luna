@@ -6,7 +6,7 @@ import {
     BestRatedWrapper,
     CardWrapper,
     TitleMasterContainer,
-    LinkWrapper
+    LinkWrapper, ValidSearchContainer, ParentWrapper
 } from "./style";
 import {NavLink} from "react-router-dom";
 import GenericSpinner from "../GenericSpinner";
@@ -20,7 +20,15 @@ import {
 // Component
 
 const SearchRestaurantPage = ({notEmpty, restaurants, searchAllRestaurantsAction, searchRestaurantsByCategoryAction}) => {
-    const displayMessage = () => !notEmpty ? <GenericSpinner/> : null;
+    const displayMessage = () => !notEmpty ?
+        <ParentWrapper>
+            <ValidSearchContainer>
+                <p>
+                  Please enter valid search
+                </p>
+            </ValidSearchContainer>
+
+        </ParentWrapper> : null;
 
     const [categories] = useState([
         {label: 'All', value: 0},
