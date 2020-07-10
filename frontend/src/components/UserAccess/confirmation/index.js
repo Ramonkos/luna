@@ -9,6 +9,7 @@ const ConfirmationContent = styled.div`
     width: ${rem('500px')};
     display: flex;
     flex-flow: column;
+    text-align: center;
     justify-content: space-between;
     margin-bottom: ${rem('50px')};
     margin-top: ${rem('77px')};
