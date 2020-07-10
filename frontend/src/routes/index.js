@@ -66,7 +66,6 @@ const Routes = () => {
             </MainContainer>
         </Router>
     </>
-  );
 };
 
 export default Routes;
