@@ -53,5 +53,3 @@ class RetrieveSpecificUserView(RetrieveAPIView):
     queryset = User
     serializer_class = UserSerializer
     lookup_url_kwarg = 'user_id'
-
-
