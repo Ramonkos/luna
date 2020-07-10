@@ -4,6 +4,12 @@ import { rem } from "polished";
 export const FooterContainer = styled.div`
   width: 100%;
   background-color: #fff;
+
+  z-index: 1;
+  align-self: flex-end;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 `;
 
 export const UpperWrapper = styled.div`
@@ -27,7 +33,7 @@ export const FooterLinks = styled.div`
   display: flex;
   justify-content: flex-start;
   a {
-    font-size: ${rem('20px')};
+    font-size: ${rem("20px")};
     line-height: 23px;
     color: #646363;
   }
@@ -51,8 +57,8 @@ export const LowerWrapper = styled.div`
   font-size: rem("12px");
   padding-left: 30px;
   p {
-    font-size: ${rem('12px')};
-    line-height: ${rem('14px')};
+    font-size: ${rem("12px")};
+    line-height: ${rem("14px")};
     color: #646363;
   }
 `;

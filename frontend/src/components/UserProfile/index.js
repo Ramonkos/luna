@@ -200,13 +200,33 @@ const UserProfile = ({ getUserInformationAction, targetUser, location }) => {
                   {(() => {
                     switch (value.display) {
                       case "review":
-                        return <UserProfileReview location={location} user_id={targetUser.id}/>;
+                        return (
+                          <UserProfileReview
+                            location={location}
+                            user_id={targetUser.id}
+                          />
+                        );
                       case "comment":
-                        return <UserProfileComment location={location} user_id={targetUser.id}/>;
+                        return (
+                          <UserProfileComment
+                            location={location}
+                            user_id={targetUser.id}
+                          />
+                        );
                       case "restaurant":
-                        return <UserProfileRestaurant location={location} user_id={targetUser.id}/>;
+                        return (
+                          <UserProfileRestaurant
+                            location={location}
+                            user_id={targetUser.id}
+                          />
+                        );
                       case "edit":
-                        return <UserEditProfile location={location} user_id={targetUser.id}/>;
+                        return (
+                          <UserEditProfile
+                            location={location}
+                            user_id={targetUser.id}
+                          />
+                        );
                     }
                   })()}
                 </ContentToButtons>
