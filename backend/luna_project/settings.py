@@ -26,10 +26,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'k3(-4f4s0tfg@ran#r3(h1!3#&4%3^btj@itm(*fdmu4n-ii#l'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = ast.literal_eval(os.environ.get('DJANGO_DEBUG'))
-DEBUG = True
+DEBUG = ast.literal_eval(os.environ.get('DJANGO_DEBUG'))
+# DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -64,8 +64,8 @@ MIDDLEWARE = [
 ]
 
 CORS_ORIGIN_WHITELIST = [
-    "http://localhost:3000",
-    "http://127.0.0.1:8000"
+    # "http://localhost:3000",
+    # "http://127.0.0.1:8000"
 ]
 
 ROOT_URLCONF = 'luna_project.urls'
