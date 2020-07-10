@@ -21,18 +21,18 @@ export const SearchContainer = styled.div`
     font-size: 20px;
     line-height: 23px;
     
-    color: #D8D8D8;
+    color: #979797;
     
     ::-webkit-input-placeholder { /* Edge */
-      color: #D8D8D8;
+      color: #979797;
     }
     
     :-ms-input-placeholder { /* Internet Explorer 10-11 */
-      color: #D8D8D8;
+      color: #979797;
     }
     
     ::placeholder {
-      color: #D8D8D8;
+      color: #979797;
     }
   }
 `;

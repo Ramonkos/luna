@@ -17,7 +17,7 @@ export const Input = styled.input`
     font-weight: bold;
     font-size: ${rem('20px')};
     line-height: ${rem('23px')};
-    color: #979797;    
+    color: #979797;
     &:focus {
       outline: none;
     }    
@@ -25,7 +25,7 @@ export const Input = styled.input`
 
 export const RestaurantCreationInput = styled(Input)`
     width: ${rem('370px')};
-    color: #999999;
+    color: #979797;
     font-family: Karla,serif;  //TODO Get Karla font style
     font-weight: normal;
     font-size: ${rem('22px')};

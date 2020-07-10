@@ -49,7 +49,7 @@ const InputName = styled(BlackBold20Left)`
 export const RestaurantCreationSelector = styled.select`
     width: ${rem('370px')};
     height: ${rem('50px')};
-    color: #999999;
+    color: #979797;
     font-family: Karla,serif;  //TODO Get Karla font style
     font-weight: normal;
     font-size: ${rem('22px')};
