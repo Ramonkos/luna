@@ -1,5 +1,6 @@
 import Axios from '../../axios';
 import {GET_USER_COMMENTS} from "../actionTypes";
+import {signUpError} from "./registrationActions";
 
 export const getUserComments = (userComments) => {
     return {
@@ -34,7 +35,7 @@ export const getUserCommentsAction = (user_id, data) => async (dispatch) => {
         dispatch(getUserComments(response.data));
         return response
     } catch (error) {
-        console.log('Error fetching comments>', error);
+        console.log('Error fetching comments>', error.response);
         return error
     }
 };

@@ -74,6 +74,11 @@ class Restaurant(models.Model):
         blank=True
     )
 
+    restaurant_banner = models.ImageField(
+        null=True,
+        blank=True
+    )
+
     take_reservations = models.BooleanField(
         default=False
     )

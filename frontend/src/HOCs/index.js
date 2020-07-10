@@ -7,9 +7,7 @@ export default WrappedComponent => {
 
         useEffect(() => {
             const userRedirect = () => {
-                if (authenticated) {
-                    history.push('/');
-                } else if (!authenticated) {
+                if (!authenticated) {
                     history.push('/auth/login');
                 }
             };
