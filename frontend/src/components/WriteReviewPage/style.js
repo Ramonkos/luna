@@ -1,17 +1,29 @@
 import React from 'react';
 import styled from "styled-components";
-import {defaultRestaurantPageBanner} from '../../constants';
-import {rem} from "polished";
+
+
+export const ReviewMainContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`
 
 export const RestaurantContainer = styled.div`
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 1440px;
   height: 204px;
-  background-image: url("https://via.placeholder.com/1440x496"); //TODO change URL to constant folder
   margin-bottom: 40px;
-   
-  restaurantname {
+  
+  img {
+    position: absolute;
+    width: 100vw;
+    height: 204px;
+    object-fit: cover;
+    object-position: top;
+  }
+`;
+
+export const Restaurantname = styled.div`
     position:relative;
     height: 34px;
     margin-left: 130px;
@@ -24,9 +36,16 @@ export const RestaurantContainer = styled.div`
     font-size: 30px;
     line-height: 34px;
     color: #FFFFFF
-  }
-  
-  restaurantdescription {
+`;
+
+export const Darkbackground = styled.div`
+    position: absolute;
+    height: 204px;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    `;
+
+export const Restaurantdescription = styled.div`
     position: relative;
     height: 28px;
     margin-left: 130px;
@@ -38,7 +57,6 @@ export const RestaurantContainer = styled.div`
     font-size: 24px;
     line-height: 28px;
     color: #FFFFFF  
-  }
 `;
 
 export const StarsReviewContainer = styled.div`

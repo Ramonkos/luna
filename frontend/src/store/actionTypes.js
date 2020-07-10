@@ -25,4 +25,5 @@ export const UPDATE_USER = 'UPDATE_USER';
 export const SEARCH_ALL_USERS = 'SEARCH_ALL_USERS';
 
 export const SEARCH_ALL_REVIEWS = 'SEARCH_ALL_REVIEWS';
+export const CREATE_REVIEW = 'CREATE_REVIEW';
 
